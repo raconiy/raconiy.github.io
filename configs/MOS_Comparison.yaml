@@ -1,0 +1,71 @@
+title: 音频处理方法对比评测
+pages:
+- type: instructions
+  title: 评测说明
+  text: 请对比以下三种音频处理方法的音质。使用滑块给出评分（0-100分），分数越高表示音质越好。
+- type: mushra
+  title: 音频质量对比
+  stimuli:
+  - id: sample_1
+    name: 样本 1/10
+    reference: ./configs/resources/samples/0b5ca773_8630_305213_000014_000002/0b5ca773_8630_305213_000014_000002_original.wav
+    stimuli:
+      音频1: ./configs/resources/samples/0b5ca773_8630_305213_000014_000002/0b5ca773_8630_305213_000014_000002_opensource.wav
+      音频3: ./configs/resources/samples/0b5ca773_8630_305213_000014_000002/0b5ca773_8630_305213_000014_000002_switch.wav
+  - id: sample_2
+    name: 样本 2/10
+    reference: ./configs/resources/samples/0b995715_6209_34601_000011_000000/0b995715_6209_34601_000011_000000_original.wav
+    stimuli:
+      音频1: ./configs/resources/samples/0b995715_6209_34601_000011_000000/0b995715_6209_34601_000011_000000_opensource.wav
+      音频3: ./configs/resources/samples/0b995715_6209_34601_000011_000000/0b995715_6209_34601_000011_000000_switch.wav
+  - id: sample_3
+    name: 样本 3/10
+    reference: ./configs/resources/samples/0bf5e824_6880_216547_000051_000004/0bf5e824_6880_216547_000051_000004_original.wav
+    stimuli:
+      音频1: ./configs/resources/samples/0bf5e824_6880_216547_000051_000004/0bf5e824_6880_216547_000051_000004_opensource.wav
+      音频3: ./configs/resources/samples/0bf5e824_6880_216547_000051_000004/0bf5e824_6880_216547_000051_000004_switch.wav
+  - id: sample_4
+    name: 样本 4/10
+    reference: ./configs/resources/samples/0cb67202_6367_65536_000003_000003/0cb67202_6367_65536_000003_000003_original.wav
+    stimuli:
+      音频1: ./configs/resources/samples/0cb67202_6367_65536_000003_000003/0cb67202_6367_65536_000003_000003_opensource.wavv
+      音频3: ./configs/resources/samples/0cb67202_6367_65536_000003_000003/0cb67202_6367_65536_000003_000003_switch.wav
+  - id: sample_5
+    name: 样本 5/10
+    reference: ./configs/resources/samples/0da77639_7511_102420_000012_000005/0da77639_7511_102420_000012_000005_original.wav
+    stimuli:
+      音频1: ./configs/resources/samples/0da77639_7511_102420_000012_000005/0da77639_7511_102420_000012_000005_opensource.wav
+      音频3: ./configs/resources/samples/0da77639_7511_102420_000012_000005/0da77639_7511_102420_000012_000005_switch.wav
+  - id: sample_6
+    name: 样本 6/10
+    reference: ./configs/resources/samples/0f5b8450_7800_283478_000005_000001/0f5b8450_7800_283478_000005_000001_original.wav
+    stimuli:
+      音频1: ./configs/resources/samples/0f5b8450_7800_283478_000005_000001/0f5b8450_7800_283478_000005_000001_opensource.wav
+      音频3: ./configs/resources/samples/0f5b8450_7800_283478_000005_000001/0f5b8450_7800_283478_000005_000001_switch.wav
+  - id: sample_7
+    name: 样本 7/10
+    reference: ./configs/resources/samples/1abfabae_7059_77897_000042_000000/1abfabae_7059_77897_000042_000000_original.wav
+    stimuli:
+      音频1: ./configs/resources/samples/1abfabae_7059_77897_000042_000000/1abfabae_7059_77897_000042_000000_opensource.wav
+      音频3: ./configs/resources/samples/1abfabae_7059_77897_000042_000000/1abfabae_7059_77897_000042_000000_switch.wav
+  - id: sample_8
+    name: 样本 8/10
+    reference: ./configs/resources/samples/1bf36205_8051_119902_000019_000000/1bf36205_8051_119902_000019_000000_original.wav
+    stimuli:
+      音频1: ./configs/resources/samples/1bf36205_8051_119902_000019_000000/1bf36205_8051_119902_000019_000000_opensource.wav
+      音频3: ./configs/resources/samples/1bf36205_8051_119902_000019_000000/1bf36205_8051_119902_000019_000000_switch.wav
+  - id: sample_9
+    name: 样本 9/10
+    reference: ./configs/resources/samples/1c3e33bb_4441_76250_000031_000000/1c3e33bb_4441_76250_000031_000000_original.wav
+    stimuli:
+      音频1: ./configs/resources/samples/1c3e33bb_4441_76250_000031_000000/1c3e33bb_4441_76250_000031_000000_opensource.wav
+      音频3: ./configs/resources/samples/1c3e33bb_4441_76250_000031_000000/1c3e33bb_4441_76250_000031_000000_switch.wav
+  - id: sample_10
+    name: 样本 10/10
+    reference: ./configs/resources/samples/1cd6e9d4_8609_283227_000095_000008/1cd6e9d4_8609_283227_000095_000008_original.wav
+    stimuli:
+      音频1: ./configs/resources/samples/1cd6e9d4_8609_283227_000095_000008/1cd6e9d4_8609_283227_000095_000008_opensource.wav
+      音频3: ./configs/resources/samples/1cd6e9d4_8609_283227_000095_000008/1cd6e9d4_8609_283227_000095_000008_switch.wav
+  reference: hidden
+  visualization: stars
+  randomize: true

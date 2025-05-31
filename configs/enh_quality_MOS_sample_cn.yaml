@@ -16,7 +16,7 @@ pages:
 - content: 这是和后面评测中您将听到的音频相似的一个语音样本。请根据它调整耳机的音量。<br><br><strong>在评测过程中，请使用耳机，并在相对安静的房间中进行听音。</strong>
   defaultVolume: 1.0
   id: Volume check
-  stimulus: configs/resources/samples/clean/p232_001.wav
+  stimulus: configs\resources\samples\0b5ca773_8630_305213_000014_000002\0b5ca773_8630_305213_000014_000002_opensource.wav
   type: volume
 -
   - random
@@ -43,7 +43,7 @@ pages:
     mustViewAllTabs: true
     name: 语音增强质量评测 (1/10)
     randomize: true
-    reference: ./configs/resources/samples/p232_001/mono_ref.wav
+    reference: configs\resources\samples\0b5ca773_8630_305213_000014_000002\0b5ca773_8630_305213_000014_000002_original.wav
     response:
     -
       - 很好
@@ -65,11 +65,8 @@ pages:
       - 几乎无噪声
     showConditionNames: false
     stimuli:
-      d2former: ./configs/resources/samples/p232_001/mono_c1.wav
-      dccrn: ./configs/resources/samples/p232_001/mono_c2.wav
-      dprnn: ./configs/resources/samples/p232_001/mono_c3.wav
-      metric+: ./configs/resources/samples/p232_001/mono_c4.wav
-      mpset: ./configs/resources/samples/p232_001/mono_c5.wav
+      d2former: configs\resources\samples\0b5ca773_8630_305213_000014_000002\0b5ca773_8630_305213_000014_000002_opensource.wav
+      dccrn: configs\resources\samples\0b5ca773_8630_305213_000014_000002\0b5ca773_8630_305213_000014_000002_switch.wav
     type: multi_metric_mushra
   - colors:
     - '#ED8C01'
@@ -93,7 +90,7 @@ pages:
     mustViewAllTabs: true
     name: 语音增强质量评测 (2/10)
     randomize: true
-    reference: ./configs/resources/samples/p232_002/mono_ref.wav
+    reference: configs\resources\samples\0b995715_6209_34601_000011_000000\0b995715_6209_34601_000011_000000_original.wav
     response:
     -
       - 很好
