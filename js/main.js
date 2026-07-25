@@ -1,1 +1,1 @@
-/* Reserved for small progressive enhancements. */
+document.getElementById("year").textContent = String(new Date().getFullYear());
