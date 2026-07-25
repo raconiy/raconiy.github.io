@@ -1,1 +1,1 @@
-/* No progressive enhancements required for the academic layout. */
+/* Reserved for small progressive enhancements. */
