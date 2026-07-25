@@ -181,13 +181,23 @@ h1 {
   font-weight: 500;
 }
 
-.role, .place {
+.focus, .place, .personal {
   margin: 10px 0 0;
   color: var(--soft);
   font-size: 15px;
+  line-height: 1.55;
 }
 
+.focus { max-width: 36rem; }
+.focus strong { color: var(--ink); font-weight: 600; }
+
 .place { margin-top: 4px; }
+
+.personal {
+  margin-top: 14px;
+  max-width: 38rem;
+  font-size: 14.5px;
+}
 
 .status-row {
   display: flex;
@@ -509,7 +519,7 @@ h1 {
 
 .hobbies {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 10px;
   margin-bottom: 12px;
 }
