@@ -3,23 +3,20 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Wang Xiangbo</title>
-  <meta name="description" content="Wang Xiangbo — low-level 3D Gaussian Splatting, world models, and computational photography." />
+  <title>Ezekiel Wang · Xiangbo</title>
+  <meta name="description" content="Ezekiel Wang (Xiangbo) — low-level 3D Gaussian Splatting, world models, and computational photography." />
   <link rel="canonical" href="https://raconiy.github.io/" />
-  <meta property="og:title" content="Wang Xiangbo" />
+  <meta property="og:title" content="Ezekiel Wang" />
   <meta property="og:description" content="3DGS · World Models · Computational Photography" />
   <meta property="og:url" content="https://raconiy.github.io/" />
   <meta property="og:image" content="https://raconiy.github.io/assets/portrait.jpg" />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
-  <div class="bg" aria-hidden="true">
-    <div class="orb orb-a"></div>
-    <div class="orb orb-b"></div>
-  </div>
+  <div class="bg" aria-hidden="true"></div>
 
-  <nav class="nav glass">
-    <a class="brand" href="#top">Wang Xiangbo</a>
+  <nav class="nav">
+    <a class="brand" href="#top">Ezekiel</a>
     <div class="nav-links">
       <a href="#research">Research</a>
       <a href="#publications">Papers</a>
@@ -30,43 +27,42 @@
   </nav>
 
   <main id="top">
-    <header class="hero">
-      <div class="hero-main glass">
-        <img class="avatar" src="assets/portrait.jpg" alt="Wang Xiangbo" width="96" height="96" />
-        <div class="hero-text">
-          <p class="eyebrow">Personal Research Page</p>
-          <h1>Wang Xiangbo <span>王相博</span></h1>
+    <header class="intro">
+      <div class="identity">
+        <img class="avatar" src="assets/portrait.jpg" alt="Ezekiel Wang" width="104" height="104" />
+        <div>
+          <p class="eyebrow">Research</p>
+          <h1>Ezekiel Wang</h1>
+          <p class="aka">Xiangbo · raconiy</p>
           <p class="role">
-            Undergraduate · Communication Engineering · Hangzhou Dianzi University
+            Undergraduate · Communication Engineering<br />
+            Hangzhou Dianzi University
           </p>
           <p class="place">Based in Hangzhou, China</p>
-          <div class="hero-actions">
-            <a href="mailto:23200410@hdu.edu.cn">Email</a>
-            <a href="https://github.com/raconiy" target="_blank" rel="noopener">GitHub</a>
-            <a href="assets/wangxiangbo_cv.pdf" target="_blank" rel="noopener">Download CV</a>
+          <div class="actions">
+            <a class="btn" href="mailto:23200410@hdu.edu.cn">Email</a>
+            <a class="btn btn-ghost" href="https://github.com/raconiy" target="_blank" rel="noopener">GitHub</a>
+            <a class="btn btn-ghost" href="assets/wangxiangbo_cv.pdf" target="_blank" rel="noopener">CV</a>
           </div>
         </div>
       </div>
 
-      <div class="hero-about glass">
+      <div class="about" id="about">
         <h2>About</h2>
         <p>
-          I am an undergraduate researcher interested in how machines reconstruct and predict
-          the physical world from imperfect visual signals. My current focus is
+          I’m an undergraduate researcher working on how machines reconstruct and predict
+          the physical world from imperfect visual signals. My focus is
           <strong>low-level 3D Gaussian Splatting</strong>, <strong>world models</strong>,
           and <strong>computational photography</strong> — especially feed-forward reconstruction,
           super-resolution 3D recovery, and efficient rendering under real capture conditions.
         </p>
         <p>
-          I am a member of <strong>MILab</strong> and <strong>IIPL</strong> at Hangzhou Dianzi University.
-          Since March 2026, I have also been a research assistant at the
-          <strong>University of Sheffield</strong>, advised by Delvin Ce Zhang, with related work
-          submitted to AAAI 2027. Previously, I worked on neural audio coding and published
-          SwitchCodec at ICASSP 2026 as first author (Oral).
-        </p>
-        <p>
-          Across projects, I care about clean problem formulation, careful ablations,
-          and systems that remain useful when data is sparse, noisy, or bandwidth-limited.
+          I’m a member of <strong>MILab</strong> and <strong>IIPL</strong> at HDU.
+          Since March 2026 I’ve been a research assistant at the
+          <strong>University of Sheffield</strong> with Delvin Ce Zhang
+          (<strong>AAAI 2027 · Submitted</strong>).
+          Earlier work on neural audio coding led to SwitchCodec
+          (<strong>ICASSP 2026 Oral</strong>, first author).
         </p>
       </div>
     </header>
@@ -74,21 +70,26 @@
     <section id="research">
       <div class="section-head">
         <h2>Research</h2>
-        <p>Where my attention goes.</p>
       </div>
-      <div class="cards">
-        <article class="card glass">
+      <div class="pill-row">
+        <span class="pill">3DGS</span>
+        <span class="pill">World Models</span>
+        <span class="pill">Comp. Photography</span>
+        <span class="pill muted">Neural Audio <em>prior</em></span>
+      </div>
+      <div class="split-list">
+        <div>
           <h3>3D Gaussian Splatting</h3>
-          <p>Feed-forward GS, super-resolution 3D reconstruction, multi-view recovery, and efficient rendering pipelines for real-world captures.</p>
-        </article>
-        <article class="card glass">
+          <p>Feed-forward GS, super-resolution 3D reconstruction, multi-view recovery, efficient rendering.</p>
+        </div>
+        <div>
           <h3>World Models</h3>
-          <p>Learning predictive spatial structure from visual streams, with representations that stay grounded in geometry and observation.</p>
-        </article>
-        <article class="card glass">
+          <p>Predictive spatial representations grounded in geometry and visual observation.</p>
+        </div>
+        <div>
           <h3>Computational Photography</h3>
-          <p>Recovering detail, consistency, and usable signal from imperfect sensors — the imaging layer beneath reconstruction.</p>
-        </article>
+          <p>Recovering detail and consistency from imperfect sensors and imaging pipelines.</p>
+        </div>
       </div>
     </section>
 
@@ -96,24 +97,21 @@
       <div class="section-head">
         <h2>News</h2>
       </div>
-      <div class="glass panel">
-        <ul class="news">
-          <li><time>2026.03</time><span>Joined University of Sheffield as RA (advisor: Delvin Ce Zhang); manuscript submitted to AAAI 2027.</span></li>
-          <li><time>2026</time><span>SR3R accepted to <strong>CVPR 2026</strong> (co-first, 2nd).</span></li>
-          <li><time>2026</time><span>SwitchCodec accepted to <strong>ICASSP 2026 Oral</strong> (first author).</span></li>
-        </ul>
-      </div>
+      <ul class="news">
+        <li><time>2026.03</time><span>RA at University of Sheffield · <strong>AAAI 2027 Submitted</strong></span></li>
+        <li><time>2026</time><span><strong>CVPR 2026</strong> — SR3R (co-first)</span></li>
+        <li><time>2026</time><span><strong>ICASSP 2026 Oral</strong> — SwitchCodec (first author)</span></li>
+      </ul>
     </section>
 
     <section id="publications">
       <div class="section-head">
         <h2>Publications</h2>
-        <p>Selected papers, with short abstracts beside each entry.</p>
       </div>
 
-      <article class="pub glass">
+      <article class="pub">
         <div class="pub-main">
-          <p class="venue">CVPR 2026 · Co-first (2nd)</p>
+          <p class="venue"><span class="badge">CVPR 2026</span> Co-first (2nd)</p>
           <h3>
             <a href="https://openaccess.thecvf.com/content/CVPR2026/papers/Feng_SR3R_Rethinking_Super-Resolution_3D_Reconstruction_With_Feed-Forward_Gaussian_Splatting_CVPR_2026_paper.pdf" target="_blank" rel="noopener">
               SR3R: Rethinking Super-Resolution 3D Reconstruction With Feed-Forward Gaussian Splatting
@@ -125,15 +123,14 @@
           </p>
         </div>
         <p class="abstract">
-          A feed-forward Gaussian Splatting framework for super-resolution 3D reconstruction,
-          targeting efficient multi-view recovery and higher-fidelity novel-view rendering
-          under challenging capture conditions.
+          Feed-forward Gaussian Splatting for super-resolution 3D reconstruction —
+          efficient multi-view recovery and higher-fidelity novel-view rendering.
         </p>
       </article>
 
-      <article class="pub glass">
+      <article class="pub">
         <div class="pub-main">
-          <p class="venue">ICASSP 2026 · Oral · First author</p>
+          <p class="venue"><span class="badge oral">ICASSP 2026 Oral</span> First author</p>
           <h3>
             <a href="https://arxiv.org/abs/2601.20362" target="_blank" rel="noopener">
               SwitchCodec: Adaptive Residual-Expert Sparse Quantization for High-Fidelity Neural Audio Coding
@@ -145,33 +142,21 @@
           </p>
         </div>
         <p class="abstract">
-          A neural audio codec with Residual Experts Vector Quantization (REVQ).
-          Shared and sparsely routed experts enable adaptive high-fidelity compression
-          and variable-bitrate operation without retraining, reaching 2.87 PESQ at 2.6 kbps on LibriTTS.
+          Neural audio codec with Residual Experts Vector Quantization (REVQ).
+          Adaptive high-fidelity compression and variable bitrate without retraining
+          (2.87 PESQ @ 2.6 kbps on LibriTTS).
         </p>
       </article>
 
-      <article class="pub glass">
-        <div class="pub-main">
-          <p class="venue">AAAI 2027 · Submitted</p>
-          <h3 class="pending">Manuscript from University of Sheffield (title TBA)</h3>
-          <p class="authors">Advised by Delvin Ce Zhang</p>
-        </div>
-        <p class="abstract">
-          Ongoing research on world models and related visual intelligence directions,
-          developed during my RA appointment at the University of Sheffield.
-        </p>
-      </article>
+      <p class="aaai-line">Also: <strong>AAAI 2027 · Submitted</strong></p>
     </section>
 
     <section id="experience">
       <div class="section-head">
         <h2>Experience</h2>
-        <p>Labs, roles, and what I actually worked on.</p>
       </div>
-
       <div class="exp-list">
-        <article class="exp glass">
+        <article class="exp">
           <div class="exp-top">
             <div>
               <h3>Research Assistant · University of Sheffield</h3>
@@ -179,13 +164,10 @@
             </div>
             <time>Mar 2026 – Present</time>
           </div>
-          <p class="abstract">
-            Conducting research on world models and related visual intelligence problems.
-            Contributing to problem formulation, experiments, and a manuscript submitted to AAAI 2027.
-          </p>
+          <p class="detail">AAAI 2027 · Submitted</p>
         </article>
 
-        <article class="exp glass">
+        <article class="exp">
           <div class="exp-top">
             <div>
               <h3>Member · MILab, Hangzhou Dianzi University</h3>
@@ -193,14 +175,13 @@
             </div>
             <time>2025 – Present</time>
           </div>
-          <p class="abstract">
-            Research on 3D generation and super-resolution. Co-first author on SR3R,
-            a feed-forward Gaussian Splatting approach for super-resolution 3D reconstruction
-            (CVPR 2026). Contributed to architecture design and experimental validation.
+          <p class="detail">
+            3D generation and super-resolution. Co-first on SR3R — feed-forward Gaussian Splatting
+            for super-resolution 3D reconstruction (CVPR 2026). Architecture design and experimental validation.
           </p>
         </article>
 
-        <article class="exp glass">
+        <article class="exp">
           <div class="exp-top">
             <div>
               <h3>Member · IIPL, Hangzhou Dianzi University</h3>
@@ -208,25 +189,21 @@
             </div>
             <time>2024 – Present</time>
           </div>
-          <p class="abstract">
-            Research on deep learning–based neural audio codecs. Designed SwitchCodec with REVQ
-            and dynamic routing for variable-bitrate coding without retraining.
-            Implemented models in PyTorch, ran ablations and listening tests; paper accepted as ICASSP 2026 Oral.
+          <p class="detail">
+            Neural audio codecs. Designed SwitchCodec with REVQ and dynamic routing for variable-bitrate
+            coding without retraining. PyTorch implementation, ablations, listening tests —
+            ICASSP 2026 Oral, first author.
           </p>
         </article>
 
-        <article class="exp glass">
+        <article class="exp">
           <div class="exp-top">
             <div>
               <h3>Member · HDU Computer Science Association</h3>
-              <p class="meta">Academic community</p>
             </div>
             <time>2023 – Present</time>
           </div>
-          <p class="abstract">
-            Active in lab seminars and reading groups; exchanging ideas across systems,
-            learning, and research practice with peers on campus.
-          </p>
+          <p class="detail">Lab seminars, reading groups, and research community on campus.</p>
         </article>
       </div>
     </section>
@@ -236,29 +213,27 @@
         <h2>Education</h2>
       </div>
       <div class="exp-list">
-        <article class="exp glass">
+        <article class="exp">
           <div class="exp-top">
             <div>
               <h3>B.Eng. Communication Engineering · Hangzhou Dianzi University</h3>
             </div>
             <time>2023 – 2027</time>
           </div>
-          <p class="abstract">
-            Top 10% in major. Coursework across algorithms, digital signal processing,
-            deep learning, linear algebra, probability &amp; statistics, neural networks,
-            and digital communications.
+          <p class="detail">
+            Top 10% in major. Algorithms, DSP, deep learning, linear algebra,
+            probability &amp; statistics, neural networks, digital communications.
           </p>
         </article>
-        <article class="exp glass">
+        <article class="exp">
           <div class="exp-top">
             <div>
               <h3>Summer School · The University of Sydney</h3>
             </div>
             <time>Summer 2024</time>
           </div>
-          <p class="abstract">
-            Fundamentals of Deep Learning and Academic English;
-            earned Excellent in both final assessments during a short-term international exchange.
+          <p class="detail">
+            Fundamentals of Deep Learning &amp; Academic English — Excellent in both assessments.
           </p>
         </article>
       </div>
@@ -267,50 +242,51 @@
     <section id="life">
       <div class="section-head">
         <h2>Beyond research</h2>
-        <p>Things that shape how I think when I am not training models.</p>
       </div>
 
-      <div class="cards life-cards">
-        <article class="card glass">
-          <h3>Basketball</h3>
-          <p>
-            Competitive play as a shooting guard. I care about spacing, timing, and composure
-            in late-game possessions — reading the floor under pressure and making simple,
-            high-percentage decisions.
-          </p>
+      <div class="hobbies">
+        <article class="hobby">
+          <span class="emoji" aria-hidden="true">🏀</span>
+          <div>
+            <h3>Basketball</h3>
+            <p>
+              Competitive shooting guard. Spacing, timing, and composure in late-game possessions —
+              reading the floor under pressure and taking high-percentage decisions.
+            </p>
+          </div>
         </article>
-        <article class="card glass">
-          <h3>Saxophone</h3>
-          <p>
-            Jazz and classical repertoire. Practice is less about volume and more about tone,
-            breath control, and listening — the same patience I try to keep in research iteration.
-          </p>
+        <article class="hobby">
+          <span class="emoji" aria-hidden="true">🎷</span>
+          <div>
+            <h3>Saxophone</h3>
+            <p>
+              Jazz and classical. Tone, breath, and listening come first —
+              the same patience I try to keep when iterating on research.
+            </p>
+          </div>
         </article>
-        <article class="card glass">
-          <h3>Weiqi (Go)</h3>
-          <p>
-            From 1-dan in 2016 to 5-dan. Long-horizon judgment, sacrifice, and quiet calculation —
-            a habitual way of thinking in sequences rather than single moves.
-          </p>
+        <article class="hobby">
+          <span class="emoji" aria-hidden="true">⚫</span>
+          <div>
+            <h3>Weiqi / Go</h3>
+            <p>
+              1-dan (2016) → 5-dan. Long-horizon judgment and quiet calculation —
+              thinking in sequences, not single moves.
+            </p>
+          </div>
         </article>
       </div>
 
-      <a class="album glass" href="https://open.spotify.com/album/2B3RcI8mHKCeH207Ea4GN1" target="_blank" rel="noopener">
-        <img src="assets/asen-cover.jpg" alt="Album cover of 在雨后醒来 by Asen" width="96" height="96" />
+      <a class="album" href="https://open.spotify.com/album/2B3RcI8mHKCeH207Ea4GN1" target="_blank" rel="noopener">
+        <img src="assets/asen-cover.jpg" alt="Album cover: 在雨后醒来 by Asen" width="88" height="88" />
         <div class="album-text">
-          <p class="album-label">Now listening</p>
+          <p class="album-label">🎧 Now listening</p>
           <p class="album-title">在雨后醒来</p>
-          <p class="album-artist">Asen · Album</p>
-          <p class="album-links">
-            <span>Spotify</span>
-            <span>·</span>
-            <span>Apple Music</span>
-          </p>
+          <p class="album-artist">Asen</p>
         </div>
         <span class="album-btn">Open</span>
       </a>
       <p class="album-alt">
-        Direct links:
         <a href="https://open.spotify.com/album/2B3RcI8mHKCeH207Ea4GN1" target="_blank" rel="noopener">Spotify</a>
         ·
         <a href="https://music.apple.com/album/%E5%9C%A8%E9%9B%A8%E5%90%8E%E9%86%92%E6%9D%A5/1845141403" target="_blank" rel="noopener">Apple Music</a>
@@ -319,7 +295,7 @@
   </main>
 
   <footer>
-    <p>© <span id="y"></span> Wang Xiangbo</p>
+    <p>© <span id="y"></span> Ezekiel Wang</p>
     <p>raconiy.github.io</p>
   </footer>
 
