@@ -31,8 +31,11 @@
     <header class="intro" id="intro">
       <div class="identity">
         <div class="identity-text">
-          <p class="eyebrow">Researcher</p>
-          <h1>Ezekiel Wang</h1>
+          <div class="eyebrow-row">
+            <p class="eyebrow">Researcher</p>
+            <p class="mood" id="mood">thinking in photons</p>
+          </div>
+          <h1><span class="name-shine">Ezekiel Wang</span></h1>
           <p class="aka">Xiangbo Wang</p>
           <p class="role">
             Undergraduate · Communication Engineering<br />
@@ -54,33 +57,49 @@
             </button>
             <a class="btn btn-ghost" href="https://github.com/raconiy" target="_blank" rel="noopener">GitHub</a>
             <a class="btn btn-ghost" href="assets/wangxiangbo_cv.pdf" target="_blank" rel="noopener">CV</a>
+            <button class="btn btn-ghost" type="button" id="theme-toggle" aria-label="Toggle theme">Theme</button>
           </div>
         </div>
 
         <figure class="portrait">
-          <img src="assets/portrait.jpg" alt="Portrait of Ezekiel Wang" width="320" height="400" />
+          <img src="assets/portrait.jpg" alt="Portrait of Ezekiel Wang" width="200" height="250" />
+          <figcaption>RAW → RGB → world</figcaption>
         </figure>
       </div>
 
       <div class="about" id="about">
-        <h2>About</h2>
-        <p>
-          I’m an undergraduate researcher working on how machines see under imperfect imaging conditions.
-          My current focus is <strong>computational photography</strong>, alongside
-          <strong>low-level 3D Gaussian Splatting</strong> and <strong>world models</strong>.
-        </p>
-        <p>
-          I’m currently a research assistant in
-          <strong>RAWLab (Robust AI in the Wild Lab)</strong> at
-          <strong>HKUST(GZ)</strong>, working with
-          <a href="https://cuiziteng.github.io/" target="_blank" rel="noopener">Ziteng Cui</a>
-          on computational photography.
-          I’m also a member of <strong>MILab</strong> and <strong>IIPL</strong> at HDU,
-          and a research assistant at the <strong>University of Sheffield</strong>
-          with Delvin Ce Zhang (<strong>AAAI 2027 · Submitted</strong>).
-          Earlier work on neural audio coding led to SwitchCodec
-          (<strong>ICASSP 2026 Oral</strong>, first author).
-        </p>
+        <div class="about-head">
+          <h2>About</h2>
+          <p class="pull">Build clearer pictures first. Model the world second.</p>
+        </div>
+        <div class="about-grid">
+          <p>
+            I’m an undergraduate researcher working on how machines see under imperfect imaging conditions.
+            My current focus is <strong>computational photography</strong>, alongside
+            <strong>low-level 3D Gaussian Splatting</strong> and <strong>world models</strong>.
+            I care about the messy middle of vision systems: noise, exposure, bandwidth, and geometry
+            that refuses to stay neat.
+          </p>
+          <p>
+            I’m currently a research assistant in
+            <strong>RAWLab (Robust AI in the Wild Lab)</strong> at
+            <strong>HKUST(GZ)</strong>, working with
+            <a href="https://cuiziteng.github.io/" target="_blank" rel="noopener">Ziteng Cui</a>
+            on computational photography.
+            I’m also a member of <strong>MILab</strong> and <strong>IIPL</strong> at HDU,
+            and a research assistant at the <strong>University of Sheffield</strong>
+            with Delvin Ce Zhang (<strong>AAAI 2027 · Submitted</strong>).
+            Earlier work on neural audio coding led to SwitchCodec
+            (<strong>ICASSP 2026 Oral</strong>, first author).
+          </p>
+        </div>
+      </div>
+
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+          <span>computational photography</span><span>3DGS</span><span>world models</span><span>RAW imaging</span><span>feed-forward reconstruction</span><span>super-resolution</span><span>efficient rendering</span>
+          <span>computational photography</span><span>3DGS</span><span>world models</span><span>RAW imaging</span><span>feed-forward reconstruction</span><span>super-resolution</span><span>efficient rendering</span>
+        </div>
       </div>
     </header>
 
@@ -280,7 +299,7 @@
       </div>
 
       <div class="hobbies">
-        <article class="hobby">
+        <article class="hobby tilt-a">
           <span class="emoji" aria-hidden="true">🏀</span>
           <div>
             <h3>Basketball</h3>
@@ -290,7 +309,7 @@
             </p>
           </div>
         </article>
-        <article class="hobby">
+        <article class="hobby tilt-b">
           <span class="emoji" aria-hidden="true">🎷</span>
           <div>
             <h3>Saxophone</h3>
@@ -300,7 +319,7 @@
             </p>
           </div>
         </article>
-        <article class="hobby">
+        <article class="hobby tilt-c">
           <span class="emoji" aria-hidden="true">⚫</span>
           <div>
             <h3>Weiqi / Go</h3>
@@ -312,15 +331,23 @@
         </article>
       </div>
 
-      <a class="album" href="https://open.spotify.com/album/2B3RcI8mHKCeH207Ea4GN1" target="_blank" rel="noopener">
-        <img src="assets/asen-cover.jpg" alt="Album cover: 在雨后醒来 by Asen" width="88" height="88" />
-        <div class="album-text">
-          <p class="album-label">🎧 Now listening</p>
-          <p class="album-title">在雨后醒来</p>
-          <p class="album-artist">Asen</p>
+      <a class="album window" href="https://open.spotify.com/album/2B3RcI8mHKCeH207Ea4GN1" target="_blank" rel="noopener">
+        <div class="window-bar" aria-hidden="true">
+          <span class="traffic red"></span>
+          <span class="traffic yellow"></span>
+          <span class="traffic green"></span>
+          <span class="window-title">now_playing.app</span>
         </div>
-        <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-        <span class="album-btn">Open</span>
+        <div class="album-body">
+          <img src="assets/asen-cover.jpg" alt="Album cover: 在雨后醒来 by Asen" width="88" height="88" />
+          <div class="album-text">
+            <p class="album-label">🎧 Now listening</p>
+            <p class="album-title">在雨后醒来</p>
+            <p class="album-artist">Asen</p>
+          </div>
+          <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+          <span class="album-btn">Open</span>
+        </div>
       </a>
       <p class="album-alt">
         <a href="https://open.spotify.com/album/2B3RcI8mHKCeH207Ea4GN1" target="_blank" rel="noopener">Spotify</a>
