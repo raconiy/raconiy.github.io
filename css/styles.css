@@ -94,7 +94,23 @@ main {
   margin: 28px auto 0;
 }
 
-section { margin: 48px 0; }
+section {
+  margin: 48px 0;
+  padding-left: 16px;
+  border-left: 2px solid transparent;
+  transition: border-color 0.25s ease;
+}
+
+section:hover {
+  border-left-color: rgba(0, 102, 204, 0.35);
+}
+
+#research { border-left-color: rgba(0, 0, 0, 0.08); }
+#news { border-left-color: rgba(0, 0, 0, 0.08); }
+#publications { border-left-color: rgba(0, 102, 204, 0.28); }
+#experience { border-left-color: rgba(0, 0, 0, 0.08); }
+#education { border-left-color: rgba(0, 0, 0, 0.08); }
+#life { border-left-color: rgba(0, 0, 0, 0.08); }
 
 .section-head h2 {
   margin: 0 0 16px;
@@ -354,6 +370,25 @@ h1 {
   border: 1px solid var(--line);
   border-radius: 18px;
   box-shadow: var(--shadow);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.pub:hover {
+  border-color: rgba(0, 102, 204, 0.22);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.07);
+}
+
+.pub .abstract {
+  transition: color 0.25s ease, background 0.25s ease, transform 0.25s ease;
+  border-radius: 10px;
+  padding: 8px 10px;
+  margin: -8px -10px;
+}
+
+.pub:hover .abstract {
+  color: var(--ink);
+  background: rgba(0, 102, 204, 0.06);
+  transform: translateY(-1px);
 }
 
 .venue {
