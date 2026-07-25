@@ -3,237 +3,163 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Wang Xiangbo — World Models · 3DGS · Computational Photography</title>
-  <meta name="description" content="Wang Xiangbo (王相博) — researcher working on world models, low-level 3D Gaussian Splatting, and computational photography." />
-  <meta name="author" content="Wang Xiangbo" />
+  <title>Wang Xiangbo (王相博)</title>
+  <meta name="description" content="Wang Xiangbo — undergraduate researcher working on 3D Gaussian Splatting, world models, and computational photography." />
   <link rel="canonical" href="https://raconiy.github.io/" />
   <meta property="og:title" content="Wang Xiangbo" />
-  <meta property="og:description" content="World Models · 3D Gaussian Splatting · Computational Photography" />
+  <meta property="og:description" content="3DGS · World Models · Computational Photography" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://raconiy.github.io/" />
   <meta property="og:image" content="https://raconiy.github.io/assets/portrait.jpg" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
-
-  <header class="site-header" data-reveal>
-    <a class="wordmark" href="#top">RACONIY</a>
-    <nav class="nav" aria-label="Primary">
-      <a href="#about">About</a>
-      <a href="#research">Research</a>
-      <a href="#publications">Papers</a>
-      <a href="#experience">Experience</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
-
-  <main id="main">
-    <section class="hero" id="top" aria-label="Introduction">
-      <div class="hero-media" data-parallax>
-        <img
-          src="assets/portrait.jpg"
-          alt="Wang Xiangbo seated indoors, holding a small dachshund"
-          width="1600"
-          height="2000"
-          fetchpriority="high"
-        />
-        <div class="hero-veil" aria-hidden="true"></div>
-      </div>
-      <div class="hero-copy">
-        <p class="brand" data-reveal>Wang Xiangbo · 王相博</p>
-        <h1 data-reveal>
-          Seeing the world<br />
-          <em>before</em> modeling it.
-        </h1>
-        <p class="lede" data-reveal>
-          Low-level 3D Gaussian Splatting, world models, and computational photography —
-          building sharper reconstructions from imperfect light.
+  <div class="page">
+    <header class="profile">
+      <img
+        class="avatar"
+        src="assets/portrait.jpg"
+        alt="Portrait of Wang Xiangbo"
+        width="140"
+        height="140"
+      />
+      <div class="profile-text">
+        <h1>Wang Xiangbo <span class="cn">王相博</span></h1>
+        <p class="affil">
+          Undergraduate · Communication Engineering<br />
+          Hangzhou Dianzi University
         </p>
-        <div class="cta-row" data-reveal>
-          <a class="btn btn-primary" href="#publications">Selected papers</a>
-          <a class="btn btn-ghost" href="assets/wangxiangbo_cv.pdf" target="_blank" rel="noopener">CV</a>
-        </div>
-      </div>
-      <div class="scroll-cue" aria-hidden="true">
-        <span>Scroll</span>
-      </div>
-    </section>
-
-    <section class="section about" id="about">
-      <div class="section-head" data-reveal>
-        <p class="eyebrow">About</p>
-        <h2>A quiet obsession with how images become worlds.</h2>
-      </div>
-      <div class="about-grid">
-        <p class="about-lead" data-reveal>
-          I am an undergraduate in Communication Engineering at Hangzhou Dianzi University,
-          currently focusing on <strong>world models</strong>, <strong>low-level 3DGS</strong>,
-          and <strong>computational photography</strong>. I care about the primitives —
-          geometry, radiance, sensors — that make higher-level intelligence possible.
+        <p class="meta">Based in Hangzhou, China</p>
+        <p class="links">
+          <a href="mailto:23200410@hdu.edu.cn">Email</a>
+          <span class="sep">/</span>
+          <a href="https://github.com/raconiy" target="_blank" rel="noopener">GitHub</a>
+          <span class="sep">/</span>
+          <a href="assets/wangxiangbo_cv.pdf" target="_blank" rel="noopener">CV</a>
         </p>
-        <div class="about-meta" data-reveal>
-          <div>
-            <span class="meta-label">Based in</span>
-            <span>Hangzhou · Sheffield</span>
-          </div>
-          <div>
-            <span class="meta-label">Focus</span>
-            <span>3DGS · World Models · Comp. Photo</span>
-          </div>
-          <div>
-            <span class="meta-label">Also</span>
-            <span>Neural audio coding · Multi-view reconstruction</span>
-          </div>
-        </div>
       </div>
-    </section>
+    </header>
 
-    <section class="section research" id="research">
-      <div class="section-head" data-reveal>
-        <p class="eyebrow">Research</p>
-        <h2>Where I spend my attention.</h2>
-      </div>
-      <ul class="focus-list">
-        <li data-reveal>
-          <span class="focus-index">01</span>
-          <div>
-            <h3>3D Gaussian Splatting — low level</h3>
-            <p>Feed-forward reconstruction, super-resolution pipelines, and efficient rendering under real-world capture constraints.</p>
-          </div>
-        </li>
-        <li data-reveal>
-          <span class="focus-index">02</span>
-          <div>
-            <h3>World models</h3>
-            <p>Learning predictive spatial structure from visual streams — representations that stay grounded in geometry and light.</p>
-          </div>
-        </li>
-        <li data-reveal>
-          <span class="focus-index">03</span>
-          <div>
-            <h3>Computational photography</h3>
-            <p>Recovering detail and consistency from imperfect sensors — the imaging layer beneath reconstruction and generation.</p>
-          </div>
-        </li>
-      </ul>
-    </section>
+    <main>
+      <section>
+        <h2>About</h2>
+        <p>
+          I am an undergraduate student at Hangzhou Dianzi University.
+          My research focuses on <strong>low-level 3D Gaussian Splatting</strong>,
+          <strong>world models</strong>, and <strong>computational photography</strong>,
+          with an emphasis on feed-forward reconstruction, super-resolution 3D recovery,
+          and efficient rendering under real-world capture conditions.
+        </p>
+        <p>
+          I currently work as a research assistant at MILab (HDU) and IIPL (HDU),
+          and since March 2026 as a research assistant at the University of Sheffield
+          advised by Delvin Ce Zhang.
+        </p>
+      </section>
 
-    <section class="section publications" id="publications">
-      <div class="section-head" data-reveal>
-        <p class="eyebrow">Publications</p>
-        <h2>Selected papers.</h2>
-      </div>
-      <ol class="pub-list">
-        <li class="pub" data-reveal>
-          <div class="pub-meta">
-            <span class="venue">CVPR 2026</span>
-            <span class="role">Co-first (2nd)</span>
-          </div>
-          <h3>
-            <a href="https://openaccess.thecvf.com/content/CVPR2026/papers/Feng_SR3R_Rethinking_Super-Resolution_3D_Reconstruction_With_Feed-Forward_Gaussian_Splatting_CVPR_2026_paper.pdf" target="_blank" rel="noopener">
-              SR3R: Rethinking Super-Resolution 3D Reconstruction With Feed-Forward Gaussian Splatting
-            </a>
-          </h3>
-          <p class="authors">X. Feng, <strong>X. Wang</strong>, T. Zhong, C. Wang, Y. Zhao, T. Xu, Z. Kuang, F. Qin, X. Yin, Y. Zhu</p>
-          <div class="pub-links">
-            <a href="https://openaccess.thecvf.com/content/CVPR2026/papers/Feng_SR3R_Rethinking_Super-Resolution_3D_Reconstruction_With_Feed-Forward_Gaussian_Splatting_CVPR_2026_paper.pdf" target="_blank" rel="noopener">PDF</a>
-          </div>
-        </li>
-        <li class="pub" data-reveal>
-          <div class="pub-meta">
-            <span class="venue">ICASSP 2026</span>
-            <span class="role">First author</span>
-          </div>
-          <h3>
-            <a href="https://arxiv.org/abs/2601.20362" target="_blank" rel="noopener">
-              SwitchCodec: Adaptive Residual-Expert Sparse Quantization for High-Fidelity Neural Audio Coding
-            </a>
-          </h3>
-          <p class="authors"><strong>X. Wang</strong>, W. Jiang, J. Wang, Y. You, S. Fang, F. Wen</p>
-          <div class="pub-links">
-            <a href="https://arxiv.org/abs/2601.20362" target="_blank" rel="noopener">arXiv</a>
-          </div>
-        </li>
-        <li class="pub pub-pending" data-reveal>
-          <div class="pub-meta">
-            <span class="venue">AAAI 2027</span>
-            <span class="role">Submitted</span>
-          </div>
-          <h3>Work from University of Sheffield RA (under review)</h3>
-          <p class="authors">Advised by Delvin Ce Zhang · related manuscript submitted to AAAI 2027</p>
-        </li>
-      </ol>
-    </section>
+      <section>
+        <h2>Research Interests</h2>
+        <ul class="interests">
+          <li><strong>3D Gaussian Splatting (low-level)</strong> — feed-forward GS, super-resolution 3D reconstruction, multi-view recovery, efficient rendering</li>
+          <li><strong>World models</strong> — predictive spatial representations grounded in geometry and visual observations</li>
+          <li><strong>Computational photography</strong> — recovering detail and consistency from imperfect imaging pipelines</li>
+          <li><strong>Neural audio coding</strong> — residual/expert vector quantization for high-fidelity compression (prior work)</li>
+        </ul>
+      </section>
 
-    <section class="section experience" id="experience">
-      <div class="section-head" data-reveal>
-        <p class="eyebrow">Experience</p>
-        <h2>Labs &amp; places.</h2>
-      </div>
-      <ul class="timeline">
-        <li data-reveal>
-          <div class="time">Mar 2026 — Present</div>
-          <div class="entry">
-            <h3>Research Assistant · University of Sheffield</h3>
-            <p class="advisor">Advisor: Delvin Ce Zhang</p>
-            <p>Conducting research toward AAAI 2027; expanding work across world models and related visual intelligence directions.</p>
-          </div>
-        </li>
-        <li data-reveal>
-          <div class="time">2025 — Present</div>
-          <div class="entry">
-            <h3>Research Assistant · MILab, HDU</h3>
-            <p class="advisor">Advisor: Zhenzhong Kuang</p>
-            <p>3D generation and super-resolution. Co-first on SR3R — feed-forward Gaussian Splatting for super-resolution 3D reconstruction (CVPR 2026).</p>
-          </div>
-        </li>
-        <li data-reveal>
-          <div class="time">2024 — Present</div>
-          <div class="entry">
-            <h3>Research Assistant · IIPL, HDU</h3>
-            <p class="advisor">Advisors: Wenbin Jiang, Jin Wang</p>
-            <p>Neural audio codec research. Designed SwitchCodec with Residual Experts Vector Quantization; ICASSP 2026 first-author.</p>
-          </div>
-        </li>
-        <li data-reveal>
-          <div class="time">2023 — 2027</div>
-          <div class="entry">
-            <h3>B.Eng. Communication Engineering · Hangzhou Dianzi University</h3>
-            <p>Top 10% in major. Coursework across algorithms, DSP, deep learning, and probability.</p>
-          </div>
-        </li>
-        <li data-reveal>
-          <div class="time">Summer 2024</div>
-          <div class="entry">
-            <h3>Summer School · The University of Sydney</h3>
-            <p>Fundamentals of Deep Learning &amp; Academic English — Excellent in both final assessments.</p>
-          </div>
-        </li>
-      </ul>
-    </section>
+      <section>
+        <h2>News</h2>
+        <ul class="news">
+          <li><span class="date">2026.03</span> Joined University of Sheffield as RA (advisor: Delvin Ce Zhang); related work submitted to AAAI 2027.</li>
+          <li><span class="date">2026</span> One paper accepted to <strong>CVPR 2026</strong> (SR3R, co-first).</li>
+          <li><span class="date">2026</span> One paper accepted to <strong>ICASSP 2026</strong> (SwitchCodec, first author).</li>
+        </ul>
+      </section>
 
-    <section class="section contact" id="contact">
-      <div class="contact-panel" data-reveal>
-        <p class="eyebrow">Contact</p>
-        <h2>Say hello.</h2>
-        <p class="contact-lede">Open to research collaborations, visiting opportunities, and conversations around 3DGS, world models, and imaging.</p>
-        <div class="contact-links">
-          <a href="mailto:23200410@hdu.edu.cn">23200410@hdu.edu.cn</a>
-          <a href="https://github.com/raconiy" target="_blank" rel="noopener">github.com/raconiy</a>
-          <a href="assets/wangxiangbo_cv.pdf" target="_blank" rel="noopener">Download CV</a>
-        </div>
-      </div>
-    </section>
-  </main>
+      <section>
+        <h2>Publications</h2>
+        <ol class="pubs">
+          <li>
+            <p class="title">
+              <a href="https://openaccess.thecvf.com/content/CVPR2026/papers/Feng_SR3R_Rethinking_Super-Resolution_3D_Reconstruction_With_Feed-Forward_Gaussian_Splatting_CVPR_2026_paper.pdf" target="_blank" rel="noopener">
+                SR3R: Rethinking Super-Resolution 3D Reconstruction With Feed-Forward Gaussian Splatting
+              </a>
+            </p>
+            <p class="authors">X. Feng, <u>X. Wang</u>, T. Zhong, C. Wang, Y. Zhao, T. Xu, Z. Kuang, F. Qin, X. Yin, Y. Zhu</p>
+            <p class="venue"><strong>CVPR 2026</strong> · Co-first (2nd) ·
+              <a href="https://openaccess.thecvf.com/content/CVPR2026/papers/Feng_SR3R_Rethinking_Super-Resolution_3D_Reconstruction_With_Feed-Forward_Gaussian_Splatting_CVPR_2026_paper.pdf" target="_blank" rel="noopener">PDF</a>
+            </p>
+          </li>
+          <li>
+            <p class="title">
+              <a href="https://arxiv.org/abs/2601.20362" target="_blank" rel="noopener">
+                SwitchCodec: Adaptive Residual-Expert Sparse Quantization for High-Fidelity Neural Audio Coding
+              </a>
+            </p>
+            <p class="authors"><u>X. Wang</u>, W. Jiang, J. Wang, Y. You, S. Fang, F. Wen</p>
+            <p class="venue"><strong>ICASSP 2026</strong> · First author ·
+              <a href="https://arxiv.org/abs/2601.20362" target="_blank" rel="noopener">arXiv</a>
+            </p>
+          </li>
+          <li>
+            <p class="title">Manuscript from University of Sheffield RA (title TBA)</p>
+            <p class="authors">Advised by Delvin Ce Zhang</p>
+            <p class="venue"><strong>AAAI 2027</strong> · Submitted</p>
+          </li>
+        </ol>
+      </section>
 
-  <footer class="site-footer">
-    <p>© <span id="year"></span> Wang Xiangbo · raconiy.github.io</p>
-  </footer>
+      <section>
+        <h2>Experience</h2>
+        <ul class="exp">
+          <li>
+            <div class="exp-head">
+              <strong>Research Assistant</strong>, University of Sheffield
+              <span class="when">Mar 2026 – Present</span>
+            </div>
+            <p>Advisor: Delvin Ce Zhang. Research toward AAAI 2027 on world models / related visual intelligence.</p>
+          </li>
+          <li>
+            <div class="exp-head">
+              <strong>Research Assistant</strong>, MILab, Hangzhou Dianzi University
+              <span class="when">2025 – Present</span>
+            </div>
+            <p>Advisor: Zhenzhong Kuang. 3D generation and super-resolution; SR3R (CVPR 2026, co-first).</p>
+          </li>
+          <li>
+            <div class="exp-head">
+              <strong>Research Assistant</strong>, IIPL, Hangzhou Dianzi University
+              <span class="when">2024 – Present</span>
+            </div>
+            <p>Advisors: Wenbin Jiang, Jin Wang. Neural audio codecs; SwitchCodec with REVQ (ICASSP 2026, first author).</p>
+          </li>
+        </ul>
+      </section>
 
-  <script src="js/main.js"></script>
+      <section>
+        <h2>Education</h2>
+        <ul class="exp">
+          <li>
+            <div class="exp-head">
+              <strong>B.Eng. in Communication Engineering</strong>, Hangzhou Dianzi University
+              <span class="when">2023 – 2027</span>
+            </div>
+            <p>Top 10% in major. Coursework: algorithms, DSP, deep learning, linear algebra, probability &amp; statistics.</p>
+          </li>
+          <li>
+            <div class="exp-head">
+              <strong>Summer School</strong>, The University of Sydney
+              <span class="when">Summer 2024</span>
+            </div>
+            <p>Fundamentals of Deep Learning; Academic English (Excellent in both assessments).</p>
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <footer>
+      <p>Last updated July 2026 · <a href="https://raconiy.github.io/">raconiy.github.io</a></p>
+    </footer>
+  </div>
 </body>
 </html>
