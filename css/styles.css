@@ -217,7 +217,7 @@ section {
 /* Hero */
 .hero {
   display: grid;
-  grid-template-columns: 1fr 200px;
+  grid-template-columns: 1fr 236px;
   gap: 28px 36px;
   align-items: center;
   padding: 8px 4px 8px 0;
@@ -390,7 +390,7 @@ h1 {
 
 .avatar {
   margin: 0;
-  width: 200px;
+  width: 236px;
   aspect-ratio: 1;
   border-radius: 50%;
   overflow: hidden;
@@ -1067,7 +1067,7 @@ footer p { margin: 0; }
     justify-self: center;
   }
 
-  .avatar { width: 168px; }
+  .avatar { width: 196px; }
 
   .ohana-quote p {
     white-space: normal;
