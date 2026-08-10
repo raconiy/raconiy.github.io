@@ -823,8 +823,9 @@ html[data-theme="dark"] .avatar {
 
 .travel-map {
   position: relative;
-  height: 460px;
-  min-height: 360px;
+  width: 100%;
+  aspect-ratio: 950 / 620;
+  height: auto;
   border-radius: 22px;
   overflow: hidden;
   border: 1px solid var(--line);
@@ -841,7 +842,7 @@ html[data-theme="dark"] .travel-map {
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: fill;
   object-position: center;
   pointer-events: none;
   user-select: none;
@@ -859,8 +860,8 @@ html[data-theme="dark"] .travel-world-dark { display: block; }
 
 .travel-pin {
   position: absolute;
-  width: 40px;
-  height: 40px;
+  width: 26px;
+  height: 26px;
   padding: 0;
   border: 0;
   background: transparent;
@@ -872,14 +873,14 @@ html[data-theme="dark"] .travel-world-dark { display: block; }
 }
 
 .travel-pin img {
-  width: 40px;
-  height: 40px;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
   object-fit: cover;
   object-position: center 42%;
   display: block;
-  border: 2.5px solid #fff;
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.28), 0 0 0 3px rgba(196, 93, 58, 0.35);
+  border: 1.5px solid #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25), 0 0 0 2px rgba(196, 93, 58, 0.4);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   background: #7ec8e3;
 }
@@ -923,7 +924,7 @@ html[data-theme="dark"] .travel-world-dark { display: block; }
 }
 
 .travel-pin.is-home img {
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.28), 0 0 0 3px rgba(224, 138, 102, 0.7);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25), 0 0 0 2px rgba(224, 138, 102, 0.75);
 }
 
 @keyframes pin-in {
@@ -1100,7 +1101,6 @@ footer p { margin: 0; }
   .hobbies,
   .travel-shell { grid-template-columns: 1fr; }
 
-  .travel-map { height: 360px; }
   .travel-groups { max-height: none; }
 }
 

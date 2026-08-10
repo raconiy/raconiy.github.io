@@ -70,30 +70,31 @@
     window.addEventListener("scroll", onScroll, { passive: true });
   }
 
+  // Positions calibrated to assets/world-*.svg (viewBox 950x620)
   const places = [
-    { name: "San Francisco", region: "United States", x: 10.7, y: 28.85 },
-    { name: "Los Angeles", region: "United States", x: 11.8, y: 31.34 },
-    { name: "Las Vegas", region: "United States", x: 12.73, y: 29.89 },
-    { name: "Chicago", region: "United States", x: 20.69, y: 25.83 },
-    { name: "New York", region: "United States", x: 24.55, y: 26.53 },
-    { name: "Boston", region: "United States", x: 25.42, y: 25.39 },
-    { name: "Philadelphia", region: "United States", x: 24.2, y: 27.05 },
-    { name: "Washington, D.C.", region: "United States", x: 23.64, y: 27.77 },
-    { name: "Manchester", region: "United Kingdom", x: 45.26, y: 17.38 },
-    { name: "Southampton", region: "United Kingdom", x: 45.44, y: 19.12 },
-    { name: "London", region: "United Kingdom", x: 45.82, y: 18.71 },
-    { name: "Vladivostok", region: "Russia", x: 83.23, y: 23.51 },
-    { name: "Tokyo", region: "Japan", x: 85.27, y: 28.51 },
-    { name: "Sydney", region: "Australia", x: 87.02, y: 75.63 },
-    { name: "Melbourne", region: "Australia", x: 85.16, y: 78.35 },
-    { name: "Yunnan", region: "China", x: 74.52, y: 35.98 },
-    { name: "Beijing", region: "China", x: 78.75, y: 25.8 },
-    { name: "Heilongjiang", region: "China", x: 81.76, y: 21.73 },
-    { name: "Sichuan", region: "China", x: 75.03, y: 32.22 },
-    { name: "Tibet", region: "China", x: 71.33, y: 32.93 },
-    { name: "Shanghai", region: "China", x: 80.0, y: 31.65 },
-    { name: "Suzhou", region: "China", x: 79.75, y: 31.61 },
-    { name: "Hangzhou", region: "China", x: 79.6, y: 32.31, home: true },
+    { name: "San Francisco", region: "United States", x: 15.3, y: 33.5 },
+    { name: "Los Angeles", region: "United States", x: 16.4, y: 35.5 },
+    { name: "Las Vegas", region: "United States", x: 17.3, y: 34.3 },
+    { name: "Chicago", region: "United States", x: 24.6, y: 31.4 },
+    { name: "New York", region: "United States", x: 28.3, y: 32.0 },
+    { name: "Boston", region: "United States", x: 29.0, y: 31.1 },
+    { name: "Philadelphia", region: "United States", x: 27.9, y: 32.4 },
+    { name: "Washington, D.C.", region: "United States", x: 27.4, y: 33.0 },
+    { name: "Manchester", region: "United Kingdom", x: 47.4, y: 25.4 },
+    { name: "Southampton", region: "United Kingdom", x: 47.7, y: 26.8 },
+    { name: "London", region: "United Kingdom", x: 48.0, y: 26.4 },
+    { name: "Vladivostok", region: "Russia", x: 83.5, y: 29.8 },
+    { name: "Tokyo", region: "Japan", x: 85.9, y: 32.3 },
+    { name: "Sydney", region: "Australia", x: 88.2, y: 71.9 },
+    { name: "Melbourne", region: "Australia", x: 86.5, y: 74.0 },
+    { name: "Yunnan", region: "China", x: 75.4, y: 40.7 },
+    { name: "Beijing", region: "China", x: 79.1, y: 32.8 },
+    { name: "Heilongjiang", region: "China", x: 81.8, y: 29.7 },
+    { name: "Sichuan", region: "China", x: 75.8, y: 37.7 },
+    { name: "Tibet", region: "China", x: 72.3, y: 38.2 },
+    { name: "Shanghai", region: "China", x: 80.8, y: 36.8 },
+    { name: "Suzhou", region: "China", x: 80.5, y: 36.9 },
+    { name: "Hangzhou", region: "China", x: 80.3, y: 37.6, home: true },
   ];
 
   const countEl = document.getElementById("place-count");
@@ -145,7 +146,7 @@
     btn.title = place.name;
     btn.setAttribute("aria-label", place.name + ", " + place.region);
     btn.innerHTML =
-      '<img src="assets/stitch-marker.png" alt="" width="40" height="40" /><span>' +
+      '<img src="assets/stitch-marker.png" alt="" width="26" height="26" /><span>' +
       place.name +
       "</span>";
     btn.addEventListener("click", () => focusPlace(place.name));
