@@ -9,7 +9,6 @@
   const setTheme = (theme) => {
     root.setAttribute("data-theme", theme);
     localStorage.setItem("theme", theme);
-    if (window.__travelMap) window.__travelMap.setTheme(theme);
   };
   if (themeBtn) {
     themeBtn.addEventListener("click", () => {
@@ -29,7 +28,7 @@
           }
         });
       },
-      { threshold: 0.12, rootMargin: "0px 0px -6% 0px" }
+      { threshold: 0.08, rootMargin: "0px 0px -4% 0px" }
     );
     revealEls.forEach((el, i) => {
       el.style.transitionDelay = `${Math.min(i * 0.05, 0.2)}s`;
@@ -73,44 +72,39 @@
     window.addEventListener("scroll", onScroll, { passive: true });
   }
 
-  // Travel map
-  const mapEl = document.getElementById("travel-map");
-  if (!mapEl || typeof L === "undefined") return;
+  // Travel map — fully local, no external tile CDN
+  const pinsEl = document.getElementById("travel-pins");
+  const groupsEl = document.getElementById("travel-groups");
+  const countEl = document.getElementById("place-count");
+  if (!pinsEl) return;
 
   const places = [
-    { name: "San Francisco", region: "United States", lat: 37.7749, lng: -122.4194 },
-    { name: "Los Angeles", region: "United States", lat: 34.0522, lng: -118.2437 },
-    { name: "Las Vegas", region: "United States", lat: 36.1699, lng: -115.1398 },
-    { name: "Chicago", region: "United States", lat: 41.8781, lng: -87.6298 },
-    { name: "New York", region: "United States", lat: 40.7128, lng: -74.006 },
-    { name: "Boston", region: "United States", lat: 42.3601, lng: -71.0589 },
-    { name: "Philadelphia", region: "United States", lat: 39.9526, lng: -75.1652 },
-    { name: "Washington, D.C.", region: "United States", lat: 38.9072, lng: -77.0369 },
-    { name: "Manchester", region: "United Kingdom", lat: 53.4808, lng: -2.2426 },
-    { name: "Southampton", region: "United Kingdom", lat: 50.9097, lng: -1.4044 },
-    { name: "London", region: "United Kingdom", lat: 51.5074, lng: -0.1278 },
-    { name: "Vladivostok", region: "Russia", lat: 43.1332, lng: 131.9113 },
-    { name: "Tokyo", region: "Japan", lat: 35.6762, lng: 139.6503 },
-    { name: "Sydney", region: "Australia", lat: -33.8688, lng: 151.2093 },
-    { name: "Melbourne", region: "Australia", lat: -37.8136, lng: 144.9631 },
-    { name: "Yunnan", region: "China", lat: 25.0389, lng: 102.7183 },
-    { name: "Beijing", region: "China", lat: 39.9042, lng: 116.4074 },
-    { name: "Heilongjiang", region: "China", lat: 45.8038, lng: 126.534 },
-    { name: "Sichuan", region: "China", lat: 30.5728, lng: 104.0668 },
-    { name: "Tibet", region: "China", lat: 29.652, lng: 91.1721 },
-    { name: "Shanghai", region: "China", lat: 31.2304, lng: 121.4737 },
-    { name: "Suzhou", region: "China", lat: 31.2989, lng: 120.5853 },
-    { name: "Hangzhou", region: "China", lat: 30.2741, lng: 120.1551, home: true },
+    { name: "San Francisco", region: "United States", x: 10.7, y: 28.85 },
+    { name: "Los Angeles", region: "United States", x: 11.8, y: 31.34 },
+    { name: "Las Vegas", region: "United States", x: 12.73, y: 29.89 },
+    { name: "Chicago", region: "United States", x: 20.69, y: 25.83 },
+    { name: "New York", region: "United States", x: 24.55, y: 26.53 },
+    { name: "Boston", region: "United States", x: 25.42, y: 25.39 },
+    { name: "Philadelphia", region: "United States", x: 24.2, y: 27.05 },
+    { name: "Washington, D.C.", region: "United States", x: 23.64, y: 27.77 },
+    { name: "Manchester", region: "United Kingdom", x: 45.26, y: 17.38 },
+    { name: "Southampton", region: "United Kingdom", x: 45.44, y: 19.12 },
+    { name: "London", region: "United Kingdom", x: 45.82, y: 18.71 },
+    { name: "Vladivostok", region: "Russia", x: 83.23, y: 23.51 },
+    { name: "Tokyo", region: "Japan", x: 85.27, y: 28.51 },
+    { name: "Sydney", region: "Australia", x: 87.02, y: 75.63 },
+    { name: "Melbourne", region: "Australia", x: 85.16, y: 78.35 },
+    { name: "Yunnan", region: "China", x: 74.52, y: 35.98 },
+    { name: "Beijing", region: "China", x: 78.75, y: 25.8 },
+    { name: "Heilongjiang", region: "China", x: 81.76, y: 21.73 },
+    { name: "Sichuan", region: "China", x: 75.03, y: 32.22 },
+    { name: "Tibet", region: "China", x: 71.33, y: 32.93 },
+    { name: "Shanghai", region: "China", x: 80.0, y: 31.65 },
+    { name: "Suzhou", region: "China", x: 79.75, y: 31.61 },
+    { name: "Hangzhou", region: "China", x: 79.6, y: 32.31, home: true },
   ];
 
-  const countEl = document.getElementById("place-count");
   if (countEl) countEl.textContent = String(places.length);
-
-  const groupsEl = document.getElementById("travel-groups");
-  const byRegion = places.reduce((acc, place) => {
-    (acc[place.region] ||= []).push(place);
-    return acc;
-  }, {});
 
   const regionOrder = [
     "United States",
@@ -121,66 +115,42 @@
     "China",
   ];
 
-  const lightTiles = L.tileLayer(
-    "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
-    {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>',
-      subdomains: "abcd",
-      maxZoom: 18,
-    }
-  );
-  const darkTiles = L.tileLayer(
-    "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
-    {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>',
-      subdomains: "abcd",
-      maxZoom: 18,
-    }
-  );
+  const byRegion = places.reduce((acc, place) => {
+    (acc[place.region] ||= []).push(place);
+    return acc;
+  }, {});
 
-  const map = L.map(mapEl, {
-    zoomControl: true,
-    scrollWheelZoom: false,
-    worldCopyJump: true,
-  });
-
-  let activeTiles = getTheme() === "dark" ? darkTiles : lightTiles;
-  activeTiles.addTo(map);
-
-  const stitchIcon = (home = false) =>
-    L.divIcon({
-      className: "stitch-pin",
-      html: `<div class="stitch-marker${home ? " is-home" : ""}"><img src="assets/stitch-marker.png" alt="" width="44" height="44" /></div>`,
-      iconSize: [44, 44],
-      iconAnchor: [22, 22],
-      popupAnchor: [0, -22],
-    });
-
-  const markers = places.map((place) => {
-    const marker = L.marker([place.lat, place.lng], {
-      icon: stitchIcon(Boolean(place.home)),
-      title: place.name,
-    }).addTo(map);
-    marker.bindPopup(
-      `<strong>${place.name}</strong><br><span style="opacity:.75">${place.region}${place.home ? " · Home" : ""}</span>`
-    );
-    return { place, marker };
-  });
-
-  const bounds = L.latLngBounds(places.map((p) => [p.lat, p.lng]));
-  map.fitBounds(bounds.pad(0.22));
+  const pinNodes = new Map();
 
   const focusPlace = (placeName) => {
-    const found = markers.find((m) => m.place.name === placeName);
-    if (!found) return;
-    map.flyTo([found.place.lat, found.place.lng], Math.max(map.getZoom(), 5), {
-      duration: 0.85,
+    pinNodes.forEach((btn, name) => {
+      const active = name === placeName;
+      btn.classList.toggle("is-active", active);
+      btn.setAttribute("aria-pressed", active ? "true" : "false");
+      if (active) {
+        btn.focus({ preventScroll: true });
+        btn.scrollIntoView({ block: "nearest", inline: "nearest" });
+      }
     });
-    found.marker.openPopup();
     groupsEl?.querySelectorAll(".travel-chip").forEach((chip) => {
       chip.classList.toggle("is-active", chip.dataset.place === placeName);
     });
   };
+
+  places.forEach((place, index) => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = `travel-pin${place.home ? " is-home" : ""}`;
+    btn.style.left = `${place.x}%`;
+    btn.style.top = `${place.y}%`;
+    btn.style.setProperty("--delay", `${Math.min(index * 0.03, 0.45)}s`);
+    btn.title = place.name;
+    btn.setAttribute("aria-label", `${place.name}, ${place.region}`);
+    btn.innerHTML = `<img src="assets/stitch-marker.png" alt="" width="40" height="40" /><span>${place.name}</span>`;
+    btn.addEventListener("click", () => focusPlace(place.name));
+    pinsEl.appendChild(btn);
+    pinNodes.set(place.name, btn);
+  });
 
   if (groupsEl) {
     regionOrder.forEach((region) => {
@@ -203,31 +173,5 @@
       block.appendChild(chips);
       groupsEl.appendChild(block);
     });
-  }
-
-  // Enable wheel zoom after first interaction
-  map.once("click", () => map.scrollWheelZoom.enable());
-
-  window.__travelMap = {
-    setTheme(theme) {
-      map.removeLayer(activeTiles);
-      activeTiles = theme === "dark" ? darkTiles : lightTiles;
-      activeTiles.addTo(map);
-    },
-  };
-
-  // Fix tile sizing after reveal animation / layout
-  const invalidate = () => map.invalidateSize();
-  setTimeout(invalidate, 120);
-  window.addEventListener("resize", invalidate);
-  const travelSection = document.getElementById("travel");
-  if (travelSection && "IntersectionObserver" in window) {
-    const mapIO = new IntersectionObserver((entries) => {
-      if (entries.some((e) => e.isIntersecting)) {
-        invalidate();
-        mapIO.disconnect();
-      }
-    });
-    mapIO.observe(travelSection);
   }
 })();

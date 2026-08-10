@@ -15,7 +15,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;1,6..72,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
   <link rel="stylesheet" href="css/styles.css" />
   <script>
     (() => {
@@ -91,9 +90,15 @@
         </div>
       </div>
 
-      <figure class="avatar">
-        <img src="assets/portrait.png" alt="Avatar of Ezekiel Wang" width="220" height="220" />
-      </figure>
+      <div class="avatar-block">
+        <figure class="avatar">
+          <img src="assets/portrait.png" alt="Avatar of Ezekiel Wang" width="220" height="220" />
+        </figure>
+        <blockquote class="avatar-quote">
+          <p>“Ohana means family, and family means no one gets left behind or forgotten.”</p>
+          <cite>— Stitch</cite>
+        </blockquote>
+      </div>
     </header>
 
     <section id="news" data-reveal>
@@ -388,7 +393,10 @@
       </div>
 
       <div class="travel-shell">
-        <div id="travel-map" class="travel-map" role="img" aria-label="Interactive map of places I have visited"></div>
+        <div class="travel-map" id="travel-map" aria-label="Interactive map of places I have visited">
+          <img class="travel-world" src="assets/world.svg" alt="" width="950" height="620" />
+          <div class="travel-pins" id="travel-pins"></div>
+        </div>
         <div class="travel-aside">
           <p class="travel-stat"><strong id="place-count">0</strong> places so far</p>
           <div class="travel-groups" id="travel-groups"></div>
@@ -405,7 +413,6 @@
 
   <a class="to-top" href="#top" aria-label="Back to top">↑</a>
 
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script src="js/main.js"></script>
 </body>
 </html>
