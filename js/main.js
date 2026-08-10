@@ -70,32 +70,37 @@
     window.addEventListener("scroll", onScroll, { passive: true });
   }
 
-  // Positions calibrated to assets/world-*.svg (viewBox 950x620)
+  // Equirectangular map (1000x500): x/y derived from real lat/lng
   const places = [
-    { name: "San Francisco", region: "United States", x: 15.3, y: 33.5 },
-    { name: "Los Angeles", region: "United States", x: 16.4, y: 35.5 },
-    { name: "Las Vegas", region: "United States", x: 17.3, y: 34.3 },
-    { name: "Chicago", region: "United States", x: 24.6, y: 31.4 },
-    { name: "New York", region: "United States", x: 28.3, y: 32.0 },
-    { name: "Boston", region: "United States", x: 29.0, y: 31.1 },
-    { name: "Philadelphia", region: "United States", x: 27.9, y: 32.4 },
-    { name: "Washington, D.C.", region: "United States", x: 27.4, y: 33.0 },
-    { name: "Manchester", region: "United Kingdom", x: 47.4, y: 25.4 },
-    { name: "Southampton", region: "United Kingdom", x: 47.7, y: 26.8 },
-    { name: "London", region: "United Kingdom", x: 48.0, y: 26.4 },
-    { name: "Vladivostok", region: "Russia", x: 83.5, y: 29.8 },
-    { name: "Tokyo", region: "Japan", x: 85.9, y: 32.3 },
-    { name: "Sydney", region: "Australia", x: 91.0, y: 73.6 },
-    { name: "Melbourne", region: "Australia", x: 89.1, y: 75.7 },
-    { name: "Yunnan", region: "China", x: 75.4, y: 40.7 },
-    { name: "Beijing", region: "China", x: 79.1, y: 32.8 },
-    { name: "Heilongjiang", region: "China", x: 81.8, y: 29.7 },
-    { name: "Sichuan", region: "China", x: 75.8, y: 37.7 },
-    { name: "Tibet", region: "China", x: 72.3, y: 38.2 },
-    { name: "Shanghai", region: "China", x: 80.8, y: 36.8 },
-    { name: "Suzhou", region: "China", x: 80.5, y: 36.9 },
-    { name: "Hangzhou", region: "China", x: 80.3, y: 37.6, home: true },
+    { name: "San Francisco", region: "United States", lat: 37.7749, lng: -122.4194 },
+    { name: "Los Angeles", region: "United States", lat: 34.0522, lng: -118.2437 },
+    { name: "Las Vegas", region: "United States", lat: 36.1699, lng: -115.1398 },
+    { name: "Chicago", region: "United States", lat: 41.8781, lng: -87.6298 },
+    { name: "New York", region: "United States", lat: 40.7128, lng: -74.006 },
+    { name: "Boston", region: "United States", lat: 42.3601, lng: -71.0589 },
+    { name: "Philadelphia", region: "United States", lat: 39.9526, lng: -75.1652 },
+    { name: "Washington, D.C.", region: "United States", lat: 38.9072, lng: -77.0369 },
+    { name: "Manchester", region: "United Kingdom", lat: 53.4808, lng: -2.2426 },
+    { name: "Southampton", region: "United Kingdom", lat: 50.9097, lng: -1.4044 },
+    { name: "London", region: "United Kingdom", lat: 51.5074, lng: -0.1278 },
+    { name: "Vladivostok", region: "Russia", lat: 43.1332, lng: 131.9113 },
+    { name: "Tokyo", region: "Japan", lat: 35.6762, lng: 139.6503 },
+    { name: "Sydney", region: "Australia", lat: -33.8688, lng: 151.2093 },
+    { name: "Melbourne", region: "Australia", lat: -37.8136, lng: 144.9631 },
+    { name: "Yunnan", region: "China", lat: 25.0389, lng: 102.7183 },
+    { name: "Beijing", region: "China", lat: 39.9042, lng: 116.4074 },
+    { name: "Heilongjiang", region: "China", lat: 45.8038, lng: 126.534 },
+    { name: "Sichuan", region: "China", lat: 30.5728, lng: 104.0668 },
+    { name: "Tibet", region: "China", lat: 29.652, lng: 91.1721 },
+    { name: "Shanghai", region: "China", lat: 31.2304, lng: 121.4737 },
+    { name: "Suzhou", region: "China", lat: 31.2989, lng: 120.5853 },
+    { name: "Hangzhou", region: "China", lat: 30.2741, lng: 120.1551, home: true },
   ];
+
+  const project = (lat, lng) => ({
+    x: ((lng + 180) / 360) * 100,
+    y: ((90 - lat) / 180) * 100,
+  });
 
   const countEl = document.getElementById("place-count");
   if (countEl) countEl.textContent = String(places.length);
@@ -137,11 +142,12 @@
   };
 
   places.forEach((place, index) => {
+    const pos = project(place.lat, place.lng);
     const btn = document.createElement("button");
     btn.type = "button";
     btn.className = place.home ? "travel-pin is-home" : "travel-pin";
-    btn.style.left = place.x + "%";
-    btn.style.top = place.y + "%";
+    btn.style.left = pos.x + "%";
+    btn.style.top = pos.y + "%";
     btn.style.setProperty("--delay", Math.min(index * 0.03, 0.45) + "s");
     btn.title = place.name;
     btn.setAttribute("aria-label", place.name + ", " + place.region);
