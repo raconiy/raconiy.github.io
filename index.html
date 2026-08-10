@@ -15,7 +15,15 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;1,6..72,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
   <link rel="stylesheet" href="css/styles.css" />
+  <script>
+    (() => {
+      const saved = localStorage.getItem("theme");
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.setAttribute("data-theme", saved || (prefersDark ? "dark" : "light"));
+    })();
+  </script>
 </head>
 <body>
   <div class="atmosphere" aria-hidden="true"></div>
@@ -27,7 +35,11 @@
       <a href="#publications">Papers</a>
       <a href="#experience">Experience</a>
       <a href="#life">Life</a>
-      <a href="#visitors">Map</a>
+      <a href="#travel">Travel</a>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle theme">
+        <span class="theme-icon theme-icon-sun" aria-hidden="true">☀</span>
+        <span class="theme-icon theme-icon-moon" aria-hidden="true">☾</span>
+      </button>
       <a class="nav-cta" href="assets/wangxiangbo_cv.pdf" target="_blank" rel="noopener">CV</a>
     </div>
   </nav>
@@ -365,22 +377,24 @@
       </p>
     </section>
 
-    <section id="visitors" class="visitors" data-reveal>
+    <section id="travel" class="travel" data-reveal>
       <div class="section-head">
-        <p class="kicker">Global Reach</p>
-        <h2>Visitors Around the World</h2>
+        <p class="kicker">Wanderlust</p>
+        <h2>Around the World</h2>
         <p class="section-note">
-          A live map of recent visitors to this homepage. Locations are approximate
-          and inferred from network information.
+          My dream is to travel the world. These are places I’ve already been —
+          each one marked by Stitch. Click a pin to explore.
         </p>
       </div>
-      <div class="visitor-card">
-        <div class="visitor-map" id="visitor-map" aria-label="Live global visitor map"></div>
-        <p class="visitor-count is-loading" id="visitor-count" aria-live="polite">Loading pageviews…</p>
+
+      <div class="travel-shell">
+        <div id="travel-map" class="travel-map" role="img" aria-label="Interactive map of places I have visited"></div>
+        <div class="travel-aside">
+          <p class="travel-stat"><strong id="place-count">0</strong> places so far</p>
+          <div class="travel-groups" id="travel-groups"></div>
+          <p class="travel-hint">More continents to go. The map keeps growing.</p>
+        </div>
       </div>
-      <p class="visitor-meta">
-        <a href="https://whos.amung.us/stats/maps/raconiy/" target="_blank" rel="noopener">View detailed visitor statistics</a>
-      </p>
     </section>
   </main>
 
@@ -391,6 +405,7 @@
 
   <a class="to-top" href="#top" aria-label="Back to top">↑</a>
 
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script src="js/main.js"></script>
 </body>
 </html>
