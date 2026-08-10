@@ -23,9 +23,30 @@
     revealEls.forEach((el) => el.classList.add("is-visible"));
   }
 
-  // Hero should appear immediately
   const hero = document.querySelector(".hero");
   if (hero) {
     requestAnimationFrame(() => hero.classList.add("is-visible"));
+  }
+
+  // Active nav highlight while scrolling
+  const navLinks = [...document.querySelectorAll('.nav-links a[href^="#"]')];
+  const sections = navLinks
+    .map((link) => document.querySelector(link.getAttribute("href")))
+    .filter(Boolean);
+
+  if (navLinks.length && sections.length && "IntersectionObserver" in window) {
+    const spy = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const id = `#${entry.target.id}`;
+          navLinks.forEach((link) => {
+            link.classList.toggle("is-active", link.getAttribute("href") === id);
+          });
+        });
+      },
+      { rootMargin: "-35% 0px -55% 0px", threshold: 0 }
+    );
+    sections.forEach((section) => spy.observe(section));
   }
 })();

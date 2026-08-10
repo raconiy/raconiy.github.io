@@ -131,13 +131,30 @@ section {
   font-weight: 600;
   letter-spacing: -0.03em;
   line-height: 1.15;
+  display: inline-block;
+  position: relative;
+}
+
+.section-head h2::after {
+  content: "";
+  display: block;
+  width: 36px;
+  height: 3px;
+  margin-top: 10px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent), transparent);
 }
 
 .section-note {
-  margin: 8px 0 0;
+  margin: 10px 0 0;
   color: var(--soft);
   font-size: 14.5px;
   max-width: 46rem;
+}
+
+.nav-links a.is-active {
+  color: var(--ink);
+  background: rgba(196, 93, 58, 0.1);
 }
 
 /* Hero */
@@ -327,12 +344,29 @@ h1 {
   border-bottom: 1px solid var(--line);
   font-size: 15px;
   color: var(--ink);
+  position: relative;
   transition: background 0.2s ease, padding-left 0.2s ease;
+}
+
+.news li::before {
+  content: "";
+  position: absolute;
+  left: -2px;
+  top: 20px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: transparent;
+  transition: background 0.2s ease;
 }
 
 .news li:hover {
   background: rgba(255, 252, 246, 0.55);
   padding-left: 8px;
+}
+
+.news li:hover::before {
+  background: var(--accent);
 }
 
 .news time {
@@ -472,18 +506,32 @@ h1 {
 }
 
 .links {
-  margin: 12px 0 0;
-  font-size: 13.5px;
+  margin: 14px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.link-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 11px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(28, 25, 21, 0.03);
+  color: var(--ink);
+  font-size: 12.5px;
   font-weight: 600;
+  text-decoration: none;
+  transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
 }
 
-.footnote-line {
-  margin: 16px 2px 0;
-  font-size: 14px;
-  color: var(--soft);
+.link-pill:hover {
+  border-color: var(--accent-line);
+  background: var(--accent-soft);
+  color: var(--accent);
+  text-decoration: none;
 }
-
-.footnote-line strong { color: var(--ink); }
 
 /* Timeline / experience */
 .timeline {
