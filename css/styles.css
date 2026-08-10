@@ -18,7 +18,7 @@ html[data-theme="light"] {
   --atmosphere-a: rgba(196, 93, 58, 0.12);
   --atmosphere-b: rgba(120, 150, 120, 0.1);
   --atmosphere-top: #f7f3eb;
-  --max: 920px;
+  --max: 1080px;
   --serif: "Newsreader", "Iowan Old Style", "Palatino Linotype", Palatino, serif;
   --sans: "Plus Jakarta Sans", "PingFang SC", "Hiragino Sans GB", sans-serif;
 }
@@ -825,18 +825,11 @@ html[data-theme="dark"] .avatar {
   letter-spacing: -0.02em;
 }
 
-.travel-shell {
-  display: grid;
-  grid-template-columns: 1.55fr 0.9fr;
-  gap: 14px;
-  align-items: stretch;
-  margin-top: 18px;
-}
-
 .travel-map {
   position: relative;
   width: 100%;
   aspect-ratio: 2 / 1;
+  margin-top: 20px;
   border-radius: 22px;
   overflow: hidden;
   border: 1px solid var(--line);
@@ -859,6 +852,14 @@ html[data-theme="dark"] .travel-map {
 .travel-world-dark { display: none; }
 html[data-theme="dark"] .travel-world-light { display: none; }
 html[data-theme="dark"] .travel-world-dark { display: block; }
+
+.travel-bottom {
+  display: grid;
+  grid-template-columns: 0.95fr 1.35fr;
+  gap: 14px;
+  margin-top: 14px;
+  align-items: stretch;
+}
 
 .travel-panel {
   padding: 18px 16px 16px;
@@ -923,7 +924,7 @@ html[data-theme="dark"] .travel-world-dark { display: block; }
   display: grid;
   gap: 12px;
   overflow: auto;
-  max-height: 220px;
+  max-height: 280px;
   padding-right: 2px;
 }
 
@@ -1062,7 +1063,7 @@ footer p { margin: 0; }
 
   .focus-grid,
   .hobbies,
-  .travel-shell { grid-template-columns: 1fr; }
+  .travel-bottom { grid-template-columns: 1fr; }
 
   .travel-groups { max-height: none; }
 }
