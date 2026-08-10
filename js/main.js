@@ -71,36 +71,61 @@
   }
 
   const places = [
-    { name: "San Francisco", region: "United States" },
-    { name: "Los Angeles", region: "United States" },
-    { name: "Las Vegas", region: "United States" },
-    { name: "Chicago", region: "United States" },
-    { name: "New York", region: "United States" },
-    { name: "Boston", region: "United States" },
-    { name: "Philadelphia", region: "United States" },
-    { name: "Washington, D.C.", region: "United States" },
-    { name: "Manchester", region: "United Kingdom" },
-    { name: "Southampton", region: "United Kingdom" },
-    { name: "London", region: "United Kingdom" },
-    { name: "Vladivostok", region: "Russia" },
-    { name: "Tokyo", region: "Japan" },
-    { name: "Sydney", region: "Australia" },
-    { name: "Melbourne", region: "Australia" },
-    { name: "Yunnan", region: "China" },
-    { name: "Beijing", region: "China" },
-    { name: "Heilongjiang", region: "China" },
-    { name: "Sichuan", region: "China" },
-    { name: "Tibet", region: "China" },
-    { name: "Shanghai", region: "China" },
-    { name: "Suzhou", region: "China" },
-    { name: "Hangzhou", region: "China", home: true },
+    { name: "San Francisco", region: "United States", photo: "sf" },
+    { name: "Los Angeles", region: "United States", photo: "la" },
+    { name: "Las Vegas", region: "United States", photo: "vegas" },
+    { name: "Chicago", region: "United States", photo: "chicago" },
+    { name: "New York", region: "United States", photo: "nyc" },
+    { name: "Boston", region: "United States", photo: "boston" },
+    { name: "Philadelphia", region: "United States", photo: "philly" },
+    { name: "Washington, D.C.", region: "United States", photo: "dc" },
+    { name: "Manchester", region: "United Kingdom", photo: "manchester" },
+    { name: "Southampton", region: "United Kingdom", photo: "southampton" },
+    { name: "London", region: "United Kingdom", photo: "london" },
+    { name: "Vladivostok", region: "Russia", photo: "vladivostok" },
+    { name: "Tokyo", region: "Japan", photo: "tokyo" },
+    { name: "Sydney", region: "Australia", photo: "sydney" },
+    { name: "Melbourne", region: "Australia", photo: "melbourne" },
+    { name: "Yunnan", region: "China", photo: "yunnan" },
+    { name: "Beijing", region: "China", photo: "beijing" },
+    { name: "Heilongjiang", region: "China", photo: "heilongjiang" },
+    { name: "Sichuan", region: "China", photo: "sichuan" },
+    { name: "Tibet", region: "China", photo: "tibet" },
+    { name: "Shanghai", region: "China", photo: "shanghai" },
+    { name: "Suzhou", region: "China", photo: "suzhou" },
+    { name: "Hangzhou", region: "China", photo: "hangzhou", home: true },
   ];
 
   const countEl = document.getElementById("place-count");
   if (countEl) countEl.textContent = String(places.length);
 
   const groupsEl = document.getElementById("travel-groups");
+  const photoEl = document.getElementById("city-photo");
+  const nameEl = document.getElementById("city-name");
+  const regionEl = document.getElementById("city-region");
   if (!groupsEl) return;
+
+  const showCity = (place) => {
+    if (photoEl) {
+      photoEl.src = "assets/cities/" + place.photo + ".jpg";
+      photoEl.alt = place.name;
+    }
+    if (nameEl) nameEl.textContent = place.name;
+    if (regionEl) {
+      regionEl.textContent = place.home
+        ? place.region + " · Home"
+        : place.region;
+    }
+    Array.prototype.forEach.call(
+      groupsEl.querySelectorAll(".travel-chip"),
+      (el) => {
+        el.classList.toggle(
+          "is-active",
+          el.getAttribute("data-place") === place.name
+        );
+      }
+    );
+  };
 
   const regionOrder = [
     "United States",
@@ -133,15 +158,13 @@
       chip.className = "travel-chip";
       chip.setAttribute("data-place", place.name);
       chip.textContent = place.home ? place.name + " · Home" : place.name;
-      chip.addEventListener("click", () => {
-        Array.prototype.forEach.call(
-          groupsEl.querySelectorAll(".travel-chip"),
-          (el) => el.classList.toggle("is-active", el === chip)
-        );
-      });
+      chip.addEventListener("click", () => showCity(place));
       chips.appendChild(chip);
     });
     block.appendChild(chips);
     groupsEl.appendChild(block);
   });
+
+  const home = places.find((p) => p.home) || places[0];
+  showCity(home);
 })();

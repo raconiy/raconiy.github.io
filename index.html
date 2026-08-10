@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;1,6..72,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css?v=20260811f" />
+  <link rel="stylesheet" href="css/styles.css?v=20260811g" />
   <script>
     (() => {
       const saved = localStorage.getItem("theme");
@@ -85,6 +85,7 @@
         <div class="actions">
           <a class="btn" href="mailto:23200410@hdu.edu.cn">Email</a>
           <a class="btn btn-ghost" href="https://github.com/raconiy" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn btn-ghost" href="https://scholar.google.com/citations?user=8E-eDOIAAAAJ&hl=en" target="_blank" rel="noopener">Scholar</a>
           <a class="btn btn-ghost" href="https://arxiv.org/abs/2607.28375" target="_blank" rel="noopener">arXiv</a>
           <a class="btn btn-ghost" href="assets/wangxiangbo_cv.pdf" target="_blank" rel="noopener">CV</a>
         </div>
@@ -397,14 +398,14 @@
         <div class="travel-map" id="travel-map" aria-label="Map of places I have visited">
           <img
             class="travel-world travel-world-light"
-            src="assets/world-light.svg?v=eq3"
+            src="assets/world-light.svg?v=routes1"
             alt="World map with Stitch markers on cities I have visited"
             width="1000"
             height="500"
           />
           <img
             class="travel-world travel-world-dark"
-            src="assets/world-dark.svg?v=eq3"
+            src="assets/world-dark.svg?v=routes1"
             alt=""
             width="1000"
             height="500"
@@ -413,8 +414,15 @@
 
         <aside class="travel-panel">
           <p class="travel-stat"><strong id="place-count">23</strong> places so far</p>
+          <figure class="city-card" id="city-card">
+            <img id="city-photo" src="assets/cities/hangzhou.jpg" alt="Hangzhou" width="640" height="360" />
+            <figcaption>
+              <strong id="city-name">Hangzhou</strong>
+              <span id="city-region">China · Home</span>
+            </figcaption>
+          </figure>
           <div class="travel-groups" id="travel-groups"></div>
-          <p class="travel-hint">More continents to go. The map keeps growing.</p>
+          <p class="travel-hint">Photos via Wikimedia Commons. More continents to go.</p>
         </aside>
       </div>
     </section>
@@ -427,6 +435,6 @@
 
   <a class="to-top" href="#top" aria-label="Back to top">↑</a>
 
-  <script src="js/main.js?v=20260811f"></script>
+  <script src="js/main.js?v=20260811g"></script>
 </body>
 </html>
