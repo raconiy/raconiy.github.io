@@ -107,7 +107,7 @@
 
   const showCity = (place) => {
     if (photoEl) {
-      photoEl.src = "assets/cities/" + place.photo + ".jpg";
+      photoEl.src = "assets/cities/" + place.photo + ".jpg?v=street2";
       photoEl.alt = place.name;
     }
     if (nameEl) nameEl.textContent = place.name;
