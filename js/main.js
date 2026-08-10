@@ -93,7 +93,13 @@
     { name: "Tibet", region: "China", photo: "tibet" },
     { name: "Shanghai", region: "China", photo: "shanghai" },
     { name: "Suzhou", region: "China", photo: "suzhou" },
-    { name: "Hangzhou", region: "China", photo: "hangzhou", home: true },
+    { name: "Hangzhou", region: "China", photo: "hangzhou" },
+    {
+      name: "Tongxiang",
+      region: "Jiaxing · Zhejiang, China",
+      photo: "tongxiang",
+      home: true,
+    },
   ];
 
   const countEl = document.getElementById("place-count");
@@ -107,7 +113,7 @@
 
   const showCity = (place) => {
     if (photoEl) {
-      photoEl.src = "assets/cities/" + place.photo + ".jpg?v=street2";
+      photoEl.src = "assets/cities/" + place.photo + ".jpg?v=tongxiang1";
       photoEl.alt = place.name;
     }
     if (nameEl) nameEl.textContent = place.name;
