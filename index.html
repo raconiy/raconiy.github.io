@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;1,6..72,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css?v=20260811d" />
+  <link rel="stylesheet" href="css/styles.css?v=20260811e" />
   <script>
     (() => {
       const saved = localStorage.getItem("theme");
@@ -387,23 +387,36 @@
       <div class="section-head">
         <p class="kicker">Wanderlust</p>
         <h2>Around the World</h2>
+        <p class="travel-dream">
+          我的梦想是环游世界。我爱旅游。世界是我的一本书，我爱这个世界。
+        </p>
         <p class="section-note">
-          My dream is to travel the world. These are places I’ve already been —
-          each one marked by Stitch. Click a pin to explore.
+          These are places I’ve already been — each one marked by Stitch.
+          Click a city below to highlight it on the map.
         </p>
       </div>
 
-      <div class="travel-shell">
-        <div class="travel-map" id="travel-map" aria-label="Interactive map of places I have visited">
-          <img class="travel-world travel-world-light" src="assets/world-light.svg" alt="" width="1000" height="500" />
-          <img class="travel-world travel-world-dark" src="assets/world-dark.svg" alt="" width="1000" height="500" />
-          <div class="travel-pins" id="travel-pins"></div>
-        </div>
-        <div class="travel-aside">
-          <p class="travel-stat"><strong id="place-count">23</strong> places so far</p>
-          <div class="travel-groups" id="travel-groups"></div>
-          <p class="travel-hint">More continents to go. The map keeps growing.</p>
-        </div>
+      <div class="travel-map" id="travel-map" aria-label="Map of places I have visited">
+        <img
+          class="travel-world travel-world-light"
+          src="assets/world-light.svg?v=eq2"
+          alt="World map with Stitch markers on cities I have visited"
+          width="1000"
+          height="500"
+        />
+        <img
+          class="travel-world travel-world-dark"
+          src="assets/world-dark.svg?v=eq2"
+          alt=""
+          width="1000"
+          height="500"
+        />
+      </div>
+
+      <div class="travel-panel">
+        <p class="travel-stat"><strong id="place-count">23</strong> places so far</p>
+        <div class="travel-groups" id="travel-groups"></div>
+        <p class="travel-hint">More continents to go. The map keeps growing.</p>
       </div>
     </section>
   </main>
@@ -415,6 +428,6 @@
 
   <a class="to-top" href="#top" aria-label="Back to top">↑</a>
 
-  <script src="js/main.js?v=20260811d"></script>
+  <script src="js/main.js?v=20260811e"></script>
 </body>
 </html>
