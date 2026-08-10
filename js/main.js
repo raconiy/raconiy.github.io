@@ -2,7 +2,6 @@
   const year = document.getElementById("y");
   if (year) year.textContent = String(new Date().getFullYear());
 
-  // Theme toggle
   const root = document.documentElement;
   const themeBtn = document.getElementById("theme-toggle");
   const getTheme = () => root.getAttribute("data-theme") || "light";
@@ -16,7 +15,6 @@
     });
   }
 
-  // Reveal on scroll
   const revealEls = document.querySelectorAll("[data-reveal]");
   if ("IntersectionObserver" in window) {
     const io = new IntersectionObserver(
@@ -41,8 +39,9 @@
   const hero = document.querySelector(".hero");
   if (hero) requestAnimationFrame(() => hero.classList.add("is-visible"));
 
-  // Active nav
-  const navLinks = [...document.querySelectorAll('.nav-links a[href^="#"]')];
+  const navLinks = Array.prototype.slice.call(
+    document.querySelectorAll('.nav-links a[href^="#"]')
+  );
   const sections = navLinks
     .map((link) => document.querySelector(link.getAttribute("href")))
     .filter(Boolean);
@@ -62,7 +61,6 @@
     sections.forEach((section) => spy.observe(section));
   }
 
-  // Back to top
   const toTop = document.querySelector(".to-top");
   if (toTop) {
     const onScroll = () => {
@@ -71,12 +69,6 @@
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
   }
-
-  // Travel map — fully local, no external tile CDN
-  const pinsEl = document.getElementById("travel-pins");
-  const groupsEl = document.getElementById("travel-groups");
-  const countEl = document.getElementById("place-count");
-  if (!pinsEl) return;
 
   const places = [
     { name: "San Francisco", region: "United States", x: 10.7, y: 28.85 },
@@ -104,7 +96,12 @@
     { name: "Hangzhou", region: "China", x: 79.6, y: 32.31, home: true },
   ];
 
+  const countEl = document.getElementById("place-count");
   if (countEl) countEl.textContent = String(places.length);
+
+  const pinsEl = document.getElementById("travel-pins");
+  const groupsEl = document.getElementById("travel-groups");
+  if (!pinsEl || !groupsEl) return;
 
   const regionOrder = [
     "United States",
@@ -115,63 +112,67 @@
     "China",
   ];
 
-  const byRegion = places.reduce((acc, place) => {
-    (acc[place.region] ||= []).push(place);
-    return acc;
-  }, {});
+  const byRegion = {};
+  places.forEach((place) => {
+    if (!byRegion[place.region]) byRegion[place.region] = [];
+    byRegion[place.region].push(place);
+  });
 
-  const pinNodes = new Map();
+  const pinNodes = {};
 
   const focusPlace = (placeName) => {
-    pinNodes.forEach((btn, name) => {
+    Object.keys(pinNodes).forEach((name) => {
+      const btn = pinNodes[name];
       const active = name === placeName;
       btn.classList.toggle("is-active", active);
       btn.setAttribute("aria-pressed", active ? "true" : "false");
-      if (active) {
-        btn.focus({ preventScroll: true });
-        btn.scrollIntoView({ block: "nearest", inline: "nearest" });
+    });
+    Array.prototype.forEach.call(
+      groupsEl.querySelectorAll(".travel-chip"),
+      (chip) => {
+        chip.classList.toggle("is-active", chip.getAttribute("data-place") === placeName);
       }
-    });
-    groupsEl?.querySelectorAll(".travel-chip").forEach((chip) => {
-      chip.classList.toggle("is-active", chip.dataset.place === placeName);
-    });
+    );
   };
 
   places.forEach((place, index) => {
     const btn = document.createElement("button");
     btn.type = "button";
-    btn.className = `travel-pin${place.home ? " is-home" : ""}`;
-    btn.style.left = `${place.x}%`;
-    btn.style.top = `${place.y}%`;
-    btn.style.setProperty("--delay", `${Math.min(index * 0.03, 0.45)}s`);
+    btn.className = place.home ? "travel-pin is-home" : "travel-pin";
+    btn.style.left = place.x + "%";
+    btn.style.top = place.y + "%";
+    btn.style.setProperty("--delay", Math.min(index * 0.03, 0.45) + "s");
     btn.title = place.name;
-    btn.setAttribute("aria-label", `${place.name}, ${place.region}`);
-    btn.innerHTML = `<img src="assets/stitch-marker.png" alt="" width="40" height="40" /><span>${place.name}</span>`;
+    btn.setAttribute("aria-label", place.name + ", " + place.region);
+    btn.innerHTML =
+      '<img src="assets/stitch-marker.png" alt="" width="40" height="40" /><span>' +
+      place.name +
+      "</span>";
     btn.addEventListener("click", () => focusPlace(place.name));
     pinsEl.appendChild(btn);
-    pinNodes.set(place.name, btn);
+    pinNodes[place.name] = btn;
   });
 
-  if (groupsEl) {
-    regionOrder.forEach((region) => {
-      const list = byRegion[region];
-      if (!list) return;
-      const block = document.createElement("div");
-      block.className = "travel-group";
-      block.innerHTML = `<h3>${region}</h3>`;
-      const chips = document.createElement("div");
-      chips.className = "travel-chips";
-      list.forEach((place) => {
-        const chip = document.createElement("button");
-        chip.type = "button";
-        chip.className = "travel-chip";
-        chip.dataset.place = place.name;
-        chip.textContent = place.home ? `${place.name} · Home` : place.name;
-        chip.addEventListener("click", () => focusPlace(place.name));
-        chips.appendChild(chip);
-      });
-      block.appendChild(chips);
-      groupsEl.appendChild(block);
+  regionOrder.forEach((region) => {
+    const list = byRegion[region];
+    if (!list) return;
+    const block = document.createElement("div");
+    block.className = "travel-group";
+    const title = document.createElement("h3");
+    title.textContent = region;
+    block.appendChild(title);
+    const chips = document.createElement("div");
+    chips.className = "travel-chips";
+    list.forEach((place) => {
+      const chip = document.createElement("button");
+      chip.type = "button";
+      chip.className = "travel-chip";
+      chip.setAttribute("data-place", place.name);
+      chip.textContent = place.home ? place.name + " · Home" : place.name;
+      chip.addEventListener("click", () => focusPlace(place.name));
+      chips.appendChild(chip);
     });
-  }
+    block.appendChild(chips);
+    groupsEl.appendChild(block);
+  });
 })();

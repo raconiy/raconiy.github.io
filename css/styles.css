@@ -217,8 +217,8 @@ section {
 /* Hero */
 .hero {
   display: grid;
-  grid-template-columns: 1fr 220px;
-  gap: 36px;
+  grid-template-columns: 1fr 200px;
+  gap: 28px 36px;
   align-items: center;
   padding: 8px 4px 8px 0;
 }
@@ -227,34 +227,34 @@ section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 14px;
   justify-self: end;
 }
 
-.avatar-quote {
-  margin: 0;
-  max-width: 220px;
+.ohana-quote {
+  grid-column: 1 / -1;
+  margin: 4px 0 0;
   text-align: center;
 }
 
-.avatar-quote p {
+.ohana-quote p {
   margin: 0;
   font-family: var(--serif);
-  font-size: 13.5px;
+  font-size: clamp(14px, 1.7vw, 17px);
   font-style: italic;
-  line-height: 1.45;
+  line-height: 1.4;
   color: var(--soft);
   letter-spacing: -0.01em;
+  white-space: nowrap;
 }
 
-.avatar-quote cite {
+.ohana-quote cite {
   display: block;
-  margin-top: 6px;
+  margin-top: 8px;
   font-family: var(--sans);
-  font-size: 11px;
+  font-size: 12px;
   font-style: normal;
   font-weight: 600;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--mute);
 }
@@ -829,10 +829,11 @@ html[data-theme="dark"] .avatar {
   overflow: hidden;
   border: 1px solid var(--line);
   box-shadow: var(--shadow);
-  background:
-    radial-gradient(circle at 20% 20%, rgba(126, 200, 227, 0.18), transparent 40%),
-    radial-gradient(circle at 80% 70%, rgba(196, 93, 58, 0.1), transparent 45%),
-    var(--map-frame);
+  background: #d9e7ef;
+}
+
+html[data-theme="dark"] .travel-map {
+  background: #171d26;
 }
 
 .travel-world {
@@ -842,17 +843,13 @@ html[data-theme="dark"] .avatar {
   height: 100%;
   object-fit: contain;
   object-position: center;
-  opacity: 0.92;
   pointer-events: none;
   user-select: none;
-  filter: saturate(0.85) contrast(1.05);
-  transition: filter 0.35s ease, opacity 0.35s ease;
 }
 
-html[data-theme="dark"] .travel-world {
-  opacity: 0.8;
-  filter: invert(0.92) hue-rotate(180deg) saturate(0.55) brightness(1.05);
-}
+.travel-world-dark { display: none; }
+html[data-theme="dark"] .travel-world-light { display: none; }
+html[data-theme="dark"] .travel-world-dark { display: block; }
 
 .travel-pins {
   position: absolute;
@@ -1092,7 +1089,12 @@ footer p { margin: 0; }
 
   .avatar { width: 168px; }
 
-  .avatar-quote { max-width: 280px; }
+  .ohana-quote p {
+    white-space: normal;
+    max-width: 36rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
   .focus-grid,
   .hobbies,

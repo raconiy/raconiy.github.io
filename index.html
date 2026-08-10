@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;1,6..72,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/styles.css?v=20260811" />
   <script>
     (() => {
       const saved = localStorage.getItem("theme");
@@ -94,11 +94,12 @@
         <figure class="avatar">
           <img src="assets/portrait.png" alt="Avatar of Ezekiel Wang" width="220" height="220" />
         </figure>
-        <blockquote class="avatar-quote">
-          <p>“Ohana means family, and family means no one gets left behind or forgotten.”</p>
-          <cite>— Stitch</cite>
-        </blockquote>
       </div>
+
+      <blockquote class="ohana-quote">
+        <p>“Ohana means family, and family means no one gets left behind or forgotten.”</p>
+        <cite>Stitch</cite>
+      </blockquote>
     </header>
 
     <section id="news" data-reveal>
@@ -382,7 +383,7 @@
       </p>
     </section>
 
-    <section id="travel" class="travel" data-reveal>
+    <section id="travel" class="travel">
       <div class="section-head">
         <p class="kicker">Wanderlust</p>
         <h2>Around the World</h2>
@@ -394,11 +395,12 @@
 
       <div class="travel-shell">
         <div class="travel-map" id="travel-map" aria-label="Interactive map of places I have visited">
-          <img class="travel-world" src="assets/world.svg" alt="" width="950" height="620" />
+          <img class="travel-world travel-world-light" src="assets/world-light.svg" alt="" width="950" height="620" />
+          <img class="travel-world travel-world-dark" src="assets/world-dark.svg" alt="" width="950" height="620" />
           <div class="travel-pins" id="travel-pins"></div>
         </div>
         <div class="travel-aside">
-          <p class="travel-stat"><strong id="place-count">0</strong> places so far</p>
+          <p class="travel-stat"><strong id="place-count">23</strong> places so far</p>
           <div class="travel-groups" id="travel-groups"></div>
           <p class="travel-hint">More continents to go. The map keeps growing.</p>
         </div>
@@ -413,6 +415,6 @@
 
   <a class="to-top" href="#top" aria-label="Back to top">↑</a>
 
-  <script src="js/main.js"></script>
+  <script src="js/main.js?v=20260811"></script>
 </body>
 </html>
