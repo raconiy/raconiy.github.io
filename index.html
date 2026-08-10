@@ -11,16 +11,19 @@
   <meta property="og:title" content="Ezekiel Wang" />
   <meta property="og:description" content="World Models · Computational Photography · 3D Computer Vision" />
   <meta property="og:url" content="https://raconiy.github.io/" />
-  <meta property="og:image" content="https://raconiy.github.io/assets/portrait.jpg" />
+  <meta property="og:image" content="https://raconiy.github.io/assets/portrait.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;1,6..72,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
-  <div class="bg" aria-hidden="true"></div>
+  <div class="atmosphere" aria-hidden="true"></div>
 
   <nav class="nav">
     <a class="brand" href="#top">Ezekiel</a>
     <div class="nav-links">
-      <a href="#research">Research</a>
+      <a href="#news">News</a>
       <a href="#publications">Papers</a>
       <a href="#experience">Experience</a>
       <a href="#life">Life</a>
@@ -29,171 +32,156 @@
   </nav>
 
   <main id="top">
-    <header class="intro">
-      <div class="identity">
-        <div class="identity-text">
-          <p class="eyebrow">Researcher</p>
-          <h1>Ezekiel Wang</h1>
-          <p class="aka">Xiangbo Wang</p>
-          <p class="focus">
-            I mainly work on <strong>world models</strong>,
-            <strong>computational photography</strong>, and
-            <strong>3D computer vision</strong>.
-          </p>
-          <p class="place">Based in Hangzhou, China</p>
+    <header class="hero" data-reveal>
+      <div class="hero-copy">
+        <p class="eyebrow">Undergraduate Researcher</p>
+        <h1>Ezekiel Wang</h1>
+        <p class="aka">Xiangbo Wang</p>
+        <p class="lede">
+          I work on <em>world models</em>, <em>computational photography</em>,
+          and <em>3D computer vision</em> — recovering structure and signal
+          from imperfect real-world observations.
+        </p>
+        <p class="place">Based in Hangzhou, China</p>
 
-          <div class="status-row">
-            <a class="status" href="https://cuiziteng.github.io/raw-lab/" target="_blank" rel="noopener">
-              RA @ RAWLab · HKUST(GZ)
-            </a>
-            <span class="status-sub">with <a href="https://cuiziteng.github.io/" target="_blank" rel="noopener">Ziteng Cui</a></span>
-          </div>
-
-          <p class="personal">
-            Outside research, I maintain an active lifestyle and enjoy strategic competitions.
-            I captain my university basketball team, playing both shooting guard and small forward.
-            I am passionate about intellectual games: I became a ranked Go player (dan) in 2014
-            and am now 5-dan, and regularly play Texas Hold’em, currently refining my bankroll management strategies.
-          </p>
-          <p class="personal">
-            Feel free to contact me if you share research interests or similar hobbies!
-          </p>
-
-          <div class="actions">
-            <a class="btn" href="mailto:23200410@hdu.edu.cn">Email</a>
-            <a class="btn btn-ghost" href="https://github.com/raconiy" target="_blank" rel="noopener">GitHub</a>
-            <a class="btn btn-ghost" href="assets/wangxiangbo_cv.pdf" target="_blank" rel="noopener">CV</a>
-          </div>
+        <div class="chip-row">
+          <a class="chip accent" href="https://cuiziteng.github.io/raw-lab/" target="_blank" rel="noopener">
+            RA @ RAWLab · HKUST(GZ)
+          </a>
+          <span class="chip-note">with <a href="https://cuiziteng.github.io/" target="_blank" rel="noopener">Ziteng Cui</a></span>
         </div>
 
-        <figure class="portrait">
-          <img src="assets/portrait.jpg" alt="Portrait of Ezekiel Wang" width="300" height="300" />
-        </figure>
-      </div>
+        <p class="bio">
+          I’m currently a research assistant in
+          <a href="https://cuiziteng.github.io/raw-lab/" target="_blank" rel="noopener">RAWLab</a>
+          at HKUST(GZ), working with
+          <a href="https://cuiziteng.github.io/" target="_blank" rel="noopener">Ziteng Cui</a>
+          on computational photography.
+          I’m also a member of MILab and IIPL at HDU, and a research assistant
+          at the University of Sheffield with Delvin Ce Zhang
+          (<strong>AAAI 2027 · Submitted</strong>).
+          Earlier work on neural audio coding led to SwitchCodec
+          (<strong>ICASSP 2026 Oral</strong>, first author).
+        </p>
 
-      <div class="about" id="about">
-        <h2>About</h2>
-        <div class="about-grid">
-          <p>
-            I’m an undergraduate researcher working on how machines see under imperfect imaging conditions.
-            I mainly work on <strong>world models</strong>,
-            <strong>computational photography</strong>, and
-            <strong>3D computer vision</strong>.
-          </p>
-          <p>
-            I’m currently a research assistant in
-            <a href="https://cuiziteng.github.io/raw-lab/" target="_blank" rel="noopener"><strong>RAWLab (Robust AI in the Wild Lab)</strong></a> at
-            <strong>HKUST(GZ)</strong>, working with
-            <a href="https://cuiziteng.github.io/" target="_blank" rel="noopener">Ziteng Cui</a>
-            on computational photography.
-            I’m also a member of <strong>MILab</strong> and <strong>IIPL</strong> at HDU,
-            and a research assistant at the <strong>University of Sheffield</strong>
-            with Delvin Ce Zhang (<strong>AAAI 2027 · Submitted</strong>).
-            Earlier work on neural audio coding led to SwitchCodec
-            (<strong>ICASSP 2026 Oral</strong>, first author).
-          </p>
+        <div class="actions">
+          <a class="btn" href="mailto:23200410@hdu.edu.cn">Email</a>
+          <a class="btn btn-ghost" href="https://github.com/raconiy" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn btn-ghost" href="assets/wangxiangbo_cv.pdf" target="_blank" rel="noopener">CV</a>
         </div>
       </div>
+
+      <figure class="avatar">
+        <img src="assets/portrait.png" alt="Avatar of Ezekiel Wang" width="220" height="220" />
+      </figure>
     </header>
 
-    <section id="research">
-      <div class="section-head">
-        <h2>Research</h2>
-      </div>
-      <div class="pill-row">
-        <span class="pill active">Comp. Photography</span>
-        <span class="pill">3D Computer Vision</span>
-        <span class="pill">World Models</span>
-        <span class="pill muted">Neural Audio <em>prior</em></span>
-      </div>
-      <div class="split-list">
-        <div>
-          <h3>Computational Photography</h3>
-          <p>Imaging under real-world degradation — recovering usable signal from imperfect sensors and capture pipelines.</p>
-        </div>
-        <div>
-          <h3>3D Computer Vision</h3>
-          <p>3D reconstruction and representation learning, including feed-forward Gaussian Splatting, super-resolution recovery, and efficient rendering.</p>
-        </div>
-        <div>
-          <h3>World Models</h3>
-          <p>Predictive spatial representations grounded in geometry and visual observation.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="news">
+    <section id="news" data-reveal>
       <div class="section-head">
         <h2>News</h2>
       </div>
       <ul class="news">
-        <li><time>2026.07</time><span>RA at <a href="https://cuiziteng.github.io/raw-lab/" target="_blank" rel="noopener"><strong>RAWLab</strong></a>, HKUST(GZ), with <a href="https://cuiziteng.github.io/" target="_blank" rel="noopener">Ziteng Cui</a> — computational photography</span></li>
-        <li><time>2026.03</time><span>RA at University of Sheffield · <strong>AAAI 2027 Submitted</strong></span></li>
-        <li><time>2026</time><span><strong>CVPR 2026</strong> — SR3R (co-first)</span></li>
-        <li><time>2026</time><span><strong>ICASSP 2026 Oral</strong> — SwitchCodec (first author)</span></li>
+        <li>
+          <time datetime="2026-07">2026.07</time>
+          <span>RA at <a href="https://cuiziteng.github.io/raw-lab/" target="_blank" rel="noopener">RAWLab</a>, HKUST(GZ), with <a href="https://cuiziteng.github.io/" target="_blank" rel="noopener">Ziteng Cui</a> — computational photography</span>
+        </li>
+        <li>
+          <time datetime="2026-03">2026.03</time>
+          <span>RA at University of Sheffield · <strong>AAAI 2027 Submitted</strong></span>
+        </li>
+        <li>
+          <time datetime="2026">2026</time>
+          <span><strong>CVPR 2026</strong> — SR3R (co-first)</span>
+        </li>
+        <li>
+          <time datetime="2026">2026</time>
+          <span><strong>ICASSP 2026 Oral</strong> — SwitchCodec (first author)</span>
+        </li>
       </ul>
     </section>
 
-    <section id="publications">
+    <section id="research" data-reveal>
+      <div class="section-head">
+        <h2>Research Focus</h2>
+      </div>
+      <div class="focus-grid">
+        <article>
+          <h3>Computational Photography</h3>
+          <p>Imaging under real-world degradation — recovering usable signal from imperfect sensors and capture pipelines.</p>
+        </article>
+        <article>
+          <h3>3D Computer Vision</h3>
+          <p>3D reconstruction and representation learning, including feed-forward Gaussian Splatting, super-resolution recovery, and efficient rendering.</p>
+        </article>
+        <article>
+          <h3>World Models</h3>
+          <p>Predictive spatial representations grounded in geometry and visual observation.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="publications" data-reveal>
       <div class="section-head">
         <h2>Publications</h2>
+        <p class="section-note">Selected papers and submissions.</p>
       </div>
 
       <article class="pub">
-        <div class="pub-main">
-          <p class="venue"><span class="badge">CVPR 2026</span> Co-first (2nd)</p>
-          <h3>
-            <a href="https://openaccess.thecvf.com/content/CVPR2026/papers/Feng_SR3R_Rethinking_Super-Resolution_3D_Reconstruction_With_Feed-Forward_Gaussian_Splatting_CVPR_2026_paper.pdf" target="_blank" rel="noopener">
-              SR3R: Rethinking Super-Resolution 3D Reconstruction With Feed-Forward Gaussian Splatting
-            </a>
-          </h3>
-          <p class="authors">X. Feng, <b>X. Wang</b>, T. Zhong, C. Wang, Y. Zhao, T. Xu, Z. Kuang, F. Qin, X. Yin, Y. Zhu</p>
-          <p class="links">
-            <a href="https://openaccess.thecvf.com/content/CVPR2026/papers/Feng_SR3R_Rethinking_Super-Resolution_3D_Reconstruction_With_Feed-Forward_Gaussian_Splatting_CVPR_2026_paper.pdf" target="_blank" rel="noopener">PDF</a>
-          </p>
+        <div class="pub-tags">
+          <span class="tag">CVPR 2026</span>
+          <span class="tag soft">Co-first</span>
+          <span class="tag soft">3D Computer Vision</span>
         </div>
+        <h3>
+          <a href="https://openaccess.thecvf.com/content/CVPR2026/papers/Feng_SR3R_Rethinking_Super-Resolution_3D_Reconstruction_With_Feed-Forward_Gaussian_Splatting_CVPR_2026_paper.pdf" target="_blank" rel="noopener">
+            SR3R: Rethinking Super-Resolution 3D Reconstruction With Feed-Forward Gaussian Splatting
+          </a>
+        </h3>
+        <p class="authors">X. Feng, <b>X. Wang</b>, T. Zhong, C. Wang, Y. Zhao, T. Xu, Z. Kuang, F. Qin, X. Yin, Y. Zhu</p>
         <p class="abstract">
           Feed-forward Gaussian Splatting for super-resolution 3D reconstruction —
           efficient multi-view recovery and higher-fidelity novel-view rendering.
         </p>
+        <p class="links">
+          <a href="https://openaccess.thecvf.com/content/CVPR2026/papers/Feng_SR3R_Rethinking_Super-Resolution_3D_Reconstruction_With_Feed-Forward_Gaussian_Splatting_CVPR_2026_paper.pdf" target="_blank" rel="noopener">PDF</a>
+        </p>
       </article>
 
       <article class="pub">
-        <div class="pub-main">
-          <p class="venue"><span class="badge oral">ICASSP 2026 Oral</span> First author</p>
-          <h3>
-            <a href="https://arxiv.org/abs/2601.20362" target="_blank" rel="noopener">
-              SwitchCodec: Adaptive Residual-Expert Sparse Quantization for High-Fidelity Neural Audio Coding
-            </a>
-          </h3>
-          <p class="authors"><b>X. Wang</b>, W. Jiang, J. Wang, Y. You, S. Fang, F. Wen</p>
-          <p class="links">
-            <a href="https://arxiv.org/abs/2601.20362" target="_blank" rel="noopener">arXiv</a>
-          </p>
+        <div class="pub-tags">
+          <span class="tag oral">ICASSP 2026 Oral</span>
+          <span class="tag soft">First author</span>
+          <span class="tag soft">Neural Audio</span>
         </div>
+        <h3>
+          <a href="https://arxiv.org/abs/2601.20362" target="_blank" rel="noopener">
+            SwitchCodec: Adaptive Residual-Expert Sparse Quantization for High-Fidelity Neural Audio Coding
+          </a>
+        </h3>
+        <p class="authors"><b>X. Wang</b>, W. Jiang, J. Wang, Y. You, S. Fang, F. Wen</p>
         <p class="abstract">
           Neural audio codec with Residual Experts Vector Quantization (REVQ).
           Adaptive high-fidelity compression and variable bitrate without retraining
           (2.87 PESQ @ 2.6 kbps on LibriTTS).
         </p>
+        <p class="links">
+          <a href="https://arxiv.org/abs/2601.20362" target="_blank" rel="noopener">arXiv</a>
+        </p>
       </article>
 
-      <p class="aaai-line">Also: <strong>AAAI 2027 · Submitted</strong></p>
+      <p class="footnote-line">Also: <strong>AAAI 2027 · Submitted</strong></p>
     </section>
 
-    <section id="experience">
+    <section id="experience" data-reveal>
       <div class="section-head">
         <h2>Experience</h2>
       </div>
-      <div class="exp-list">
-        <article class="exp featured">
-          <div class="exp-top">
+      <div class="timeline">
+        <article class="item featured">
+          <div class="item-top">
             <div>
               <h3>Research Assistant · <a href="https://cuiziteng.github.io/raw-lab/" target="_blank" rel="noopener">RAWLab</a>, HKUST(GZ)</h3>
-              <p class="meta">
-                Robust AI in the Wild Lab ·
-                <a href="https://cuiziteng.github.io/" target="_blank" rel="noopener">Ziteng Cui</a>
-              </p>
+              <p class="meta">Robust AI in the Wild Lab · <a href="https://cuiziteng.github.io/" target="_blank" rel="noopener">Ziteng Cui</a></p>
             </div>
             <time>2026.07 – Present</time>
           </div>
@@ -203,8 +191,8 @@
           </p>
         </article>
 
-        <article class="exp">
-          <div class="exp-top">
+        <article class="item">
+          <div class="item-top">
             <div>
               <h3>Research Assistant · University of Sheffield</h3>
               <p class="meta">Advisor: Delvin Ce Zhang</p>
@@ -214,8 +202,8 @@
           <p class="detail">AAAI 2027 · Submitted</p>
         </article>
 
-        <article class="exp">
-          <div class="exp-top">
+        <article class="item">
+          <div class="item-top">
             <div>
               <h3>Member · MILab, Hangzhou Dianzi University</h3>
               <p class="meta">Advisor: Zhenzhong Kuang</p>
@@ -224,12 +212,12 @@
           </div>
           <p class="detail">
             3D generation and super-resolution. Co-first on SR3R — feed-forward Gaussian Splatting
-            for super-resolution 3D reconstruction (CVPR 2026). Architecture design and experimental validation.
+            for super-resolution 3D reconstruction (CVPR 2026).
           </p>
         </article>
 
-        <article class="exp">
-          <div class="exp-top">
+        <article class="item">
+          <div class="item-top">
             <div>
               <h3>Member · IIPL, Hangzhou Dianzi University</h3>
               <p class="meta">Advisors: Wenbin Jiang, Jin Wang</p>
@@ -237,14 +225,13 @@
             <time>2024 – Present</time>
           </div>
           <p class="detail">
-            Neural audio codecs. Designed SwitchCodec with REVQ and dynamic routing for variable-bitrate
-            coding without retraining. PyTorch implementation, ablations, listening tests —
+            Neural audio codecs. Designed SwitchCodec with REVQ and dynamic routing —
             ICASSP 2026 Oral, first author.
           </p>
         </article>
 
-        <article class="exp">
-          <div class="exp-top">
+        <article class="item">
+          <div class="item-top">
             <div>
               <h3>Member · HDU Computer Science Association</h3>
             </div>
@@ -255,13 +242,13 @@
       </div>
     </section>
 
-    <section id="education">
+    <section id="education" data-reveal>
       <div class="section-head">
         <h2>Education</h2>
       </div>
-      <div class="exp-list">
-        <article class="exp">
-          <div class="exp-top">
+      <div class="timeline">
+        <article class="item">
+          <div class="item-top">
             <div>
               <h3>B.Eng. Communication Engineering · Hangzhou Dianzi University</h3>
             </div>
@@ -272,8 +259,8 @@
             probability &amp; statistics, neural networks, digital communications.
           </p>
         </article>
-        <article class="exp">
-          <div class="exp-top">
+        <article class="item">
+          <div class="item-top">
             <div>
               <h3>Summer School · The University of Sydney</h3>
             </div>
@@ -286,54 +273,43 @@
       </div>
     </section>
 
-    <section id="life">
+    <section id="life" data-reveal>
       <div class="section-head">
-        <h2>Beyond research</h2>
+        <h2>Beyond Research</h2>
+        <p class="section-note">
+          Outside research, I captain my university basketball team (SG / SF),
+          play Go as a 5-dan, and regularly play Texas Hold’em.
+        </p>
+      </div>
+
+      <div class="interest-tags">
+        <span>Basketball</span>
+        <span>Go · 5-dan</span>
+        <span>Texas Hold’em</span>
+        <span>Saxophone</span>
       </div>
 
       <div class="hobbies">
         <article class="hobby">
-          <span class="emoji" aria-hidden="true">🏀</span>
-          <div>
-            <h3>Basketball</h3>
-            <p>
-              Captain of my university basketball team, playing both shooting guard and small forward.
-            </p>
-          </div>
+          <h3>🏀 Basketball</h3>
+          <p>Captain of my university basketball team, playing both shooting guard and small forward.</p>
         </article>
         <article class="hobby">
-          <span class="emoji" aria-hidden="true">⚫</span>
-          <div>
-            <h3>Weiqi / Go</h3>
-            <p>
-              Became a ranked dan player in 2014; now 5-dan.
-              Long-horizon judgment and quiet calculation.
-            </p>
-          </div>
+          <h3>⚫ Weiqi / Go</h3>
+          <p>Became a ranked dan player in 2014; now 5-dan. Long-horizon judgment and quiet calculation.</p>
         </article>
         <article class="hobby">
-          <span class="emoji" aria-hidden="true">🃏</span>
-          <div>
-            <h3>Texas Hold’em</h3>
-            <p>
-              Regular player, currently refining bankroll management strategies.
-            </p>
-          </div>
+          <h3>🃏 Texas Hold’em</h3>
+          <p>Regular player, currently refining bankroll management strategies.</p>
         </article>
         <article class="hobby">
-          <span class="emoji" aria-hidden="true">🎷</span>
-          <div>
-            <h3>Saxophone</h3>
-            <p>
-              Jazz and classical. Tone, breath, and listening come first —
-              the same patience I try to keep when iterating on research.
-            </p>
-          </div>
+          <h3>🎷 Saxophone</h3>
+          <p>Jazz and classical. Tone, breath, and listening — the same patience I try to keep in research.</p>
         </article>
       </div>
 
       <a class="album" href="https://open.spotify.com/album/2B3RcI8mHKCeH207Ea4GN1" target="_blank" rel="noopener">
-        <img src="assets/asen-cover.jpg" alt="Album cover: 在雨后醒来 by Asen" width="88" height="88" />
+        <img src="assets/asen-cover.jpg" alt="Album cover: 在雨后醒来 by Asen" width="72" height="72" />
         <div class="album-text">
           <p class="album-label">Now listening</p>
           <p class="album-title">在雨后醒来</p>
