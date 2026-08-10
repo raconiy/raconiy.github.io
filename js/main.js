@@ -49,4 +49,76 @@
     );
     sections.forEach((section) => spy.observe(section));
   }
+
+  // Back to top
+  const toTop = document.querySelector(".to-top");
+  if (toTop) {
+    const onScroll = () => {
+      toTop.classList.toggle("is-visible", window.scrollY > 480);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+  }
+
+  // Visitor map (whos.amung.us — same stack as many academic homepages)
+  const mapHost = document.getElementById("visitor-map");
+  if (mapHost) {
+    const width = Math.max(280, Math.min(880, mapHost.clientWidth || 680));
+    const height = Math.round(width / 2);
+    const holder = document.createElement("div");
+    holder.id = "raconiy-map";
+    mapHost.appendChild(holder);
+    window._wau = window._wau || [];
+    window._wau.push([
+      "map",
+      "raconiy",
+      "raconiy-map",
+      String(width),
+      String(height),
+      "natural",
+      "star-blue",
+    ]);
+    const script = document.createElement("script");
+    script.async = true;
+    script.src = "https://waust.at/m.js";
+    document.body.appendChild(script);
+  }
+
+  // Pageview counter
+  const countEl = document.getElementById("visitor-count");
+  if (countEl) {
+    const COUNTER_URL =
+      "https://api.counterapi.dev/v1/raconiy-github-io/homepage-visits/up";
+
+    const extractCount = (payload) => {
+      const candidates = [
+        payload?.count,
+        payload?.value,
+        payload?.data?.count,
+        payload?.data?.value,
+        payload?.data,
+      ];
+      for (const candidate of candidates) {
+        const value = Number(candidate);
+        if (Number.isFinite(value)) return Math.max(0, Math.trunc(value));
+      }
+      return null;
+    };
+
+    fetch(COUNTER_URL, { cache: "no-store", mode: "cors" })
+      .then((res) => {
+        if (!res.ok) throw new Error(`counter ${res.status}`);
+        return res.json();
+      })
+      .then((payload) => {
+        const value = extractCount(payload);
+        if (value == null) throw new Error("bad counter payload");
+        countEl.classList.remove("is-loading");
+        countEl.textContent = `${value.toLocaleString("en-US")} pageviews`;
+      })
+      .catch(() => {
+        countEl.classList.remove("is-loading");
+        countEl.textContent = "Visitor map is live";
+      });
+  }
 })();
