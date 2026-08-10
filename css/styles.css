@@ -816,13 +816,28 @@ html[data-theme="dark"] .avatar {
 /* Travel map */
 .travel-dream {
   margin: 10px 0 0;
-  max-width: 42rem;
+  max-width: 44rem;
   font-family: var(--serif);
   font-size: clamp(17px, 2.2vw, 21px);
   font-style: italic;
-  line-height: 1.45;
+  line-height: 1.5;
+  color: var(--soft);
+  letter-spacing: -0.015em;
+}
+
+.travel-dream-emph {
+  display: block;
+  margin-top: 0.55em;
+  width: fit-content;
   color: var(--ink);
-  letter-spacing: -0.02em;
+  font-size: 1.18em;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.25;
+  background: linear-gradient(120deg, transparent 0%, var(--accent-soft) 0%);
+  background-repeat: no-repeat;
+  background-size: 100% 42%;
+  background-position: 0 88%;
 }
 
 .travel-map {
