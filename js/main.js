@@ -85,8 +85,8 @@
     { name: "London", region: "United Kingdom", x: 48.0, y: 26.4 },
     { name: "Vladivostok", region: "Russia", x: 83.5, y: 29.8 },
     { name: "Tokyo", region: "Japan", x: 85.9, y: 32.3 },
-    { name: "Sydney", region: "Australia", x: 88.2, y: 71.9 },
-    { name: "Melbourne", region: "Australia", x: 86.5, y: 74.0 },
+    { name: "Sydney", region: "Australia", x: 91.0, y: 73.6 },
+    { name: "Melbourne", region: "Australia", x: 89.1, y: 75.7 },
     { name: "Yunnan", region: "China", x: 75.4, y: 40.7 },
     { name: "Beijing", region: "China", x: 79.1, y: 32.8 },
     { name: "Heilongjiang", region: "China", x: 81.8, y: 29.7 },
@@ -146,7 +146,7 @@
     btn.title = place.name;
     btn.setAttribute("aria-label", place.name + ", " + place.region);
     btn.innerHTML =
-      '<img src="assets/stitch-marker.png" alt="" width="26" height="26" /><span>' +
+      '<img src="assets/stitch-marker.png" alt="" width="18" height="18" /><span>' +
       place.name +
       "</span>";
     btn.addEventListener("click", () => focusPlace(place.name));

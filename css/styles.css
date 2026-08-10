@@ -860,8 +860,8 @@ html[data-theme="dark"] .travel-world-dark { display: block; }
 
 .travel-pin {
   position: absolute;
-  width: 26px;
-  height: 26px;
+  width: 18px;
+  height: 18px;
   padding: 0;
   border: 0;
   background: transparent;
@@ -873,14 +873,14 @@ html[data-theme="dark"] .travel-world-dark { display: block; }
 }
 
 .travel-pin img {
-  width: 26px;
-  height: 26px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   object-fit: cover;
   object-position: center 42%;
   display: block;
-  border: 1.5px solid #fff;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25), 0 0 0 2px rgba(196, 93, 58, 0.4);
+  border: 1.25px solid #fff;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.22), 0 0 0 1.5px rgba(196, 93, 58, 0.45);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   background: #7ec8e3;
 }
@@ -924,7 +924,7 @@ html[data-theme="dark"] .travel-world-dark { display: block; }
 }
 
 .travel-pin.is-home img {
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25), 0 0 0 2px rgba(224, 138, 102, 0.75);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.22), 0 0 0 1.5px rgba(224, 138, 102, 0.8);
 }
 
 @keyframes pin-in {
