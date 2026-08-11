@@ -173,4 +173,16 @@
 
   const home = places.find((p) => p.home) || places[0];
   showCity(home);
+
+  const hobbyCards = Array.prototype.slice.call(
+    document.querySelectorAll(".hobby")
+  );
+  hobbyCards.forEach((card) => {
+    card.addEventListener("toggle", () => {
+      if (!card.open) return;
+      hobbyCards.forEach((other) => {
+        if (other !== card) other.open = false;
+      });
+    });
+  });
 })();

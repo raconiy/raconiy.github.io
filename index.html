@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;1,6..72,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css?v=20260811l" />
+  <link rel="stylesheet" href="css/styles.css?v=20260812a" />
   <script>
     (() => {
       const saved = localStorage.getItem("theme");
@@ -350,22 +350,54 @@
       </div>
 
       <div class="hobbies">
-        <article class="hobby">
-          <h3>🏀 Basketball</h3>
-          <p>Captain of my university basketball team, playing both shooting guard and small forward.</p>
-        </article>
-        <article class="hobby">
-          <h3>⚫ Weiqi / Go</h3>
-          <p>Became a ranked dan player in 2014; now 5-dan. Long-horizon judgment and quiet calculation.</p>
-        </article>
-        <article class="hobby">
-          <h3>🃏 Texas Hold’em</h3>
-          <p>Regular player, currently refining bankroll management strategies.</p>
-        </article>
-        <article class="hobby">
-          <h3>🎷 Saxophone</h3>
-          <p>Jazz and classical. Tone, breath, and listening — the same patience I try to keep in research.</p>
-        </article>
+        <details class="hobby">
+          <summary>
+            <span class="hobby-copy">
+              <span class="hobby-title">🏀 Basketball</span>
+              <span class="hobby-text">Captain of my university basketball team, playing both shooting guard and small forward.</span>
+            </span>
+            <span class="hobby-peek" aria-hidden="true"></span>
+          </summary>
+          <figure class="hobby-photo">
+            <img src="assets/hobbies/basketball.jpg?v=1" alt="University basketball team photo" width="1400" height="1048" loading="lazy" />
+          </figure>
+        </details>
+        <details class="hobby">
+          <summary>
+            <span class="hobby-copy">
+              <span class="hobby-title">⚫ Weiqi / Go</span>
+              <span class="hobby-text">Became a ranked dan player in 2014; now 5-dan. Long-horizon judgment and quiet calculation.</span>
+            </span>
+            <span class="hobby-peek" aria-hidden="true"></span>
+          </summary>
+          <figure class="hobby-photo">
+            <img src="assets/hobbies/go.jpg?v=1" alt="Go tournament hall" width="1400" height="1050" loading="lazy" />
+          </figure>
+        </details>
+        <details class="hobby">
+          <summary>
+            <span class="hobby-copy">
+              <span class="hobby-title">🃏 Texas Hold’em</span>
+              <span class="hobby-text">Regular player, currently refining bankroll management strategies.</span>
+            </span>
+            <span class="hobby-peek" aria-hidden="true"></span>
+          </summary>
+          <figure class="hobby-photo">
+            <img src="assets/hobbies/poker.jpg?v=1" alt="Texas Hold’em chips on the table" width="1200" height="675" loading="lazy" />
+          </figure>
+        </details>
+        <details class="hobby">
+          <summary>
+            <span class="hobby-copy">
+              <span class="hobby-title">🎷 Saxophone</span>
+              <span class="hobby-text">Jazz and classical. Tone, breath, and listening — the same patience I try to keep in research.</span>
+            </span>
+            <span class="hobby-peek" aria-hidden="true"></span>
+          </summary>
+          <figure class="hobby-photo">
+            <img src="assets/hobbies/sax.jpg?v=1" alt="Playing saxophone on stage" width="703" height="1200" loading="lazy" />
+          </figure>
+        </details>
       </div>
 
       <a class="album" href="https://open.spotify.com/album/2B3RcI8mHKCeH207Ea4GN1" target="_blank" rel="noopener">
@@ -435,6 +467,6 @@
 
   <a class="to-top" href="#top" aria-label="Back to top">↑</a>
 
-  <script src="js/main.js?v=20260811k"></script>
+  <script src="js/main.js?v=20260812a"></script>
 </body>
 </html>
