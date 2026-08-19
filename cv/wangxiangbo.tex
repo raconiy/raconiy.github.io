@@ -1,0 +1,161 @@
+% Xiangbo Wang — Academic CV
+% Compile: xelatex wangxiangbo.tex   (or lualatex / pdflatex)
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=0.68in]{geometry}
+\usepackage{iftex}
+\usepackage{microtype}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \IfFileExists{sourceserifpro.sty}{%
+    \usepackage[semibold,default]{sourceserifpro}
+  }{\usepackage{lmodern}}
+\else
+  \usepackage{fontspec}
+  \IfFileExists{fonts/SourceSerif4-Regular.ttf}{%
+    \setmainfont{SourceSerif4}[
+      Path = fonts/,
+      Extension = .ttf,
+      UprightFont = *-Regular,
+      BoldFont = *-Semibold,
+      ItalicFont = *-It,
+      Ligatures = TeX,
+    ]
+  }{%
+    \IfFontExistsTF{TeXGyrePagella}{%
+      \setmainfont{TeXGyrePagella}[Ligatures=TeX]
+    }{}%
+  }
+\fi
+
+\usepackage{fontawesome5}
+\IfFileExists{fonts/academicons.ttf}{%
+  \newfontfamily{\AIfont}{academicons}[
+    Path = fonts/,
+    Extension = .ttf,
+  ]
+  \newcommand{\aiGoogleScholar}{{\AIfont\symbol{"E9D4}}}
+}{%
+  \usepackage{academicons}
+}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\frenchspacing
+\emergencystretch=2em
+
+\titleformat{\section}{\large\bfseries}{}{0pt}{}[\vspace{1pt}{\titlerule[0.6pt]}]
+\titlespacing*{\section}{0pt}{13pt}{6pt}
+
+\setlist[itemize]{leftmargin=1.2em, itemsep=1.5pt, parsep=0pt, topsep=1.5pt}
+\setlist[enumerate]{leftmargin=1.6em, itemsep=6pt, parsep=0pt, topsep=3pt}
+
+\newcommand{\me}[1]{\textbf{#1}}
+\newcommand{\cvlink}[2]{\href{#1}{#2}}
+\newcommand{\cvitem}[3]{\cvlink{#1}{\mbox{\footnotesize #2}\hspace{0.32em}#3}}
+
+\newcommand{\role}[2]{\par\noindent\textbf{#1}\hfill #2\par}
+\newcommand{\meta}[1]{\noindent\textit{#1}\par}
+
+\begin{document}
+
+{\LARGE\bfseries Xiangbo Wang}
+
+\vspace{4pt}
+Hangzhou Dianzi University
+
+\vspace{6pt}
+\cvitem{mailto:23200410@hdu.edu.cn}{\faEnvelope}{23200410@hdu.edu.cn}
+\hspace{0.75em}\textperiodcentered\hspace{0.75em}
+\cvitem{https://raconiy.github.io/}{\faGlobe}{raconiy.github.io}
+\hspace{0.75em}\textperiodcentered\hspace{0.75em}
+\cvitem{https://github.com/raconiy}{\faGithub}{github.com/raconiy}
+\hspace{0.75em}\textperiodcentered\hspace{0.75em}
+\cvitem{https://scholar.google.com/citations?user=8E-eDOIAAAAJ}{\aiGoogleScholar}{Google Scholar}
+
+\vspace{10pt}
+\noindent\rule{\textwidth}{1.0pt}
+
+\section{Education}
+
+\role{Hangzhou Dianzi University}{2023 -- 2027}
+\meta{B.Eng.\ in Communication Engineering}
+\begin{itemize}
+  \item Ranked top 10\% in major.
+  \item Coursework: algorithms, DSP, deep learning, linear algebra, probability and statistics, neural networks, digital communications.
+\end{itemize}
+
+\vspace{6pt}
+\role{The University of Sydney}{Summer 2024}
+\meta{Summer School}
+\begin{itemize}
+  \item Fundamentals of Deep Learning and Academic English. Excellent in both assessments.
+\end{itemize}
+
+\section{Research Experience}
+
+\role{Research Assistant, RAWLab, HKUST (Guangzhou)}{Jul.\ 2026 -- present}
+\meta{Advisor: \cvlink{https://cuiziteng.github.io/}{Ziteng Cui}}
+\begin{itemize}
+  \item Computational photography, with a focus on imaging under real-world degradation.
+\end{itemize}
+
+\vspace{6pt}
+\role{Research Assistant, University of Sheffield}{Mar.\ 2026 -- present}
+\meta{Advisor: \cvlink{https://sites.google.com/view/delvincezhang/}{Delvin Ce Zhang}}
+\begin{itemize}
+  \item Video misinformation detection. First author of HyperClaim (submitted).
+\end{itemize}
+
+\vspace{6pt}
+\role{MILab, Hangzhou Dianzi University}{2025 -- present}
+\meta{Advisor: Zhenzhong Kuang}
+\begin{itemize}
+  \item 3D reconstruction and super-resolution. Co-first author of SR3R (CVPR 2026).
+\end{itemize}
+
+\vspace{6pt}
+\role{IIPL, Hangzhou Dianzi University}{2024 -- present}
+\meta{Advisors: Wenbin Jiang and Jin Wang}
+\begin{itemize}
+  \item Neural audio coding. First author of SwitchCodec (ICASSP 2026 Oral).
+\end{itemize}
+
+\section{Publications}
+
+Author name in bold.
+
+\vspace{6pt}
+\begin{enumerate}
+  \item X.\ Feng, \me{X.\ Wang}, T.\ Zhong, C.\ Wang, Y.\ Zhao, T.\ Xu, Z.\ Kuang, F.\ Qin, X.\ Yin, and Y.\ Zhu.
+        SR3R: Rethinking Super-Resolution 3D Reconstruction With Feed-Forward Gaussian Splatting.
+        \textit{IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)}, 2026.
+        Co-first author.
+        \cvlink{https://openaccess.thecvf.com/content/CVPR2026/papers/Feng_SR3R_Rethinking_Super-Resolution_3D_Reconstruction_With_Feed-Forward_Gaussian_Splatting_CVPR_2026_paper.pdf}{PDF}
+
+  \item \me{X.\ Wang}, W.\ Jiang, J.\ Wang, Y.\ You, S.\ Fang, and F.\ Wen.
+        SwitchCodec: Adaptive Residual-Expert Sparse Quantization for High-Fidelity Neural Audio Coding.
+        \textit{IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)}, 2026.
+        Oral. First author.
+        \cvlink{https://arxiv.org/abs/2601.20362}{arXiv}
+
+  \item \me{X.\ Wang}, J.\ Zhang, X.\ Yu, L.\ Lei, and D.\ C.\ Zhang.
+        HyperClaim: Fine-Grained Cross-Modal Hypergraph Reasoning for Video Misinformation Detection.
+        Submitted.
+        First author.
+        \cvlink{https://arxiv.org/abs/2607.28375}{arXiv}
+\end{enumerate}
+
+\section{Research Interests}
+
+Computational photography; 3D computer vision (feed-forward Gaussian Splatting and super-resolution reconstruction); world models.
+
+\end{document}
