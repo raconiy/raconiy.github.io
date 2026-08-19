@@ -15,30 +15,6 @@
     });
   }
 
-  const revealEls = document.querySelectorAll("[data-reveal]");
-  if ("IntersectionObserver" in window) {
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            io.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.08, rootMargin: "0px 0px -4% 0px" }
-    );
-    revealEls.forEach((el, i) => {
-      el.style.transitionDelay = `${Math.min(i * 0.05, 0.2)}s`;
-      io.observe(el);
-    });
-  } else {
-    revealEls.forEach((el) => el.classList.add("is-visible"));
-  }
-
-  const hero = document.querySelector(".hero");
-  if (hero) requestAnimationFrame(() => hero.classList.add("is-visible"));
-
   const navLinks = Array.prototype.slice.call(
     document.querySelectorAll('.nav-links a[href^="#"]')
   );
@@ -52,11 +28,14 @@
           if (!entry.isIntersecting) return;
           const id = `#${entry.target.id}`;
           navLinks.forEach((link) => {
-            link.classList.toggle("is-active", link.getAttribute("href") === id);
+            link.classList.toggle(
+              "is-active",
+              link.getAttribute("href") === id
+            );
           });
         });
       },
-      { rootMargin: "-35% 0px -55% 0px", threshold: 0 }
+      { rootMargin: "-30% 0px -60% 0px", threshold: 0 }
     );
     sections.forEach((section) => spy.observe(section));
   }
@@ -96,7 +75,8 @@
     { name: "Hangzhou", region: "China", photo: "hangzhou" },
     {
       name: "Tongxiang",
-      region: "Jiaxing · Zhejiang, China",
+      region: "China",
+      label: "Jiaxing · Zhejiang, China",
       photo: "tongxiang",
       home: true,
     },
@@ -118,9 +98,8 @@
     }
     if (nameEl) nameEl.textContent = place.name;
     if (regionEl) {
-      regionEl.textContent = place.home
-        ? place.region + " · Home"
-        : place.region;
+      const base = place.label || place.region;
+      regionEl.textContent = place.home ? base + " · Home" : base;
     }
     Array.prototype.forEach.call(
       groupsEl.querySelectorAll(".travel-chip"),
