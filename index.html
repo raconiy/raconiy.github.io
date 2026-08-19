@@ -14,8 +14,8 @@
   <meta property="og:image" content="https://raconiy.github.io/assets/portrait.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;1,6..72,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css?v=20260812a" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css?v=20260819a" />
   <script>
     (() => {
       const saved = localStorage.getItem("theme");
@@ -56,44 +56,23 @@
         </p>
         <p class="place">From Tongxiang, Jiaxing, Zhejiang</p>
 
-        <div class="chip-row">
-          <a class="chip accent" href="https://cuiziteng.github.io/raw-lab/" target="_blank" rel="noopener">
-            RA @ RAWLab · HKUST(GZ)
-          </a>
-          <span class="chip-note">with <a href="https://cuiziteng.github.io/" target="_blank" rel="noopener">Ziteng Cui</a></span>
-        </div>
-
-        <p class="bio">
-          I’m currently a research assistant in
-          <a href="https://cuiziteng.github.io/raw-lab/" target="_blank" rel="noopener">RAWLab</a>
-          at HKUST(GZ), working with
-          <a href="https://cuiziteng.github.io/" target="_blank" rel="noopener">Ziteng Cui</a>
-          on computational photography.
-          I’m also a member of <strong>MILab</strong> and <strong>IIPL</strong> at HDU,
-          where at MILab we published
-          <a href="https://openaccess.thecvf.com/content/CVPR2026/papers/Feng_SR3R_Rethinking_Super-Resolution_3D_Reconstruction_With_Feed-Forward_Gaussian_Splatting_CVPR_2026_paper.pdf" target="_blank" rel="noopener"><strong>SR3R</strong></a>
-          (<strong>CVPR 2026</strong>, co-first),
-          and a research assistant at the University of Sheffield with
-          <a href="https://sites.google.com/view/delvincezhang/" target="_blank" rel="noopener">Delvin Ce Zhang</a>
-          on
-          <a href="https://arxiv.org/abs/2607.28375" target="_blank" rel="noopener"><strong>HyperClaim</strong></a>
-          (<strong>Submitted</strong>).
-          Earlier work on neural audio coding led to SwitchCodec
-          (<strong>ICASSP 2026 Oral</strong>, first author).
+        <p class="affiliation">
+          RA @ <a href="https://cuiziteng.github.io/raw-lab/" target="_blank" rel="noopener">RAWLab</a>, HKUST(GZ)
+          <span aria-hidden="true">·</span>
+          with <a href="https://cuiziteng.github.io/" target="_blank" rel="noopener">Ziteng Cui</a>
         </p>
 
         <div class="actions">
           <a class="btn" href="mailto:23200410@hdu.edu.cn">Email</a>
           <a class="btn btn-ghost" href="https://github.com/raconiy" target="_blank" rel="noopener">GitHub</a>
           <a class="btn btn-ghost" href="https://scholar.google.com/citations?user=8E-eDOIAAAAJ&hl=en" target="_blank" rel="noopener">Scholar</a>
-          <a class="btn btn-ghost" href="https://arxiv.org/abs/2607.28375" target="_blank" rel="noopener">arXiv</a>
           <a class="btn btn-ghost" href="assets/wangxiangbo_cv.pdf" target="_blank" rel="noopener">CV</a>
         </div>
       </div>
 
       <div class="avatar-block">
         <figure class="avatar">
-          <img src="assets/portrait.png" alt="Avatar of Ezekiel Wang" width="236" height="236" />
+          <img src="assets/portrait.png" alt="Avatar of Ezekiel Wang" width="248" height="248" />
         </figure>
       </div>
 
@@ -102,6 +81,30 @@
         <cite>Stitch</cite>
       </blockquote>
     </header>
+
+    <section class="about" data-reveal>
+      <div class="section-head">
+        <h2>About</h2>
+      </div>
+      <p class="bio">
+        I’m currently a research assistant in
+        <a href="https://cuiziteng.github.io/raw-lab/" target="_blank" rel="noopener">RAWLab</a>
+        at HKUST(GZ), working with
+        <a href="https://cuiziteng.github.io/" target="_blank" rel="noopener">Ziteng Cui</a>
+        on computational photography.
+        I’m also a member of <strong>MILab</strong> and <strong>IIPL</strong> at HDU,
+        where at MILab we published
+        <a href="https://openaccess.thecvf.com/content/CVPR2026/papers/Feng_SR3R_Rethinking_Super-Resolution_3D_Reconstruction_With_Feed-Forward_Gaussian_Splatting_CVPR_2026_paper.pdf" target="_blank" rel="noopener"><strong>SR3R</strong></a>
+        (<strong>CVPR 2026</strong>, co-first),
+        and a research assistant at the University of Sheffield with
+        <a href="https://sites.google.com/view/delvincezhang/" target="_blank" rel="noopener">Delvin Ce Zhang</a>
+        on
+        <a href="https://arxiv.org/abs/2607.28375" target="_blank" rel="noopener"><strong>HyperClaim</strong></a>
+        (<strong>Submitted</strong>).
+        Earlier work on neural audio coding led to SwitchCodec
+        (<strong>ICASSP 2026 Oral</strong>, first author).
+      </p>
+    </section>
 
     <section id="news" data-reveal>
       <div class="section-head">
@@ -141,14 +144,17 @@
       </div>
       <div class="focus-grid">
         <article>
+          <span class="focus-num" aria-hidden="true">01</span>
           <h3>Computational Photography</h3>
           <p>Imaging under real-world degradation — recovering usable signal from imperfect sensors and capture pipelines.</p>
         </article>
         <article>
+          <span class="focus-num" aria-hidden="true">02</span>
           <h3>3D Computer Vision</h3>
           <p>3D reconstruction and representation learning, including feed-forward Gaussian Splatting, super-resolution recovery, and efficient rendering.</p>
         </article>
         <article>
+          <span class="focus-num" aria-hidden="true">03</span>
           <h3>World Models</h3>
           <p>Predictive spatial representations grounded in geometry and visual observation.</p>
         </article>
@@ -342,18 +348,11 @@
         </p>
       </div>
 
-      <div class="interest-tags">
-        <span>Basketball</span>
-        <span>Go · 5-dan</span>
-        <span>Texas Hold’em</span>
-        <span>Saxophone</span>
-      </div>
-
       <div class="hobbies">
         <details class="hobby">
           <summary>
             <span class="hobby-copy">
-              <span class="hobby-title">🏀 Basketball</span>
+              <span class="hobby-title">Basketball</span>
               <span class="hobby-text">Captain of my university basketball team, playing both shooting guard and small forward.</span>
             </span>
             <span class="hobby-peek" aria-hidden="true"></span>
@@ -365,7 +364,7 @@
         <details class="hobby">
           <summary>
             <span class="hobby-copy">
-              <span class="hobby-title">⚫ Weiqi / Go</span>
+              <span class="hobby-title">Weiqi / Go</span>
               <span class="hobby-text">Became a ranked dan player in 2014; now 5-dan. Long-horizon judgment and quiet calculation.</span>
             </span>
             <span class="hobby-peek" aria-hidden="true"></span>
@@ -377,7 +376,7 @@
         <details class="hobby">
           <summary>
             <span class="hobby-copy">
-              <span class="hobby-title">🃏 Texas Hold’em</span>
+              <span class="hobby-title">Texas Hold’em</span>
               <span class="hobby-text">Regular player, currently refining bankroll management strategies.</span>
             </span>
             <span class="hobby-peek" aria-hidden="true"></span>
@@ -389,7 +388,7 @@
         <details class="hobby">
           <summary>
             <span class="hobby-copy">
-              <span class="hobby-title">🎷 Saxophone</span>
+              <span class="hobby-title">Saxophone</span>
               <span class="hobby-text">Jazz and classical. Tone, breath, and listening — the same patience I try to keep in research.</span>
             </span>
             <span class="hobby-peek" aria-hidden="true"></span>
@@ -467,6 +466,6 @@
 
   <a class="to-top" href="#top" aria-label="Back to top">↑</a>
 
-  <script src="js/main.js?v=20260812a"></script>
+  <script src="js/main.js?v=20260819a"></script>
 </body>
 </html>
