@@ -1,29 +1,35 @@
-/* Clean high-signal academic homepage */
+/* Academic homepage: warm paper, navy accent */
 
 :root,
 html[data-theme="light"] {
-  --bg: #fff;
-  --ink: #111;
-  --soft: #333;
-  --mute: #666;
-  --line: #e5e5e5;
-  --fill: #f6f6f6;
-  --max: 880px;
+  --bg: #f7f4ef;
+  --ink: #1c1916;
+  --soft: #3f3a34;
+  --mute: #7a7369;
+  --line: #e4ddd3;
+  --fill: #efe9e1;
+  --accent: #3a4a63;
+  --max: 820px;
   --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
   --sans: "Source Sans 3", "PingFang SC", "Hiragino Sans GB", sans-serif;
 }
 
 html[data-theme="dark"] {
-  --bg: #0f0f0f;
-  --ink: #f2f2f2;
-  --soft: #cfcfcf;
-  --mute: #9a9a9a;
-  --line: #2a2a2a;
-  --fill: #1a1a1a;
+  --bg: #161513;
+  --ink: #f2ece4;
+  --soft: #d2cbc2;
+  --mute: #9b948a;
+  --line: #2e2b27;
+  --fill: #1f1d1a;
+  --accent: #b7c4d8;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; color-scheme: light; }
+html {
+  scroll-behavior: smooth;
+  color-scheme: light;
+  background: var(--bg);
+}
 html[data-theme="dark"] { color-scheme: dark; }
 
 body {
@@ -31,13 +37,13 @@ body {
   background: var(--bg);
   color: var(--ink);
   font-family: var(--sans);
-  font-size: 15.5px;
-  line-height: 1.55;
+  font-size: 16px;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
 
-a { color: var(--ink); }
-a:hover { opacity: 0.6; }
+a { color: var(--accent); }
+a:hover { opacity: 0.72; }
 
 .wrap {
   width: min(var(--max), calc(100% - 40px));
@@ -63,6 +69,7 @@ a:hover { opacity: 0.6; }
 }
 
 .brand {
+  color: var(--ink);
   font-weight: 700;
   font-size: 14px;
   letter-spacing: -0.02em;
@@ -94,10 +101,11 @@ a:hover { opacity: 0.6; }
 }
 
 .nav-cta {
-  background: var(--ink) !important;
+  background: var(--accent) !important;
   color: var(--bg) !important;
+  border-bottom: none !important;
   margin-left: 4px;
-  padding: 5px 10px !important;
+  padding: 5px 11px !important;
   font-weight: 600 !important;
 }
 
@@ -119,16 +127,26 @@ a:hover { opacity: 0.6; }
 html[data-theme="light"] .theme-icon-sun { display: none; }
 html[data-theme="dark"] .theme-icon-moon { display: none; }
 
-main.wrap { padding-top: 28px; padding-bottom: 24px; }
+main.wrap { padding-top: 36px; padding-bottom: 32px; }
 
-section { margin: 40px 0; }
+section { margin: 48px 0; }
 
 h2 {
-  margin: 0 0 6px;
-  font-size: 12px;
+  margin: 0 0 14px;
+  font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
+  color: var(--ink);
+}
+
+h2::after {
+  content: "";
+  display: block;
+  width: 26px;
+  height: 1.5px;
+  margin-top: 8px;
+  background: var(--accent);
 }
 
 .hint {
@@ -140,16 +158,16 @@ h2 {
 /* Intro */
 .intro {
   display: grid;
-  grid-template-columns: 160px 1fr;
-  gap: 28px;
+  grid-template-columns: 148px 1fr;
+  gap: 36px;
   align-items: start;
-  padding-bottom: 28px;
-  border-bottom: 2px solid var(--ink);
+  padding-bottom: 36px;
+  border-bottom: 1px solid var(--line);
 }
 
 .portrait {
-  width: 160px;
-  height: 160px;
+  width: 148px;
+  height: 148px;
   object-fit: cover;
   object-position: center 40%;
   background: var(--fill);
@@ -173,30 +191,39 @@ h1 {
 }
 
 .blurb {
-  margin: 14px 0 0;
+  margin: 16px 0 0;
   color: var(--soft);
-  font-size: 14.5px;
-  line-height: 1.65;
-  max-width: 62ch;
+  font-size: 15px;
+  line-height: 1.7;
+  max-width: 58ch;
 }
 
 .blurb b { color: var(--ink); }
 
 .links-inline {
-  margin: 16px 0 0;
+  margin: 20px 0 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 6px 16px;
-  font-size: 13.5px;
+  gap: 8px;
+  font-size: 13px;
   font-weight: 600;
 }
 
 .links-inline a {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 7px;
+  color: var(--ink);
   text-decoration: none;
-  border-bottom: 1px solid currentColor;
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--bg) 70%, var(--fill));
+  padding: 6px 11px;
+}
+
+.links-inline a:hover {
+  opacity: 1;
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 .link-icon {
@@ -221,10 +248,10 @@ h1 {
 }
 
 .paper .meta b {
-  color: var(--ink);
-  letter-spacing: 0.03em;
+  color: var(--accent);
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: 11.5px;
 }
 
 .paper h3 {
@@ -479,10 +506,10 @@ h1 {
   aspect-ratio: 2 / 1;
   border: 1px solid var(--line);
   overflow: hidden;
-  background: #cfe3ef;
+  background: var(--fill);
 }
 
-html[data-theme="dark"] .travel-map { background: #121820; }
+html[data-theme="dark"] .travel-map { background: var(--fill); }
 
 .travel-world {
   display: block;
