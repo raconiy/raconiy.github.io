@@ -155,27 +155,15 @@ h2::after {
   font-size: 13px;
 }
 
-/* Intro */
+/* Intro — Tairan He: name above, photo+links left, bio right */
 .intro {
-  display: grid;
-  grid-template-columns: 148px 1fr;
-  gap: 36px;
-  align-items: start;
   padding-bottom: 36px;
   border-bottom: 1px solid var(--line);
 }
 
-.portrait {
-  width: 148px;
-  height: 148px;
-  object-fit: cover;
-  object-position: center 40%;
-  background: var(--fill);
-  border: 1px solid var(--line);
-}
-
-h1 {
+.intro h1 {
   margin: 0;
+  text-align: center;
   font-family: var(--serif);
   font-size: clamp(30px, 5vw, 40px);
   font-weight: 700;
@@ -183,68 +171,65 @@ h1 {
   line-height: 1.05;
 }
 
-.sub {
-  margin: 6px 0 0;
+.intro .sub {
+  margin: 8px 0 0;
+  text-align: center;
   color: var(--mute);
   font-size: 14px;
   font-weight: 500;
 }
 
-.blurb {
-  margin: 16px 0 0;
+.intro-grid {
+  display: grid;
+  grid-template-columns: 30% 1fr;
+  gap: 8px 28px;
+  align-items: start;
+  margin-top: 22px;
+}
+
+.intro-side {
+  min-width: 0;
+}
+
+.portrait {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  object-position: center 40%;
+  background: var(--fill);
+  border-radius: 15px;
+}
+
+.side-links {
+  margin: 10px 0 0;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.85;
+}
+
+.side-links a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.side-links a:not(:last-child)::after {
+  content: " · ";
+  color: var(--mute);
+  pointer-events: none;
+}
+
+.intro-bio p {
+  margin: 0 0 10px;
   color: var(--soft);
   font-size: 15px;
   line-height: 1.7;
-  max-width: 58ch;
+  text-align: justify;
 }
 
-.blurb b { color: var(--ink); }
-
-.thesis {
-  margin: 10px 0 0;
-  color: var(--soft);
-  font-size: 14.5px;
-  line-height: 1.65;
-  max-width: 58ch;
-}
-
-.thesis b {
-  color: var(--ink);
-  font-weight: 700;
-}
-
-.links-inline {
-  margin: 20px 0 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  font-size: 13px;
-  font-weight: 600;
-}
-
-.links-inline a {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  color: var(--ink);
-  text-decoration: none;
-  border: 1px solid var(--line);
-  background: color-mix(in srgb, var(--bg) 70%, var(--fill));
-  padding: 6px 11px;
-}
-
-.links-inline a:hover {
-  opacity: 1;
-  border-color: var(--accent);
-  color: var(--accent);
-}
-
-.link-icon {
-  width: 14px;
-  height: 14px;
-  flex: none;
-  fill: currentColor;
-}
+.intro-bio p:last-child { margin-bottom: 0; }
+.intro-bio b { color: var(--ink); }
 
 /* Papers */
 .paper {
@@ -640,12 +625,19 @@ html[data-theme="dark"] .travel-world-dark { display: block; }
 .to-top.is-visible { opacity: 1; pointer-events: auto; }
 
 @media (max-width: 760px) {
-  .intro {
+  .intro-grid {
     grid-template-columns: 1fr;
-    gap: 16px;
+    justify-items: center;
   }
 
-  .portrait { width: 120px; height: 120px; }
+  .intro-side { width: min(220px, 100%); }
+
+  .portrait {
+    width: 100%;
+    height: auto;
+  }
+
+  .intro-bio { text-align: left; }
 
   .hobbies,
   .travel-bottom { grid-template-columns: 1fr; }
