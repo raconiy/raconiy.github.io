@@ -1,0 +1,180 @@
+% 王相博 — 中文简历（Awesome-CV / 何泰然风格，面试用）
+% 编译: xelatex wangxiangbo_zh.tex
+
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[margin=0.52in]{geometry}
+\usepackage{fontspec}
+\usepackage[UTF8,fontset=none]{ctex}
+\usepackage{microtype}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{fontawesome5}
+\usepackage[hidelinks]{hyperref}
+
+\IfFileExists{fonts/SourceSans3-Regular.ttf}{%
+  \setmainfont{SourceSans3}[
+    Path = fonts/,
+    Extension = .ttf,
+    UprightFont = *-Regular,
+    BoldFont = *-Semibold,
+    Ligatures = TeX,
+  ]
+}{}
+
+\IfFontExistsTF{Hiragino Sans GB}{%
+  \setCJKmainfont{Hiragino Sans GB}
+}{%
+  \IfFontExistsTF{PingFang SC}{%
+    \setCJKmainfont{PingFang SC}
+  }{%
+    \setCJKmainfont{STHeiti}
+  }%
+}
+
+\IfFileExists{fonts/academicons.ttf}{%
+  \newfontfamily{\AIfont}{academicons}[Path=fonts/, Extension=.ttf]
+  \newcommand{\aiGoogleScholar}{{\AIfont\symbol{"E9D4}}}
+}{\usepackage{academicons}}
+
+\definecolor{accent}{HTML}{B91C1C}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\frenchspacing
+\emergencystretch=2em
+
+\titleformat{\section}
+  {\color{accent}\bfseries\large}
+  {}{0pt}{}
+  [\color{accent}\vspace{2pt}\titlerule]
+\titlespacing*{\section}{0pt}{8pt}{4pt}
+
+\setlist[itemize]{leftmargin=1.15em, itemsep=1.5pt, parsep=0pt, topsep=1.5pt, label=\textbullet}
+\setlist[enumerate]{leftmargin=1.7em, itemsep=4pt, parsep=0pt, topsep=2pt}
+
+\newcommand{\me}[1]{\textbf{#1}}
+\newcommand{\cvlink}[2]{\href{#1}{#2}}
+\newcommand{\icon}[1]{{\color{accent}\footnotesize #1}}
+\newcommand{\contact}[3]{\cvlink{#1}{\icon{#2}\,\small #3}}
+
+\newcommand{\entry}[4]{%
+  \par\vspace{1pt}%
+  \noindent\textbf{#1}\hfill\textbf{#2}\par
+  {\small #3\hfill #4}\par
+}
+
+\begin{document}
+
+{\fontsize{22pt}{24pt}\selectfont\bfseries 王相博}
+
+\vspace{2pt}
+{\small 杭州电子科技大学 \textperiodcentered\ 通信工程 \textperiodcentered\ 本科}
+
+\vspace{5pt}
+\contact{mailto:23200410@hdu.edu.cn}{\faEnvelope}{23200410@hdu.edu.cn}
+\;{\color{accent}\textbar}\;
+\contact{https://raconiy.github.io/}{\faHome}{raconiy.github.io}
+\;{\color{accent}\textbar}\;
+\contact{https://github.com/raconiy}{\faGithub}{github.com/raconiy}
+\;{\color{accent}\textbar}\;
+\contact{https://scholar.google.com/citations?user=8E-eDOIAAAAJ}{\aiGoogleScholar}{Google Scholar}
+
+\section{教育背景}
+
+\entry{杭州电子科技大学}{杭州，中国}
+{本科，通信工程}{2023 -- 2027}
+\begin{itemize}
+  \item 专业排名前 10\%。
+\end{itemize}
+
+\vspace{3pt}
+\entry{悉尼大学}{悉尼，澳大利亚}
+{暑期学校}{2024 年夏}
+\begin{itemize}
+  \item Fundamentals of Deep Learning、Academic English，两门考核均为 Excellent。
+\end{itemize}
+
+\section{研究兴趣}
+
+\noindent\textbf{核心方向。}
+计算摄影、三维视觉、世界模型——从非理想采集中恢复可用信号，并建立有几何依据的空间表征。
+
+\vspace{3pt}
+\noindent\textbf{核心问题。}
+如何从真实退化观测（传感器、编解码、稀疏视角）中恢复高保真结构，并将其转化为可预测的空间世界模型？
+
+\section{荣誉}
+
+2024 \quad 悉尼大学暑期学校两门考核 Excellent。\\
+2023--2027 \quad 杭州电子科技大学，专业排名前 10\%。
+
+\section{论文}
+
+{\small *共同一作。\textbf{X.\ Wang} 为本人。}
+
+\vspace{3pt}
+{\small\noindent\textbf{\color{accent}会议}}
+\begin{enumerate}
+  \item[\textbf{[C2]}]
+        X.\ Feng$^*$, \me{X.\ Wang}$^*$, T.\ Zhong, C.\ Wang, Y.\ Zhao, T.\ Xu, Z.\ Kuang, F.\ Qin, X.\ Yin, and Y.\ Zhu.
+        SR3R: Rethinking Super-Resolution 3D Reconstruction With Feed-Forward Gaussian Splatting.
+        \textit{CVPR}, 2026. 共同一作.
+        \cvlink{https://openaccess.thecvf.com/content/CVPR2026/papers/Feng_SR3R_Rethinking_Super-Resolution_3D_Reconstruction_With_Feed-Forward_Gaussian_Splatting_CVPR_2026_paper.pdf}{[Paper]}
+  \item[\textbf{[C1]}]
+        \me{X.\ Wang}, W.\ Jiang, J.\ Wang, Y.\ You, S.\ Fang, and F.\ Wen.
+        SwitchCodec: Adaptive Residual-Expert Sparse Quantization for High-Fidelity Neural Audio Coding.
+        \textit{ICASSP}, 2026. Oral，一作.
+        \cvlink{https://arxiv.org/abs/2601.20362}{[Paper]}
+\end{enumerate}
+
+\vspace{2pt}
+{\small\noindent\textbf{\color{accent}预印本}}
+\begin{enumerate}
+  \item[\textbf{[P1]}]
+        \me{X.\ Wang}, J.\ Zhang, X.\ Yu, L.\ Lei, and D.\ C.\ Zhang.
+        HyperClaim: Fine-Grained Cross-Modal Hypergraph Reasoning for Video Misinformation Detection.
+        投稿中，2026. 一作.
+        \cvlink{https://arxiv.org/abs/2607.28375}{[Paper]}
+\end{enumerate}
+
+\section{科研经历}
+
+\entry{RAWLab，香港科技大学（广州）}{广州，中国}
+{研究助理，导师：崔梓腾}{2026.07 -- 至今}
+\begin{itemize}
+  \item 研究方向：计算摄影、真实场景退化下的成像。
+\end{itemize}
+
+\vspace{3pt}
+\entry{谢菲尔德大学}{谢菲尔德，英国}
+{研究助理，导师：Delvin Ce Zhang}{2026.03 -- 至今}
+\begin{itemize}
+  \item 研究方向：视频虚假信息检测、跨模态超图推理。
+  \item 一作 HyperClaim（投稿中）。
+\end{itemize}
+
+\vspace{3pt}
+\entry{MILab，杭州电子科技大学}{杭州，中国}
+{成员，导师：匡振中}{2025 -- 至今}
+\begin{itemize}
+  \item 研究方向：前馈高斯溅射、超分辨率三维重建。
+  \item 共同一作 SR3R（CVPR 2026）。
+\end{itemize}
+
+\vspace{3pt}
+\entry{IIPL，杭州电子科技大学}{杭州，中国}
+{成员，导师：姜文斌、王进}{2024 -- 至今}
+\begin{itemize}
+  \item 研究方向：神经音频编码、残差专家向量量化。
+  \item 一作 SwitchCodec（ICASSP 2026 Oral）。
+\end{itemize}
+
+\section{技能}
+
+\noindent\textbf{编程。} Python, MATLAB, \LaTeX, Linux.\\
+\textbf{框架。} PyTorch, OpenCV.
+
+\end{document}

@@ -200,6 +200,19 @@ h1 {
 
 .blurb b { color: var(--ink); }
 
+.thesis {
+  margin: 10px 0 0;
+  color: var(--soft);
+  font-size: 14.5px;
+  line-height: 1.65;
+  max-width: 58ch;
+}
+
+.thesis b {
+  color: var(--ink);
+  font-weight: 700;
+}
+
 .links-inline {
   margin: 20px 0 0;
   display: flex;
