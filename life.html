@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Life · Ezekiel Wang</title>
+  <meta name="description" content="Beyond research — basketball, Go, music, and Buddhist practice." />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="canonical" href="https://raconiy.github.io/life.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css?v=20260920c" />
+  <script>
+    (() => {
+      const saved = localStorage.getItem("theme");
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.setAttribute("data-theme", saved || (prefersDark ? "dark" : "light"));
+    })();
+  </script>
+</head>
+<body class="page-life">
+  <header class="site-header">
+    <div class="wrap header-row">
+      <a class="brand" href="index.html">Ezekiel Wang</a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="publications.html">Publications</a>
+        <a href="news.html">News</a>
+        <a href="experience.html">Experience</a>
+        <a href="life.html">Life</a>
+        <a href="travel.html">Travel</a>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle theme">
+          <span class="theme-icon theme-icon-sun" aria-hidden="true">☀</span>
+          <span class="theme-icon theme-icon-moon" aria-hidden="true">☾</span>
+        </button>
+        <a class="nav-cta" href="assets/wangxiangbo_cv.pdf?v=20260821g" target="_blank" rel="noopener">CV</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top" class="wrap">
+    <header class="page-hero">
+      <p class="page-seed">禅</p>
+      <h1>Life</h1>
+      <span class="mark mark-enso" aria-hidden="true"></span>
+      <p class="page-gatha" lang="zh-Hans">应无所住而生其心</p>
+      <p class="page-gatha-en">Give rise to the mind that does not abide anywhere.</p>
+      <cite class="page-gatha-src">《金刚经》 · Diamond Sutra</cite>
+    </header>
+
+    <section>
+      <h2>Beyond Research</h2>
+      <p class="hint">Basketball team captain (SG / SF), Go 5-dan, Texas Hold’em, saxophone, and sitting. Click a row for a photo.</p>
+      <div class="hobbies">
+        <details class="hobby">
+          <summary>
+            <span class="hobby-copy">
+              <span class="hobby-title">Basketball</span>
+              <span class="hobby-text">Captain of my university basketball team, playing both shooting guard and small forward.</span>
+            </span>
+            <span class="hobby-peek" aria-hidden="true"></span>
+          </summary>
+          <figure class="hobby-photo">
+            <img src="assets/hobbies/basketball.jpg?v=1" alt="University basketball team photo" width="1400" height="1048" loading="lazy" />
+          </figure>
+        </details>
+        <details class="hobby">
+          <summary>
+            <span class="hobby-copy">
+              <span class="hobby-title">Weiqi / Go</span>
+              <span class="hobby-text">Ranked dan player since 2014; now 5-dan.</span>
+            </span>
+            <span class="hobby-peek" aria-hidden="true"></span>
+          </summary>
+          <figure class="hobby-photo">
+            <img src="assets/hobbies/go.jpg?v=1" alt="Go tournament hall" width="1400" height="1050" loading="lazy" />
+          </figure>
+        </details>
+        <details class="hobby">
+          <summary>
+            <span class="hobby-copy">
+              <span class="hobby-title">Texas Hold’em</span>
+              <span class="hobby-text">Regular player; refining bankroll management.</span>
+            </span>
+            <span class="hobby-peek" aria-hidden="true"></span>
+          </summary>
+          <figure class="hobby-photo">
+            <img src="assets/hobbies/poker.jpg?v=1" alt="Texas Hold’em chips on the table" width="1200" height="675" loading="lazy" />
+          </figure>
+        </details>
+        <details class="hobby">
+          <summary>
+            <span class="hobby-copy">
+              <span class="hobby-title">Saxophone</span>
+              <span class="hobby-text">Jazz and classical — tone, breath, and listening.</span>
+            </span>
+            <span class="hobby-peek" aria-hidden="true"></span>
+          </summary>
+          <figure class="hobby-photo">
+            <img src="assets/hobbies/sax.jpg?v=1" alt="Playing saxophone on stage" width="703" height="1200" loading="lazy" />
+          </figure>
+        </details>
+      </div>
+
+      <div class="gatha-card gatha-open">
+        <span class="mark mark-enso gatha-lotus" aria-hidden="true"></span>
+        <p class="gatha-zh" lang="zh-Hans">平常心是道</p>
+        <p class="gatha-en">Ordinary mind is the Way.</p>
+        <cite>赵州 · Chan</cite>
+      </div>
+
+      <a class="album" href="https://open.spotify.com/album/2B3RcI8mHKCeH207Ea4GN1" target="_blank" rel="noopener">
+        <img src="assets/asen-cover.jpg" alt="Album cover: 在雨后醒来 by Asen" width="64" height="64" />
+        <div>
+          <p class="album-label">Now listening</p>
+          <p class="album-title">在雨后醒来</p>
+          <p class="album-artist">Asen · <span>Spotify / Apple Music</span></p>
+        </div>
+      </a>
+    </section>
+  </main>
+
+  <footer class="wrap site-footer">
+    <div class="footer-gatha" lang="zh-Hans">
+      <span class="mark mark-enso" aria-hidden="true"></span>
+      <span>应无所住而生其心</span>
+    </div>
+    <p>© <span id="y"></span> Ezekiel Wang · raconiy.github.io</p>
+  </footer>
+
+  <a class="to-top" href="#top" aria-label="Back to top">↑</a>
+  <script src="js/main.js?v=20260920c"></script>
+</body>
+</html>

@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css?v=20260920b" />
+  <link rel="stylesheet" href="css/styles.css?v=20260920c" />
   <script>
     (() => {
       const saved = localStorage.getItem("theme");
@@ -24,16 +24,16 @@
     })();
   </script>
 </head>
-<body>
+<body class="page-home">
   <header class="site-header">
     <div class="wrap header-row">
-      <a class="brand" href="#top">Ezekiel Wang</a>
+      <a class="brand" href="index.html">Ezekiel Wang</a>
       <nav class="nav-links" aria-label="Primary">
-        <a href="#publications">Publications</a>
-        <a href="#news">News</a>
-        <a href="#experience">Experience</a>
-        <a href="#life">Life</a>
-        <a href="#travel">Travel</a>
+        <a href="publications.html">Publications</a>
+        <a href="news.html">News</a>
+        <a href="experience.html">Experience</a>
+        <a href="life.html">Life</a>
+        <a href="travel.html">Travel</a>
         <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle theme">
           <span class="theme-icon theme-icon-sun" aria-hidden="true">☀</span>
           <span class="theme-icon theme-icon-moon" aria-hidden="true">☾</span>
@@ -47,7 +47,7 @@
     <section class="intro">
       <h1>Ezekiel Wang</h1>
       <p class="sub">Xiangbo Wang · Undergraduate Researcher</p>
-      <p class="lotus-mark" aria-hidden="true"><span class="lotus-icon"></span></p>
+      <p class="lotus-mark" aria-hidden="true"><span class="lotus-icon mark mark-lotus"></span></p>
       <div class="intro-grid">
         <div class="intro-side">
           <img class="portrait" src="assets/portrait.jpg?v=20260920a" alt="Portrait of Ezekiel Wang" width="220" height="293" />
@@ -70,11 +70,11 @@
           </p>
           <p>
             Selected works:
-            <a href="https://openaccess.thecvf.com/content/CVPR2026/papers/Feng_SR3R_Rethinking_Super-Resolution_3D_Reconstruction_With_Feed-Forward_Gaussian_Splatting_CVPR_2026_paper.pdf" target="_blank" rel="noopener"><b>SR3R</b></a>
+            <a href="publications.html"><b>SR3R</b></a>
             (CVPR 2026, co-first),
-            <a href="https://arxiv.org/abs/2601.20362" target="_blank" rel="noopener"><b>SwitchCodec</b></a>
+            <a href="publications.html"><b>SwitchCodec</b></a>
             (ICASSP 2026 Oral, first author),
-            <a href="https://arxiv.org/abs/2607.28375" target="_blank" rel="noopener"><b>HyperClaim</b></a>
+            <a href="publications.html"><b>HyperClaim</b></a>
             (submitted, first author).
           </p>
           <p><b>Goal:</b> Recover usable visual signal from imperfect real-world capture, and build spatial representations that can predict the world.</p>
@@ -82,61 +82,11 @@
           <p><b>Research Question:</b> How can we recover high-fidelity structure from degraded observations — sensors, codecs, sparse views — and turn it into predictive spatial world models?</p>
         </div>
       </div>
-    </section>
-
-    <section id="publications">
-      <h2>Publications</h2>
-      <p class="hint">Bold marks my name.</p>
-
-      <article class="paper">
-        <p class="meta"><b>CVPR 2026</b> · Co-first · 3D Computer Vision</p>
-        <h3>
-          <a href="https://openaccess.thecvf.com/content/CVPR2026/papers/Feng_SR3R_Rethinking_Super-Resolution_3D_Reconstruction_With_Feed-Forward_Gaussian_Splatting_CVPR_2026_paper.pdf" target="_blank" rel="noopener">
-            SR3R: Rethinking Super-Resolution 3D Reconstruction With Feed-Forward Gaussian Splatting
-          </a>
-        </h3>
-        <p class="authors">X. Feng, <b>X. Wang</b>, T. Zhong, C. Wang, Y. Zhao, T. Xu, Z. Kuang, F. Qin, X. Yin, Y. Zhu</p>
-        <p class="abs">Feed-forward Gaussian Splatting for super-resolution 3D reconstruction — efficient multi-view recovery and higher-fidelity novel-view rendering.</p>
-        <p class="paper-links"><a href="https://openaccess.thecvf.com/content/CVPR2026/papers/Feng_SR3R_Rethinking_Super-Resolution_3D_Reconstruction_With_Feed-Forward_Gaussian_Splatting_CVPR_2026_paper.pdf" target="_blank" rel="noopener">PDF</a></p>
-      </article>
-
-      <article class="paper">
-        <p class="meta"><b>ICASSP 2026 Oral</b> · First author · Neural Audio</p>
-        <h3>
-          <a href="https://arxiv.org/abs/2601.20362" target="_blank" rel="noopener">
-            SwitchCodec: Adaptive Residual-Expert Sparse Quantization for High-Fidelity Neural Audio Coding
-          </a>
-        </h3>
-        <p class="authors"><b>X. Wang</b>, W. Jiang, J. Wang, Y. You, S. Fang, F. Wen</p>
-        <p class="abs">Neural audio codec with Residual Experts Vector Quantization (REVQ). Adaptive high-fidelity compression and variable bitrate without retraining (2.87 PESQ @ 2.6 kbps on LibriTTS).</p>
-        <p class="paper-links"><a href="https://arxiv.org/abs/2601.20362" target="_blank" rel="noopener">arXiv</a></p>
-      </article>
-
-      <article class="paper">
-        <p class="meta"><b>Submitted</b> · First author · Multimodal</p>
-        <h3>
-          <a href="https://arxiv.org/abs/2607.28375" target="_blank" rel="noopener">
-            HyperClaim: Fine-Grained Cross-Modal Hypergraph Reasoning for Video Misinformation Detection
-          </a>
-        </h3>
-        <p class="authors"><b>X. Wang</b>, J. Zhang, X. Yu, L. Lei, D. C. Zhang</p>
-        <p class="abs">A discriminative temporal hypergraph framework for video misinformation detection — preserving localized query–text–frame and short-range temporal evidence instead of flattening cues through global multimodal fusion.</p>
-        <p class="paper-links">
-          <a href="https://arxiv.org/abs/2607.28375" target="_blank" rel="noopener">arXiv</a>
-          <a href="https://arxiv.org/pdf/2607.28375" target="_blank" rel="noopener">PDF</a>
-        </p>
-      </article>
-    </section>
-
-    <section id="news">
-      <h2>News</h2>
-      <ul class="news">
-        <li><time datetime="2026-07">2026.07</time><span>RA at <a href="https://cuiziteng.github.io/raw-lab/" target="_blank" rel="noopener">RAWLab</a>, HKUST(GZ), with <a href="https://cuiziteng.github.io/" target="_blank" rel="noopener">Ziteng Cui</a> — computational photography</span></li>
-        <li><time datetime="2026-07">2026.07</time><span>Released <a href="https://arxiv.org/abs/2607.28375" target="_blank" rel="noopener"><b>HyperClaim</b></a> on arXiv — <b>Submitted</b> (first author)</span></li>
-        <li><time datetime="2026-03">2026.03</time><span>RA at University of Sheffield with <a href="https://sites.google.com/view/delvincezhang/" target="_blank" rel="noopener">Delvin Ce Zhang</a></span></li>
-        <li><time datetime="2026">2026</time><span><b>CVPR 2026</b> — SR3R (co-first)</span></li>
-        <li><time datetime="2026">2026</time><span><b>ICASSP 2026 Oral</b> — SwitchCodec (first author)</span></li>
-      </ul>
+      <div class="home-gatha">
+        <p class="page-gatha" lang="zh-Hans">一花一世界</p>
+        <p class="page-gatha-en">One flower, one world.</p>
+        <cite class="page-gatha-src">华严境界</cite>
+      </div>
     </section>
 
     <section id="research">
@@ -147,187 +97,17 @@
         <li><b>World Models</b> — predictive spatial representations grounded in geometry and visual observation.</li>
       </ul>
     </section>
-
-    <section id="experience">
-      <h2>Experience</h2>
-      <div class="rows">
-        <article class="row">
-          <div>
-            <h3>Research Assistant · <a href="https://cuiziteng.github.io/raw-lab/" target="_blank" rel="noopener">RAWLab</a>, HKUST(GZ)</h3>
-            <p class="meta">Robust AI in the Wild Lab · <a href="https://cuiziteng.github.io/" target="_blank" rel="noopener">Ziteng Cui</a></p>
-            <p class="detail">Computational photography.</p>
-          </div>
-          <time>2026.07 – Present</time>
-        </article>
-        <article class="row">
-          <div>
-            <h3>Research Assistant · University of Sheffield</h3>
-            <p class="meta">Advisor: <a href="https://sites.google.com/view/delvincezhang/" target="_blank" rel="noopener">Delvin Ce Zhang</a></p>
-            <p class="detail">First-author <a href="https://arxiv.org/abs/2607.28375" target="_blank" rel="noopener">HyperClaim</a> for video misinformation detection — <b>Submitted</b>.</p>
-          </div>
-          <time>Mar 2026 – Present</time>
-        </article>
-        <article class="row">
-          <div>
-            <h3>Member · MILab, Hangzhou Dianzi University</h3>
-            <p class="meta">Advisor: Zhenzhong Kuang</p>
-            <p class="detail">3D generation and super-resolution. Co-first on SR3R (CVPR 2026).</p>
-          </div>
-          <time>2025 – Present</time>
-        </article>
-        <article class="row">
-          <div>
-            <h3>Member · IIPL, Hangzhou Dianzi University</h3>
-            <p class="meta">Advisors: Wenbin Jiang, Jin Wang</p>
-            <p class="detail">Neural audio codecs. SwitchCodec — ICASSP 2026 Oral, first author.</p>
-          </div>
-          <time>2024 – Present</time>
-        </article>
-        <article class="row">
-          <div>
-            <h3>Member · HDU Computer Science Association</h3>
-            <p class="detail">Lab seminars, reading groups, and research community on campus.</p>
-          </div>
-          <time>2023 – Present</time>
-        </article>
-      </div>
-    </section>
-
-    <section id="education">
-      <h2>Education</h2>
-      <div class="rows">
-        <article class="row">
-          <div>
-            <h3>B.Eng. Communication Engineering · Hangzhou Dianzi University</h3>
-            <p class="detail">Top 10% in major. Algorithms, DSP, deep learning, linear algebra, probability &amp; statistics, neural networks, digital communications.</p>
-          </div>
-          <time>2023 – 2027</time>
-        </article>
-        <article class="row">
-          <div>
-            <h3>Summer School · The University of Sydney</h3>
-            <p class="detail">Fundamentals of Deep Learning &amp; Academic English — Excellent in both assessments.</p>
-          </div>
-          <time>Summer 2024</time>
-        </article>
-      </div>
-    </section>
-
-    <section id="life">
-      <h2>Beyond Research</h2>
-      <p class="hint">
-        Basketball team captain (SG / SF), Go 5-dan, Texas Hold’em, saxophone, and Buddhist practice.
-        Click a row for a photo.
-      </p>
-      <div class="hobbies">
-        <details class="hobby">
-          <summary>
-            <span class="hobby-copy">
-              <span class="hobby-title">Basketball</span>
-              <span class="hobby-text">Captain of my university basketball team, playing both shooting guard and small forward.</span>
-            </span>
-            <span class="hobby-peek" aria-hidden="true"></span>
-          </summary>
-          <figure class="hobby-photo">
-            <img src="assets/hobbies/basketball.jpg?v=1" alt="University basketball team photo" width="1400" height="1048" loading="lazy" />
-          </figure>
-        </details>
-        <details class="hobby">
-          <summary>
-            <span class="hobby-copy">
-              <span class="hobby-title">Weiqi / Go</span>
-              <span class="hobby-text">Ranked dan player since 2014; now 5-dan.</span>
-            </span>
-            <span class="hobby-peek" aria-hidden="true"></span>
-          </summary>
-          <figure class="hobby-photo">
-            <img src="assets/hobbies/go.jpg?v=1" alt="Go tournament hall" width="1400" height="1050" loading="lazy" />
-          </figure>
-        </details>
-        <details class="hobby">
-          <summary>
-            <span class="hobby-copy">
-              <span class="hobby-title">Texas Hold’em</span>
-              <span class="hobby-text">Regular player; refining bankroll management.</span>
-            </span>
-            <span class="hobby-peek" aria-hidden="true"></span>
-          </summary>
-          <figure class="hobby-photo">
-            <img src="assets/hobbies/poker.jpg?v=1" alt="Texas Hold’em chips on the table" width="1200" height="675" loading="lazy" />
-          </figure>
-        </details>
-        <details class="hobby">
-          <summary>
-            <span class="hobby-copy">
-              <span class="hobby-title">Saxophone</span>
-              <span class="hobby-text">Jazz and classical — tone, breath, and listening.</span>
-            </span>
-            <span class="hobby-peek" aria-hidden="true"></span>
-          </summary>
-          <figure class="hobby-photo">
-            <img src="assets/hobbies/sax.jpg?v=1" alt="Playing saxophone on stage" width="703" height="1200" loading="lazy" />
-          </figure>
-        </details>
-        <details class="hobby hobby-wide">
-          <summary>
-            <span class="hobby-copy">
-              <span class="hobby-title">Buddhism</span>
-              <span class="hobby-text">Sitting, reading, and keeping a quieter mind.</span>
-            </span>
-            <span class="hobby-peek" aria-hidden="true"></span>
-          </summary>
-          <div class="gatha gatha-card">
-            <span class="lotus-icon gatha-lotus" aria-hidden="true"></span>
-            <p class="gatha-zh" lang="zh-Hans">应无所住而生其心</p>
-            <p class="gatha-en">Give rise to the mind that does not abide anywhere.</p>
-            <cite>《金刚经》 · Diamond Sutra</cite>
-          </div>
-        </details>
-      </div>
-
-      <a class="album" href="https://open.spotify.com/album/2B3RcI8mHKCeH207Ea4GN1" target="_blank" rel="noopener">
-        <img src="assets/asen-cover.jpg" alt="Album cover: 在雨后醒来 by Asen" width="64" height="64" />
-        <div>
-          <p class="album-label">Now listening</p>
-          <p class="album-title">在雨后醒来</p>
-          <p class="album-artist">Asen · <span>Spotify / Apple Music</span></p>
-        </div>
-      </a>
-    </section>
-
-    <section id="travel">
-      <h2>Travel</h2>
-      <p class="hint">Home: Tongxiang, Jiaxing, Zhejiang. <b id="place-count">24</b> places so far.</p>
-
-      <div class="travel-map" id="travel-map" aria-label="Map of places I have visited">
-        <img class="travel-world travel-world-light" src="assets/world-light.svg?v=stitch2" alt="World map with markers on cities I have visited" width="1000" height="500" />
-        <img class="travel-world travel-world-dark" src="assets/world-dark.svg?v=stitch2" alt="" width="1000" height="500" />
-      </div>
-
-      <div class="travel-bottom">
-        <figure class="city-card" id="city-card">
-          <img id="city-photo" src="assets/cities/tongxiang.jpg?v=tongxiang1" alt="Tongxiang · Home" width="640" height="480" />
-          <figcaption>
-            <strong id="city-name">Tongxiang</strong>
-            <span id="city-region">Jiaxing · Zhejiang, China · Home</span>
-          </figcaption>
-        </figure>
-        <div class="travel-panel">
-          <div class="travel-groups" id="travel-groups"></div>
-        </div>
-      </div>
-    </section>
   </main>
 
   <footer class="wrap site-footer">
     <div class="footer-gatha" lang="zh-Hans">
-      <span class="lotus-icon" aria-hidden="true"></span>
-      <span>应无所住而生其心</span>
+      <span class="mark mark-lotus" aria-hidden="true"></span>
+      <span>一花一世界</span>
     </div>
     <p>© <span id="y"></span> Ezekiel Wang · raconiy.github.io</p>
   </footer>
 
   <a class="to-top" href="#top" aria-label="Back to top">↑</a>
-  <script src="js/main.js?v=20260820b"></script>
+  <script src="js/main.js?v=20260920c"></script>
 </body>
 </html>

@@ -15,30 +15,16 @@
     });
   }
 
-  const navLinks = Array.prototype.slice.call(
-    document.querySelectorAll('.nav-links a[href^="#"]')
+  const file = (location.pathname.split("/").pop() || "index.html").toLowerCase();
+  const current = file === "" || file === "/" ? "index.html" : file;
+  Array.prototype.forEach.call(
+    document.querySelectorAll(".nav-links a[href]"),
+    (link) => {
+      const href = (link.getAttribute("href") || "").split("/").pop();
+      if (!href || href.endsWith(".pdf")) return;
+      link.classList.toggle("is-active", href === current);
+    }
   );
-  const sections = navLinks
-    .map((link) => document.querySelector(link.getAttribute("href")))
-    .filter(Boolean);
-  if (navLinks.length && sections.length && "IntersectionObserver" in window) {
-    const spy = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          const id = `#${entry.target.id}`;
-          navLinks.forEach((link) => {
-            link.classList.toggle(
-              "is-active",
-              link.getAttribute("href") === id
-            );
-          });
-        });
-      },
-      { rootMargin: "-30% 0px -60% 0px", threshold: 0 }
-    );
-    sections.forEach((section) => spy.observe(section));
-  }
 
   const toTop = document.querySelector(".to-top");
   if (toTop) {
@@ -48,6 +34,18 @@
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
   }
+
+  const hobbyCards = Array.prototype.slice.call(
+    document.querySelectorAll(".hobby")
+  );
+  hobbyCards.forEach((card) => {
+    card.addEventListener("toggle", () => {
+      if (!card.open) return;
+      hobbyCards.forEach((other) => {
+        if (other !== card) other.open = false;
+      });
+    });
+  });
 
   const places = [
     { name: "San Francisco", region: "United States", photo: "sf" },
@@ -86,10 +84,11 @@
   if (countEl) countEl.textContent = String(places.length);
 
   const groupsEl = document.getElementById("travel-groups");
+  if (!groupsEl) return;
+
   const photoEl = document.getElementById("city-photo");
   const nameEl = document.getElementById("city-name");
   const regionEl = document.getElementById("city-region");
-  if (!groupsEl) return;
 
   const showCity = (place) => {
     if (photoEl) {
@@ -152,16 +151,4 @@
 
   const home = places.find((p) => p.home) || places[0];
   showCity(home);
-
-  const hobbyCards = Array.prototype.slice.call(
-    document.querySelectorAll(".hobby")
-  );
-  hobbyCards.forEach((card) => {
-    card.addEventListener("toggle", () => {
-      if (!card.open) return;
-      hobbyCards.forEach((other) => {
-        if (other !== card) other.open = false;
-      });
-    });
-  });
 })();
