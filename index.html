@@ -11,11 +11,11 @@
   <meta property="og:title" content="Ezekiel Wang" />
   <meta property="og:description" content="World Models · Computational Photography · 3D Computer Vision" />
   <meta property="og:url" content="https://raconiy.github.io/" />
-  <meta property="og:image" content="https://raconiy.github.io/assets/portrait.png" />
+  <meta property="og:image" content="https://raconiy.github.io/assets/portrait.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css?v=20260821g" />
+  <link rel="stylesheet" href="css/styles.css?v=20260920b" />
   <script>
     (() => {
       const saved = localStorage.getItem("theme");
@@ -47,9 +47,10 @@
     <section class="intro">
       <h1>Ezekiel Wang</h1>
       <p class="sub">Xiangbo Wang · Undergraduate Researcher</p>
+      <p class="lotus-mark" aria-hidden="true"><span class="lotus-icon"></span></p>
       <div class="intro-grid">
         <div class="intro-side">
-          <img class="portrait" src="assets/portrait.png" alt="Portrait of Ezekiel Wang" width="220" height="220" />
+          <img class="portrait" src="assets/portrait.jpg?v=20260920a" alt="Portrait of Ezekiel Wang" width="220" height="293" />
           <p class="side-links">
             <a href="mailto:23200410@hdu.edu.cn">Email</a>
             <a href="https://github.com/raconiy" target="_blank" rel="noopener">GitHub</a>
@@ -215,7 +216,7 @@
     <section id="life">
       <h2>Beyond Research</h2>
       <p class="hint">
-        Basketball team captain (SG / SF), Go 5-dan, Texas Hold’em, saxophone.
+        Basketball team captain (SG / SF), Go 5-dan, Texas Hold’em, saxophone, and Buddhist practice.
         Click a row for a photo.
       </p>
       <div class="hobbies">
@@ -267,6 +268,21 @@
             <img src="assets/hobbies/sax.jpg?v=1" alt="Playing saxophone on stage" width="703" height="1200" loading="lazy" />
           </figure>
         </details>
+        <details class="hobby hobby-wide">
+          <summary>
+            <span class="hobby-copy">
+              <span class="hobby-title">Buddhism</span>
+              <span class="hobby-text">Sitting, reading, and keeping a quieter mind.</span>
+            </span>
+            <span class="hobby-peek" aria-hidden="true"></span>
+          </summary>
+          <div class="gatha gatha-card">
+            <span class="lotus-icon gatha-lotus" aria-hidden="true"></span>
+            <p class="gatha-zh" lang="zh-Hans">应无所住而生其心</p>
+            <p class="gatha-en">Give rise to the mind that does not abide anywhere.</p>
+            <cite>《金刚经》 · Diamond Sutra</cite>
+          </div>
+        </details>
       </div>
 
       <a class="album" href="https://open.spotify.com/album/2B3RcI8mHKCeH207Ea4GN1" target="_blank" rel="noopener">
@@ -304,8 +320,11 @@
   </main>
 
   <footer class="wrap site-footer">
-    <p>© <span id="y"></span> Ezekiel Wang</p>
-    <p>raconiy.github.io</p>
+    <div class="footer-gatha" lang="zh-Hans">
+      <span class="lotus-icon" aria-hidden="true"></span>
+      <span>应无所住而生其心</span>
+    </div>
+    <p>© <span id="y"></span> Ezekiel Wang · raconiy.github.io</p>
   </footer>
 
   <a class="to-top" href="#top" aria-label="Back to top">↑</a>

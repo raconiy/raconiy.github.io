@@ -9,6 +9,7 @@ html[data-theme="light"] {
   --line: #e4ddd3;
   --fill: #efe9e1;
   --accent: #3a4a63;
+  --gold: #8a6a3a;
   --max: 820px;
   --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
   --sans: "Source Sans 3", "PingFang SC", "Hiragino Sans GB", sans-serif;
@@ -22,6 +23,7 @@ html[data-theme="dark"] {
   --line: #2e2b27;
   --fill: #1f1d1a;
   --accent: #b7c4d8;
+  --gold: #c4a574;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -179,6 +181,26 @@ h2::after {
   font-weight: 500;
 }
 
+.lotus-icon {
+  display: block;
+  background: currentColor;
+  -webkit-mask: url("../assets/lotus.svg") center / contain no-repeat;
+  mask: url("../assets/lotus.svg") center / contain no-repeat;
+}
+
+.lotus-mark {
+  margin: 10px 0 0;
+  display: flex;
+  justify-content: center;
+  color: var(--gold);
+}
+
+.lotus-mark .lotus-icon {
+  width: 22px;
+  height: 22px;
+  opacity: 0.85;
+}
+
 .intro-grid {
   display: grid;
   grid-template-columns: 30% 1fr;
@@ -195,9 +217,9 @@ h2::after {
   display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 1;
+  aspect-ratio: 3 / 4;
   object-fit: cover;
-  object-position: center 40%;
+  object-position: center 45%;
   background: var(--fill);
   border-radius: 15px;
 }
@@ -387,6 +409,11 @@ h2::after {
 
 .hobby:nth-child(2n) { border-right: none; }
 
+.hobby-wide {
+  grid-column: 1 / -1;
+  border-right: none;
+}
+
 .hobby summary {
   list-style: none;
   cursor: pointer;
@@ -452,6 +479,48 @@ h2::after {
 .hobby-photo img[src*="sax"] {
   max-height: 300px;
   object-position: center 18%;
+}
+
+.gatha-card {
+  margin: 0 14px 14px;
+  padding: 18px 16px 16px;
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--gold) 7%, var(--bg));
+  text-align: center;
+}
+
+.gatha-lotus {
+  width: 32px;
+  height: 32px;
+  margin: 0 auto 8px;
+  color: var(--gold);
+}
+
+.gatha-zh {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: var(--ink);
+}
+
+.gatha-en {
+  margin: 8px 0 0;
+  color: var(--soft);
+  font-size: 13.5px;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.gatha-card cite {
+  display: block;
+  margin-top: 10px;
+  font-style: normal;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
 }
 
 .album {
@@ -595,15 +664,33 @@ html[data-theme="dark"] .travel-world-dark { display: block; }
 
 .site-footer {
   display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 16px 0 48px;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 22px 0 48px;
   border-top: 1px solid var(--line);
   color: var(--mute);
   font-size: 12.5px;
+  text-align: center;
 }
 
 .site-footer p { margin: 0; }
+
+.footer-gatha {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--gold);
+  font-family: var(--serif);
+  font-size: 14px;
+  letter-spacing: 0.16em;
+}
+
+.footer-gatha .lotus-icon {
+  width: 16px;
+  height: 16px;
+  opacity: 0.9;
+}
 
 .to-top {
   position: fixed;
@@ -643,7 +730,8 @@ html[data-theme="dark"] .travel-world-dark { display: block; }
   .travel-bottom { grid-template-columns: 1fr; }
 
   .hobby,
-  .hobby:nth-child(2n) { border-right: none; }
+  .hobby:nth-child(2n),
+  .hobby-wide { border-right: none; }
 
   .travel-groups { max-height: none; }
 
