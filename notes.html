@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>学习笔记 · Ezekiel Wang</title>
+  
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="favicon.svg" />
+  
+  
+  
+  
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css?v=20260920e" />
+  <script>
+    (() => {
+      const saved = localStorage.getItem("theme");
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.setAttribute("data-theme", saved || (prefersDark ? "dark" : "light"));
+    })();
+  </script>
+<link rel="stylesheet" href="notes.css?v=20261012">
+</head>
+<body class="page-notes"><header class="site-header">
+    <div class="wrap header-row">
+      <a class="brand" href="index.html">Ezekiel Wang</a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="publications.html">Publications</a>
+        <a href="news.html">News</a>
+        <a href="experience.html">Experience</a>
+        <a class="is-active" href="notes.html">学习笔记</a>
+        <a href="life.html">Life</a>
+        <a href="travel.html">Travel</a>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle theme">
+          <span class="theme-icon theme-icon-sun" aria-hidden="true">☀</span>
+          <span class="theme-icon theme-icon-moon" aria-hidden="true">☾</span>
+        </button>
+        <a class="nav-cta" href="assets/wangxiangbo_cv.pdf?v=20260821g" target="_blank" rel="noopener">CV</a>
+      </nav>
+    </div>
+  </header><main id="top" class="wrap"><div class="note-header"><p class="meta">LEARNING NOTES</p><h1>学习笔记</h1><p class="lede">记录阅读中的问题、理解与思考。</p></div><div class="notes-tools"><span>全部笔记 <small>02</small></span><input type="search" id="notes-search" placeholder="搜索标题或主题" aria-label="搜索学习笔记"></div><article class="note-entry" data-search="SLARM：语言对齐的动态场景表示 语义蒸馏 4D 重建"><p class="meta">2026-10-12 · 论文阅读</p><h2><a href="note-slarm.html">SLARM：语言对齐的动态场景表示</a></h2><p>沿着“语义属性—动态变形—可微渲染—教师监督”追踪梯度，区分多任务共享、几何耦合与长期记忆管理。</p><div class="tags">语义蒸馏 / 4D 重建</div></article><article class="note-entry" data-search="LingBot-Map：流式几何上下文与长期记忆 流式重建 memory"><p class="meta">2026-10-12 · 论文阅读</p><h2><a href="note-lingbot-map.html">LingBot-Map：流式几何上下文与长期记忆</a></h2><p>从三类上下文的分工出发，分析历史压缩、缓存增长与轨迹误差，讨论语义记忆研究应建立怎样的公平基线。</p><div class="tags">流式重建 / memory</div></article><p id="no-results" hidden>没有找到匹配的笔记。</p><script>document.getElementById("notes-search").addEventListener("input",e=>{let n=0;document.querySelectorAll(".note-entry").forEach(x=>{x.hidden=!x.dataset.search.toLowerCase().includes(e.target.value.trim().toLowerCase());if(!x.hidden)n++});document.getElementById("no-results").hidden=n>0})</script></main>  <footer class="wrap site-footer">
+    <p>© <span id="y"></span> Ezekiel Wang · raconiy.github.io</p>
+  </footer>
+
+  <a class="to-top" href="#top" aria-label="Back to top">↑</a>
+  <script src="js/main.js?v=20260920e"></script>
+</body>
+</html>

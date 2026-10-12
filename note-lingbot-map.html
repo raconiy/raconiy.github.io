@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LingBot-Map：流式几何上下文与长期记忆 · Ezekiel Wang</title>
+  
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="favicon.svg" />
+  
+  
+  
+  
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css?v=20260920e" />
+  <script>
+    (() => {
+      const saved = localStorage.getItem("theme");
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.setAttribute("data-theme", saved || (prefersDark ? "dark" : "light"));
+    })();
+  </script>
+<link rel="stylesheet" href="notes.css?v=20261012">
+</head>
+<body class="page-notes"><header class="site-header">
+    <div class="wrap header-row">
+      <a class="brand" href="index.html">Ezekiel Wang</a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="publications.html">Publications</a>
+        <a href="news.html">News</a>
+        <a href="experience.html">Experience</a>
+        <a class="is-active" href="notes.html">学习笔记</a>
+        <a href="life.html">Life</a>
+        <a href="travel.html">Travel</a>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle theme">
+          <span class="theme-icon theme-icon-sun" aria-hidden="true">☀</span>
+          <span class="theme-icon theme-icon-moon" aria-hidden="true">☾</span>
+        </button>
+        <a class="nav-cta" href="assets/wangxiangbo_cv.pdf?v=20260821g" target="_blank" rel="noopener">CV</a>
+      </nav>
+    </div>
+  </header><main id="top" class="wrap"><div class="note-header"><a class="back" href="notes.html">← 学习笔记</a><p class="meta">2026-10-12 / 论文阅读 / arXiv:2604.14141v1</p><h1>LingBot-Map：流式几何上下文与长期记忆</h1><p class="english">Geometric Context Transformer for Streaming 3D Reconstruction</p><p class="lede">从三类上下文的分工出发，分析历史压缩、缓存增长与轨迹误差，讨论语义记忆研究应建立怎样的公平基线。</p></div><article class="prose"><section id="section-1"><div class="kind">论文事实</div><h2>问题设定与方法边界</h2><p>论文从连续 RGB 估计相机与深度，使用 anchor、近期窗口和轨迹记忆。历史帧退出窗口后保留六个上下文 tokens；Direct 模式与分窗重置的 VO 模式应分别评价。方法细节见 §3.2、§4.4。</p><p class="small">依据：<a href="https://arxiv.org/html/2604.14141v1#S3.SS2">论文相关章节 ↗</a></p></section><section id="section-2"><div class="kind">原文解读与分析</div><h2>读 Figure 4：哪些历史真的被留下</h2><figure class="figure"><a href="lingbot-network.png" target="_blank" rel="noreferrer"><img src="lingbot-network.png" alt="Figure 4 · LingBot-Map 原始模型架构" loading="lazy"></a><figcaption>Figure 4 · LingBot-Map 原始模型架构<br>Lin-Zhuo Chen 等，2026 · CC BY 4.0 · 原图未修改 · <a href="https://arxiv.org/html/2604.14141v1">论文原文 ↗</a></figcaption></figure><p>原图的关键不是增加一个独立检索库，而是改变历史 token 的保留方式：近期帧保留密集信息；离开窗口后，每帧保留 camera、anchor 与四个 register，共六个特殊 token。初始上下文与近期窗口承担不同的参照作用。</p><p>沿图中的注意力连接阅读：当前帧需要从历史状态恢复空间关系，而历史图像 token 不必全部常驻。这里压缩的是后续网络能访问的表示，不是把过去的原图缩小保存。</p><p>这也解释了局限：每帧六个 token 很紧凑，但仍随序列增长。紧凑历史不等同于固定容量。若研究严格预算内的记忆更新，应将总 token 数随时间的曲线作为独立指标。</p><p class="small">依据：<a href="https://arxiv.org/html/2604.14141v1#S3">论文相关章节 ↗</a></p></section><section id="section-3"><div class="kind">原文解读与分析</div><h2>关键 claim 与证据：不要把不同模式混在一起</h2><p>作者强调长序列流式重建。阅读该主张时，需要区分直接连续推理与 VO 窗口重置、重叠对齐的设置；长序列结果并不意味着直接推理始终无退化。</p><p>消融中，TartanGround 的 ATE 从 7.88 到 7.46，再在加入 VideoRoPE 后降至 5.98。它说明多个设计共同贡献成绩，不能将最终提升全部记在历史压缩上。</p><p>对我们而言，合理问题是：压缩以后，哪些空间细节仍然可恢复，哪些已不可逆地丢失？这是读出能力与保留策略的问题；仅仅让 token 获得类别名称，尚不能回答。</p><p class="small">依据：<a href="https://arxiv.org/html/2604.14141v1#S6">论文相关章节 ↗</a></p></section><section id="section-4"><div class="kind">阅读分析</div><h2>为什么需要三种历史上下文</h2><p>可以把流式几何推理拆成三个不同问题：当前结果采用哪个参考系；当前帧与附近观测怎样对应；离开局部窗口以后，早先经过的路径还能提供什么约束。三者时间跨度和信息密度不同，因此把它们放入完全相同的缓存策略，不一定有效。</p><p>固定参考解决坐标约定，但远处参考图像与当前画面可能几乎没有重叠。近期密集观测容易建立对应，却不能完整解释长期累积误差。紧凑历史补充远期上下文，但其信息容量有限。这个分工提供的是信息组织原则，不能据此断言模型已经实现显式的回环检测或全局优化。</p><p>阅读 attention 架构时，应分别检查谁可以读取谁、哪些状态进入缓存、何时失去密集特征。只画一个“memory”方框，容易把训练中可访问的历史与推理中实际保存的历史混为一谈。</p></section><section id="section-5"><div class="kind">阅读分析</div><h2>从 token 数推导缓存增长</h2><p>下面是一个通用的缓存记账模型：N 为每帧密集图像 token 数，k 为固定密集上下文帧数，r 为每个历史条目的摘要 token 数，T 为累计保留条目数。忽略固定特殊 tokens 后，可以把历史长度的影响写成下式。</p><p>当 T 很大时，历史项仍然增长。减小 r 改善增长斜率，却不会自动把线性函数变成常数。这一区别直接关系到“长序列可运行”和“任意长度严格固定容量”是否属于同一个主张。</p><p>token 数还不是显存：K 与 V 都要存储，多层 attention 各有缓存，数据类型也会改变字节数。公平实验至少报告 tokens、层数、精度与峰值显存。将缓存转移到 CPU 可以降低 GPU 占用，但并未消除总存储成本。</p><div class="equation">C(T) ≈ kN + r(T − k)
+KV bytes ≈ 2 × L × C(T) × dKV × b</div></section><section id="section-6"><div class="kind">阅读分析</div><h2>训练目标如何影响长期记忆</h2><p>一般而言，深度与位姿监督会训练整条可微路径，但这不意味着每一部分历史状态都贡献了预测。强大的当前图像特征可能承担大多数任务，某些摘要 tokens 只是保留了很少的辅助信息。</p><p>要研究 memory，可以设计读取干预：保持同一模型和输入不变，分别移除远期历史、交换历史顺序、限制历史长度，并观察误差变化。这是建议的诊断实验，不是原论文已经给出的结论。干预时也要注意分布变化：突然清空整个上下文的退化，并不能精确量化某一个 token 的价值。</p><p>训练实现同样重要。如果跨帧缓存全部 detach，后续损失无法沿那条路径更新此前状态的生成过程。截断反向传播有合理的资源动机，但论文中的“端到端”应对应到具体的展开长度和梯度边界。</p></section><section id="section-7"><div class="kind">论文事实与证据边界</div><h2>实验结果应怎样解释</h2><p>原论文以位姿、重建和组件消融评估方法。正文 §6.4 报告加入轨迹上下文后的改善；这支持紧凑历史有用，但不能单独证明这些 tokens 保存了对象身份或语言语义。</p><p class="small">依据：<a href="https://arxiv.org/html/2604.14141v1#S6.SS4">论文相关章节 ↗</a></p></section><section id="section-8"><div class="kind">阅读分析</div><h2>如何建立可解释的对照</h2><p>整体方法与外部模型的比较，回答的是系统竞争力；固定其他条件的组件消融，才更接近解释某个设计的贡献。两者不能互相替代。不同主干、训练数据或推理方式可能同时改变结果。</p><p>长序列研究尤其需要画随时间变化的误差曲线。单个平均数可能掩盖某次失败后再恢复，也可能掩盖局部深度准确但全局位姿漂移。语义扩展还应同时保留几何指标，避免模型用重建退化换取分割提升。</p><div class="tablewrap"><table><thead><tr><th>比较维度</th><th>必须固定或明确报告</th><th>能回答的问题</th></tr></thead><tbody><tr><td>记忆容量</td><td>窗口、历史条目数、token 维度</td><td>同等存储下是否更有效</td></tr><tr><td>序列条件</td><td>相同帧、分辨率、采样与输入参数</td><td>提升是否来自额外观测</td></tr><tr><td>推理模式</td><td>持续缓存或分窗重置、对齐方式</td><td>误差来自模型还是窗口拼接</td></tr><tr><td>效率</td><td>硬件、精度、预热与数据搬运</td><td>延迟和显存是否可复现</td></tr></tbody></table></div></section><section id="section-9"><div class="kind">阅读分析</div><h2>对语义记忆研究的启示</h2><p>最小研究问题是：显式语义监督是否能让相同预算的长期状态更有用。必须同时比较原模型、只加密集语义输出、对压缩记忆直接增加语义监督。前两者区分额外多任务训练，后两者区分监督是否真正经过瓶颈。</p><p>若只改善当前帧分割，而移除远期记忆后收益仍完全保留，那么“长期记忆改进”尚未获得支持。反过来，若长期几何稳定性改善，但未检查同容量普通 tokens，也可能只是增加容量的结果。</p><p>这条研究路线的风险是语义粒度与几何粒度不一致。一个区域在类别上均匀，并不意味着其空间结构可以被任意平均。语义相似性只能辅助组织，不能代替空间对应。</p></section><section id="section-10"><div class="kind">阅读分析</div><h2>复现顺序与尚未验证的部分</h2><p>先验证单次推理的相机约定与深度尺度，再运行短序列；随后记录缓存大小随序列增长的变化，最后比较长轨迹结果。这个顺序能把坐标错误、缓存错误和真正的长期遗忘分开。</p><p>本笔记没有实际运行作者模型，也不把论文报告的结果当作本地复现。待复现时应保存精确提交、权重版本、命令、数据列表和随机种子，并检查动态区域、弱纹理和重访片段是否存在不同失败模式。</p></section><section><h2>进一步核查的问题</h2><details><summary>为什么六个 token 不等于固定总容量？</summary><p>每个历史条目很小，但条目数仍会随序列增加。需要分别讨论单位条目大小和总条目数。</p></details><details><summary>最值得验证的研究假设是什么？</summary><p>相同缓存预算下，显式语义保持能否帮助后续几何预测；需要排除额外容量和训练监督的混杂影响。</p></details></section><section id="references"><h2>参考资料与原图</h2><ol class="sources"><li><a href="https://arxiv.org/html/2604.14141v1">原论文：方法、实验与 Figure 4 架构图 ↗</a></li><li><a href="https://github.com/robbyant/lingbot-map">作者代码仓库 ↗</a></li></ol><p class="small">本篇使用上方标明出处的论文原图。原图不作结构重绘；点击可放大，图意与论证边界见正文。</p></section><div class="endlink"><a href="notes.html">← 返回全部文章</a></div></article></main>  <footer class="wrap site-footer">
+    <p>© <span id="y"></span> Ezekiel Wang · raconiy.github.io</p>
+  </footer>
+
+  <a class="to-top" href="#top" aria-label="Back to top">↑</a>
+  <script src="js/main.js?v=20260920e"></script>
+</body>
+</html>
