@@ -1,0 +1,43 @@
+/* Personal homepage artwork and avatar. */
+body.page-home {
+  background: var(--bg);
+  isolation: isolate;
+  min-height: 100vh;
+}
+body.page-home::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: url("../assets/fallen-angel-background.jpg") center center / cover no-repeat;
+}
+.page-home main.wrap {
+  margin-top: 28px;
+  margin-bottom: 28px;
+  padding: 32px;
+  background: rgba(247, 244, 239, 0.91);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 20px;
+  box-shadow: 0 16px 56px rgba(0, 0, 0, 0.16);
+}
+html[data-theme="dark"] .page-home main.wrap {
+  background: rgba(22, 21, 19, 0.92);
+  border-color: rgba(255, 255, 255, 0.13);
+}
+.page-home .portrait {
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: center;
+}
+.page-home .site-footer {
+  background: color-mix(in srgb, var(--bg) 94%, transparent);
+}
+@media (max-width: 640px) {
+  .page-home main.wrap {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    padding: 24px 20px;
+    border-radius: 16px;
+  }
+}
