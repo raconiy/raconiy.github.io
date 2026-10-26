@@ -1,0 +1,10 @@
+{
+  "scope": "1D synthetic projected Gaussian, fixed opacity/scale/features, only center optimized; no network, pose, memory or real images",
+  "initial_center": 0.2,
+  "initial_loss": 0.04172198237284203,
+  "initial_gradient": 0.38472553927360037,
+  "after_30_steps_center": 0.00010456718815173766,
+  "after_30_steps_loss": 1.2341828436818936e-08,
+  "identical_feature_gradient": 0.0,
+  "detached_geometry_gradient": "zero by construction, not an autodiff execution"
+}
