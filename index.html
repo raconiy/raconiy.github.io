@@ -11,47 +11,51 @@
   <meta property="og:description" content="Ezekiel (Xiangbo) Wang. Incoming Ph.D. at Westlake University, Fall 2027, Scalable Inverse Graphics Lab. 3D vision, world models, video generation, and agentic systems." />
   <meta property="og:image" content="https://raconiy.github.io/assets/stitch-avatar.jpg" />
   <link rel="preload" href="assets/fonts/lato-regular.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="css/academic.css?v=20261104b" />
+  <link rel="preload" href="cv/fonts/SourceSerif4-Regular.ttf" as="font" type="font/ttf" crossorigin />
+  <link rel="stylesheet" href="css/academic.css?v=20261104c" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
   <main class="page" id="main">
     <section class="intro" aria-labelledby="name">
-      <div class="intro-text">
-        <h1 id="name">Ezekiel Wang</h1>
-        <p>I am an incoming Ph.D. student at <a href="https://www.westlake.edu.cn/">Westlake University</a> (Fall 2027), joining the <strong>Scalable Inverse Graphics Lab</strong>, advised by Prof. <a href="https://www.westlake.edu.cn/faculty/xiangru-huang.html">Xiangru Huang</a>.</p>
-        <p>I am currently an undergraduate in Communication Engineering at Hangzhou Dianzi University. I have worked with <a href="https://cuiziteng.github.io/">Ziteng Cui</a> at HKUST (Guangzhou) and <a href="https://sites.google.com/view/delvincezhang/">Delvin Ce Zhang</a> at the University of Sheffield.</p>
-        <nav class="contact" aria-label="Contact and resources">
-          <a href="mailto:23200410@hdu.edu.cn">Email</a> <span aria-hidden="true">/</span>
-          <a href="https://scholar.google.com/citations?user=8E-eDOIAAAAJ&amp;hl=en">Scholar</a> <span aria-hidden="true">/</span>
-          <a href="https://github.com/raconiy">GitHub</a> <span aria-hidden="true">/</span>
-          <a href="assets/wangxiangbo_cv.pdf">CV</a> <span aria-hidden="true">/</span>
-          <a href="notes.html">Notes</a>
-        </nav>
-      </div>
-      <img class="avatar" src="assets/stitch-avatar.jpg" alt="Stitch avatar" width="180" height="180" />
+      <header class="identity">
+        <div>
+          <h1 id="name">Ezekiel Wang</h1>
+          <p class="identity-meta">Xiangbo Wang</p>
+        </div>
+        <img class="avatar" src="assets/stitch-avatar.jpg" alt="Stitch avatar" width="112" height="112" />
+      </header>
+      <p class="bio">I am an incoming Ph.D. student at <a href="https://www.westlake.edu.cn/">Westlake University</a> (Fall 2027), joining the <strong>Scalable Inverse Graphics Lab</strong>, advised by Prof. <a href="https://www.westlake.edu.cn/faculty/xiangru-huang.html">Xiangru Huang</a>. My research interests lie in <strong>3D vision</strong>, <strong>world models</strong>, and <strong>video generation</strong>, with an emphasis on geometry-aware generative models and <strong>agentic systems</strong> that perceive, predict, and interact with the world.</p>
+      <p class="background">I am currently an undergraduate in Communication Engineering at Hangzhou Dianzi University. I have worked with <a href="https://cuiziteng.github.io/">Ziteng Cui</a> at HKUST (Guangzhou) and <a href="https://sites.google.com/view/delvincezhang/">Delvin Ce Zhang</a> at the University of Sheffield.</p>
+      <nav class="contact" aria-label="Contact and resources">
+        <a href="mailto:23200410@hdu.edu.cn">Email</a>
+        <a href="https://scholar.google.com/citations?user=8E-eDOIAAAAJ&amp;hl=en">Google Scholar</a>
+        <a href="https://github.com/raconiy">GitHub</a>
+        <a href="assets/wangxiangbo_cv.pdf">CV</a>
+        <a href="notes.html">Notes</a>
+      </nav>
     </section>
 
     <section class="news" id="news" aria-labelledby="news-title">
       <h2 id="news-title">News</h2>
       <ul>
         <li><time datetime="2026-11">Nov 2026</time><span>🎉 Excited to join the Scalable Inverse Graphics Lab at Westlake University as a Ph.D. student in Fall 2027. A new chapter to celebrate!</span></li>
-        <li><time datetime="2026">2026</time><span>SR3R accepted to <strong>CVPR 2026</strong>; SwitchCodec accepted to <strong>ICASSP 2026 (Oral)</strong>.</span></li>
       </ul>
     </section>
 
     <section class="research" id="research" aria-labelledby="research-title">
-      <h2 id="research-title">Research</h2>
-      <p>My research interests are in <strong>3D vision</strong>, <strong>world models</strong>, and <strong>video generation</strong>. I am interested in geometry-aware generative models and agentic systems that learn to perceive, predict, and interact with the world.</p>
-      <p class="publication-intro" id="publications">Selected publications below. <span class="contribution">* Equal contribution.</span></p>
+      <div class="section-heading" id="publications">
+        <h2 id="research-title">Selected Publications</h2>
+        <p class="contribution">* Equal contribution</p>
+      </div>
       <article class="publication" id="sr3r">
         <a class="paper-figure" href="assets/papers/sr3r-pipeline.png" aria-label="View the full sr3r pipeline">
           <img src="assets/papers/sr3r-pipeline.png" alt="SR3R pipeline: low-resolution views and Gaussian scaffold to high-resolution 3D Gaussians" width="600" height="400" loading="lazy" />
         </a>
         <div class="paper-text">
           <h3><a href="https://arxiv.org/abs/2602.24020">SR3R: Rethinking Super-Resolution 3D Reconstruction With Feed-Forward Gaussian Splatting</a></h3>
-          <p>Xiang Feng*, <strong>Xiangbo Wang*</strong>, Tieshi Zhong, Chengkai Wang, Yiting Zhao, Tianxiang Xu, Zhenzhong Kuang, Feiwei Qin, Xuefei Yin, Yanming Zhu</p>
-          <p><em>IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)</em>, 2026</p>
+          <p class="authors">Xiang Feng*, <strong>Xiangbo Wang*</strong>, Tieshi Zhong, Chengkai Wang, Yiting Zhao, Tianxiang Xu, Zhenzhong Kuang, Feiwei Qin, Xuefei Yin, Yanming Zhu</p>
+          <p class="venue"><em>IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)</em>, 2026</p>
           <p class="paper-links"><a href="https://xiangfeng66.github.io/SR3R/">project page</a> <span aria-hidden="true">/</span> <a href="https://arxiv.org/abs/2602.24020">paper</a> <span aria-hidden="true">/</span> <a href="https://openaccess.thecvf.com/content/CVPR2026/papers/Feng_SR3R_Rethinking_Super-Resolution_3D_Reconstruction_With_Feed-Forward_Gaussian_Splatting_CVPR_2026_paper.pdf">PDF</a></p>
           <p class="paper-summary">Reconstructing high-resolution 3D Gaussian scenes directly from sparse low-resolution views, with a feed-forward model that generalizes across scenes.</p>
         </div>
@@ -62,8 +66,8 @@
         </a>
         <div class="paper-text">
           <h3><a href="https://cmsworkshops.com/ICASSP2026/view_paper.php?PaperNum=10795">SwitchCodec: Adaptive Residual-Expert Sparse Quantization for High-Fidelity Neural Audio Coding</a></h3>
-          <p><strong>Xiangbo Wang</strong>, Wenbin Jiang, Jin Wang, Yubo You, Sheng Fang, Fei Wen</p>
-          <p><em>IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)</em>, 2026 <strong>(Oral)</strong></p>
+          <p class="authors"><strong>Xiangbo Wang</strong>, Wenbin Jiang, Jin Wang, Yubo You, Sheng Fang, Fei Wen</p>
+          <p class="venue"><em>IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)</em>, 2026 <strong>(Oral)</strong></p>
           <p class="paper-links"><a href="https://cmsworkshops.com/ICASSP2026/view_paper.php?PaperNum=10795">paper</a> <span aria-hidden="true">/</span> <a href="https://cmsworkshops.com/ICASSP2026/goto_manuscript.php?pn=10795">manuscript</a></p>
           <p class="paper-summary">Content-adaptive neural audio coding with a shared quantizer and sparsely routed residual experts, supporting multiple bitrates in a single model.</p>
         </div>
@@ -74,8 +78,8 @@
         </a>
         <div class="paper-text">
           <h3><a href="https://arxiv.org/abs/2607.28375">HyperClaim: Fine-Grained Cross-Modal Hypergraph Reasoning for Video Misinformation Detection</a></h3>
-          <p><strong>Xiangbo Wang</strong>, Jiasheng Zhang, Xingtong Yu, Luoqiang Lei, Delvin Ce Zhang</p>
-          <p><em>arXiv preprint</em>, 2026 · Submitted</p>
+          <p class="authors"><strong>Xiangbo Wang</strong>, Jiasheng Zhang, Xingtong Yu, Luoqiang Lei, Delvin Ce Zhang</p>
+          <p class="venue"><em>arXiv preprint</em>, 2026 · Submitted</p>
           <p class="paper-links"><a href="https://arxiv.org/abs/2607.28375">paper</a> <span aria-hidden="true">/</span> <a href="https://arxiv.org/pdf/2607.28375">PDF</a></p>
           <p class="paper-summary">A temporal hypergraph framework that preserves fine-grained relationships between query text, evidence, and video frames for misinformation detection.</p>
         </div>
