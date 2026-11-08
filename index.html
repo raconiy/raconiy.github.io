@@ -1,103 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ezekiel Wang</title>
-  <meta name="description" content="Ezekiel (Xiangbo) Wang. Incoming Ph.D. at Westlake University, Fall 2027, Scalable Inverse Graphics Lab. 3D vision, world models, video generation, and agentic systems." />
-  <link rel="canonical" href="https://raconiy.github.io/" />
-  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-  <meta property="og:title" content="Ezekiel Wang" />
-  <meta property="og:description" content="Ezekiel (Xiangbo) Wang. Incoming Ph.D. at Westlake University, Fall 2027, Scalable Inverse Graphics Lab. 3D vision, world models, video generation, and agentic systems." />
-  <meta property="og:image" content="https://raconiy.github.io/assets/stitch-avatar.jpg" />
-  <link rel="preload" href="assets/fonts/lato-regular.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="cv/fonts/SourceSerif4-Regular.ttf" as="font" type="font/ttf" crossorigin />
-  <link rel="stylesheet" href="css/academic.css?v=20261104c" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ezekiel Wang - Homepage</title>
+  <meta name="description" content="Ezekiel (Xiangbo) Wang — incoming Ph.D. student at Westlake University, working on 3D vision, world models, video generation, and agentic systems.">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/a860a211d3.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="assets/css/font_sans_serif.css">
+  <link rel="stylesheet" href="assets/css/theme-luka.css">
+  <style>
+    body.theme-luka .profile-card .avatar img { object-position: center; }
+    body.theme-luka .research-card { margin: 34px auto 0; width: 240px; padding: 18px 16px; border: 1px dashed var(--luka-border); border-radius: 14px; color: var(--luka-secondary); text-align: left; }
+    body.theme-luka .research-card-title { margin-bottom: 8px; color: var(--luka-accent); font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+    body.theme-luka .research-card ul { margin: 0; padding-left: 17px; font-size: 13px; line-height: 1.7; }
+    body.theme-luka .about-lede { font-size: 17px; line-height: 1.75; }
+    body.theme-luka .news-list { margin: 0; padding: 0; list-style: none; }
+    body.theme-luka .news-list li { display: grid; grid-template-columns: 78px minmax(0, 1fr); gap: 14px; margin-bottom: 10px; font-size: 14px; }
+    body.theme-luka .news-list time { color: var(--luka-accent); font-size: 13px; font-weight: 500; }
+    body.theme-luka .publication-item { display: grid; grid-template-columns: 156px minmax(0, 1fr); gap: 18px; align-items: center; }
+    body.theme-luka .publication-thumb { display: block; width: 156px; height: 98px; object-fit: contain; border-radius: 6px; background: rgba(255,255,255,.48); }
+    body.theme-luka .publication-item + .publication-item { margin-top: 14px; }
+    body.theme-luka .pub-content .summary { margin: 7px 0 0; color: var(--luka-secondary); font-size: 13px; line-height: 1.6; }
+    body.theme-luka .notes-callout { padding: 16px 18px; border-left: 3px solid var(--luka-accent); background: rgba(194,113,79,.07); }
+    body.theme-luka .notes-callout p { margin: 0; font-size: 14px; }
+    @media (max-width: 640px) {
+      body.theme-luka .research-card { width: 100%; max-width: 280px; }
+      body.theme-luka .publication-item { grid-template-columns: 118px minmax(0,1fr); gap: 13px; }
+      body.theme-luka .publication-thumb { width: 118px; height: 78px; }
+    }
+    @media (max-width: 480px) {
+      body.theme-luka .publication-item { grid-template-columns: 1fr; }
+      body.theme-luka .publication-thumb { width: 220px; height: auto; max-width: 100%; }
+      body.theme-luka .news-list li { grid-template-columns: 64px minmax(0,1fr); gap: 9px; }
+    }
+  </style>
 </head>
-<body>
-  <a class="skip-link" href="#main">Skip to content</a>
-  <main class="page" id="main">
-    <section class="intro" aria-labelledby="name">
-      <header class="identity">
-        <div>
-          <h1 id="name">Ezekiel Wang</h1>
-          <p class="identity-meta">Xiangbo Wang</p>
-        </div>
-        <img class="avatar" src="assets/stitch-avatar.jpg" alt="Stitch avatar" width="112" height="112" />
-      </header>
-      <p class="bio">I am an incoming Ph.D. student at <a href="https://www.westlake.edu.cn/">Westlake University</a> (Fall 2027), joining the <strong>Scalable Inverse Graphics Lab</strong>, advised by Prof. <a href="https://www.westlake.edu.cn/faculty/xiangru-huang.html">Xiangru Huang</a>. My research interests lie in <strong>3D vision</strong>, <strong>world models</strong>, and <strong>video generation</strong>, with an emphasis on geometry-aware generative models and <strong>agentic systems</strong> that perceive, predict, and interact with the world.</p>
-      <p class="background">I am currently an undergraduate in Communication Engineering at Hangzhou Dianzi University. I have worked with <a href="https://cuiziteng.github.io/">Ziteng Cui</a> at HKUST (Guangzhou) and <a href="https://sites.google.com/view/delvincezhang/">Delvin Ce Zhang</a> at the University of Sheffield.</p>
-      <nav class="contact" aria-label="Contact and resources">
-        <a href="mailto:23200410@hdu.edu.cn">Email</a>
-        <a href="https://scholar.google.com/citations?user=8E-eDOIAAAAJ&amp;hl=en">Google Scholar</a>
-        <a href="https://github.com/raconiy">GitHub</a>
-        <a href="assets/wangxiangbo_cv.pdf">CV</a>
-        <a href="notes.html">Notes</a>
-      </nav>
-    </section>
-
-    <section class="news" id="news" aria-labelledby="news-title">
-      <h2 id="news-title">News</h2>
-      <ul>
-        <li><time datetime="2026-11">Nov 2026</time><span>🎉 Excited to join the Scalable Inverse Graphics Lab at Westlake University as a Ph.D. student in Fall 2027. A new chapter to celebrate!</span></li>
-      </ul>
-    </section>
-
-    <section class="research" id="research" aria-labelledby="research-title">
-      <div class="section-heading" id="publications">
-        <h2 id="research-title">Selected Publications</h2>
-        <p class="contribution">* Equal contribution</p>
+<body class="theme-luka">
+  <nav class="top-nav">
+    <div class="nav-container">
+      <div class="nav-left"><a href="./">Home</a></div>
+      <div class="nav-right">
+        <button id="themeToggle" class="theme-toggle" title="Toggle theme" aria-label="Toggle theme"><i class="fa-solid fa-moon"></i></button>
       </div>
-      <article class="publication" id="sr3r">
-        <a class="paper-figure" href="assets/papers/sr3r-pipeline.png" aria-label="View the full sr3r pipeline">
-          <img src="assets/papers/sr3r-pipeline.png" alt="SR3R pipeline: low-resolution views and Gaussian scaffold to high-resolution 3D Gaussians" width="600" height="400" loading="lazy" />
-        </a>
-        <div class="paper-text">
-          <h3><a href="https://arxiv.org/abs/2602.24020">SR3R: Rethinking Super-Resolution 3D Reconstruction With Feed-Forward Gaussian Splatting</a></h3>
-          <p class="authors">Xiang Feng*, <strong>Xiangbo Wang*</strong>, Tieshi Zhong, Chengkai Wang, Yiting Zhao, Tianxiang Xu, Zhenzhong Kuang, Feiwei Qin, Xuefei Yin, Yanming Zhu</p>
-          <p class="venue"><em>IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)</em>, 2026</p>
-          <p class="paper-links"><a href="https://xiangfeng66.github.io/SR3R/">project page</a> <span aria-hidden="true">/</span> <a href="https://arxiv.org/abs/2602.24020">paper</a> <span aria-hidden="true">/</span> <a href="https://openaccess.thecvf.com/content/CVPR2026/papers/Feng_SR3R_Rethinking_Super-Resolution_3D_Reconstruction_With_Feed-Forward_Gaussian_Splatting_CVPR_2026_paper.pdf">PDF</a></p>
-          <p class="paper-summary">Reconstructing high-resolution 3D Gaussian scenes directly from sparse low-resolution views, with a feed-forward model that generalizes across scenes.</p>
+    </div>
+  </nav>
+
+  <div class="wrapper">
+    <header class="sidebar">
+      <div class="profile-card">
+        <a class="image avatar" href="#about"><img src="assets/stitch-avatar.jpg" alt="Stitch avatar"></a>
+        <h1 class="site-name">Ezekiel Wang</h1>
+        <p class="site-email">23200410 [at] hdu.edu.cn</p>
+        <div class="social-icons">
+          <a href="mailto:23200410@hdu.edu.cn" title="Email"><i class="fa-solid fa-envelope"></i></a>
+          <a href="https://scholar.google.com/citations?user=8E-eDOIAAAAJ&amp;hl=en" title="Google Scholar"><i class="ai ai-google-scholar"></i></a>
+          <a href="https://github.com/raconiy" title="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="assets/wangxiangbo_cv.pdf" title="CV"><i class="fa-solid fa-file-lines"></i></a>
         </div>
-      </article>
-      <article class="publication" id="switchcodec">
-        <a class="paper-figure" href="assets/papers/switchcodec-pipeline.png" aria-label="View the full switchcodec pipeline">
-          <img src="assets/papers/switchcodec-pipeline.png" alt="SwitchCodec architecture: audio encoder, shared quantizer, routed residual experts, and decoder" width="600" height="400" loading="lazy" />
-        </a>
-        <div class="paper-text">
-          <h3><a href="https://cmsworkshops.com/ICASSP2026/view_paper.php?PaperNum=10795">SwitchCodec: Adaptive Residual-Expert Sparse Quantization for High-Fidelity Neural Audio Coding</a></h3>
-          <p class="authors"><strong>Xiangbo Wang</strong>, Wenbin Jiang, Jin Wang, Yubo You, Sheng Fang, Fei Wen</p>
-          <p class="venue"><em>IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)</em>, 2026 <strong>(Oral)</strong></p>
-          <p class="paper-links"><a href="https://cmsworkshops.com/ICASSP2026/view_paper.php?PaperNum=10795">paper</a> <span aria-hidden="true">/</span> <a href="https://cmsworkshops.com/ICASSP2026/goto_manuscript.php?pn=10795">manuscript</a></p>
-          <p class="paper-summary">Content-adaptive neural audio coding with a shared quantizer and sparsely routed residual experts, supporting multiple bitrates in a single model.</p>
+        <div class="research-card">
+          <div class="research-card-title">Research Focus</div>
+          <ul>
+            <li>3D vision</li>
+            <li>World models</li>
+            <li>Video generation</li>
+            <li>Agentic systems</li>
+          </ul>
         </div>
-      </article>
-      <article class="publication" id="hyperclaim">
-        <a class="paper-figure" href="assets/papers/hyperclaim-pipeline.png" aria-label="View the full hyperclaim pipeline">
-          <img src="assets/papers/hyperclaim-pipeline.png" alt="HyperClaim pipeline: sparse temporal hypergraph construction, cross-modal reasoning, and authenticity prediction" width="600" height="400" loading="lazy" />
-        </a>
-        <div class="paper-text">
-          <h3><a href="https://arxiv.org/abs/2607.28375">HyperClaim: Fine-Grained Cross-Modal Hypergraph Reasoning for Video Misinformation Detection</a></h3>
-          <p class="authors"><strong>Xiangbo Wang</strong>, Jiasheng Zhang, Xingtong Yu, Luoqiang Lei, Delvin Ce Zhang</p>
-          <p class="venue"><em>arXiv preprint</em>, 2026 · Submitted</p>
-          <p class="paper-links"><a href="https://arxiv.org/abs/2607.28375">paper</a> <span aria-hidden="true">/</span> <a href="https://arxiv.org/pdf/2607.28375">PDF</a></p>
-          <p class="paper-summary">A temporal hypergraph framework that preserves fine-grained relationships between query text, evidence, and video frames for misinformation detection.</p>
+      </div>
+    </header>
+
+    <section class="content">
+      <div class="section" id="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="section-body">
+          <p class="about-lede">I am an incoming Ph.D. student at <a href="https://www.westlake.edu.cn/">Westlake University</a> (Fall 2027), joining the <strong>Scalable Inverse Graphics Lab</strong>, advised by Prof. <a href="https://www.westlake.edu.cn/faculty/xiangru-huang.html">Xiangru Huang</a>.</p>
+          <p>My research interests focus on <strong>3D vision</strong>, <strong>world models</strong>, and <strong>video generation</strong>, with an emphasis on geometry-aware generative models and <strong>agentic systems</strong> that perceive, predict, and interact with the world.</p>
+          <p>I am currently an undergraduate in Communication Engineering at Hangzhou Dianzi University. I have worked with <a href="https://cuiziteng.github.io/">Ziteng Cui</a> at HKUST (Guangzhou) and <a href="https://sites.google.com/view/delvincezhang/">Delvin Ce Zhang</a> at the University of Sheffield.</p>
+          <p><a href="mailto:23200410@hdu.edu.cn">Email</a> &nbsp;/&nbsp; <a href="https://scholar.google.com/citations?user=8E-eDOIAAAAJ&amp;hl=en">Google Scholar</a> &nbsp;/&nbsp; <a href="https://github.com/raconiy">GitHub</a> &nbsp;/&nbsp; <a href="assets/wangxiangbo_cv.pdf">Download my CV</a></p>
         </div>
-      </article>
+      </div>
+
+      <div class="section" id="news">
+        <h2 class="section-title">News</h2>
+        <div class="section-body">
+          <ul class="news-list">
+            <li><time>Nov 2026</time><span>🎉 Excited to join the Scalable Inverse Graphics Lab at Westlake University as a Ph.D. student in Fall 2027.</span></li>
+            <li><time>2026</time><span><strong>SR3R</strong> accepted to CVPR 2026; <strong>SwitchCodec</strong> accepted to ICASSP 2026 (Oral).</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section" id="education">
+        <h2 class="section-title">Education</h2>
+        <div class="section-body">
+          <div class="card">
+            <div class="experience-item">
+              <img src="assets/img/institution.svg" alt="Westlake University" class="institution-logo">
+              <div class="experience-content">
+                <p class="exp-title"><strong>Westlake University</strong></p>
+                <p class="exp-detail">Incoming Ph.D. student · Scalable Inverse Graphics Lab</p>
+                <p class="exp-detail">Advisor: Prof. Xiangru Huang</p>
+                <p class="exp-period">Fall 2027</p>
+              </div>
+            </div>
+          </div>
+          <div class="card" style="margin-top:18px;">
+            <div class="experience-item">
+              <img src="assets/img/institution.svg" alt="Hangzhou Dianzi University" class="institution-logo">
+              <div class="experience-content">
+                <p class="exp-title"><strong>Hangzhou Dianzi University</strong></p>
+                <p class="exp-detail">B.Eng. in Communication Engineering</p>
+                <p class="exp-period">2023 – 2027</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section" id="experience">
+        <h2 class="section-title">Experience</h2>
+        <div class="section-body">
+          <div class="card timeline-item"><div class="experience-item"><img src="assets/img/institution.svg" alt="RAWLab" class="institution-logo"><div class="experience-content"><p class="exp-title"><strong>RAWLab, HKUST (Guangzhou)</strong></p><p class="exp-detail">Research Assistant · With <a href="https://cuiziteng.github.io/">Ziteng Cui</a></p><p class="exp-detail">Computational photography</p><p class="exp-period">Jul 2026 – Present</p></div></div></div>
+          <div class="card timeline-item"><div class="experience-item"><img src="assets/img/institution.svg" alt="University of Sheffield" class="institution-logo"><div class="experience-content"><p class="exp-title"><strong>University of Sheffield</strong></p><p class="exp-detail">Research Assistant · With <a href="https://sites.google.com/view/delvincezhang/">Delvin Ce Zhang</a></p><p class="exp-detail">Multimodal video reasoning</p><p class="exp-period">Mar 2026 – Present</p></div></div></div>
+          <div class="card timeline-item"><div class="experience-item"><img src="assets/img/institution.svg" alt="MILab" class="institution-logo"><div class="experience-content"><p class="exp-title"><strong>MILab, Hangzhou Dianzi University</strong></p><p class="exp-detail">3D reconstruction and generation</p><p class="exp-period">2025 – Present</p></div></div></div>
+          <div class="card timeline-item"><div class="experience-item"><img src="assets/img/institution.svg" alt="IIPL" class="institution-logo"><div class="experience-content"><p class="exp-title"><strong>IIPL, Hangzhou Dianzi University</strong></p><p class="exp-detail">Neural audio coding</p><p class="exp-period">2024 – Present</p></div></div></div>
+        </div>
+      </div>
+
+      <div class="section" id="publications">
+        <h2 class="section-title">Selected Publications</h2>
+        <div class="section-body">
+          <div class="publications">
+            <ol class="bibliography">
+              <li><div class="publication-item"><a href="assets/papers/sr3r-pipeline.png"><img class="publication-thumb" src="assets/papers/sr3r-pipeline.png" alt="SR3R pipeline"></a><div class="pub-content"><div class="title"><a href="https://arxiv.org/abs/2602.24020">SR3R: Rethinking Super-Resolution 3D Reconstruction With Feed-Forward Gaussian Splatting</a></div><div class="author">Xiang Feng*, <strong>Xiangbo Wang*</strong>, Tieshi Zhong, Chengkai Wang, Yiting Zhao, Tianxiang Xu, Zhenzhong Kuang, Feiwei Qin, Xuefei Yin, Yanming Zhu</div><div class="periodical"><em>CVPR</em>, 2026</div><div class="links"><a href="https://xiangfeng66.github.io/SR3R/">Project</a> / <a href="https://arxiv.org/abs/2602.24020">Paper</a> / <a href="https://openaccess.thecvf.com/content/CVPR2026/papers/Feng_SR3R_Rethinking_Super-Resolution_3D_Reconstruction_With_Feed-Forward_Gaussian_Splatting_CVPR_2026_paper.pdf">PDF</a></div><p class="summary">Feed-forward high-resolution 3D Gaussian reconstruction from sparse low-resolution views.</p></div></div></li>
+              <li><div class="publication-item"><a href="assets/papers/switchcodec-pipeline.png"><img class="publication-thumb" src="assets/papers/switchcodec-pipeline.png" alt="SwitchCodec architecture"></a><div class="pub-content"><div class="title"><a href="https://cmsworkshops.com/ICASSP2026/view_paper.php?PaperNum=10795">SwitchCodec: Adaptive Residual-Expert Sparse Quantization for High-Fidelity Neural Audio Coding</a></div><div class="author"><strong>Xiangbo Wang</strong>, Wenbin Jiang, Jin Wang, Yubo You, Sheng Fang, Fei Wen</div><div class="periodical"><em>ICASSP</em>, 2026 <strong>(Oral)</strong></div><div class="links"><a href="https://cmsworkshops.com/ICASSP2026/view_paper.php?PaperNum=10795">Paper</a> / <a href="https://cmsworkshops.com/ICASSP2026/goto_manuscript.php?pn=10795">Manuscript</a></div><p class="summary">Content-adaptive neural audio coding with sparsely routed residual experts.</p></div></div></li>
+              <li><div class="publication-item"><a href="assets/papers/hyperclaim-pipeline.png"><img class="publication-thumb" src="assets/papers/hyperclaim-pipeline.png" alt="HyperClaim pipeline"></a><div class="pub-content"><div class="title"><a href="https://arxiv.org/abs/2607.28375">HyperClaim: Fine-Grained Cross-Modal Hypergraph Reasoning for Video Misinformation Detection</a></div><div class="author"><strong>Xiangbo Wang</strong>, Jiasheng Zhang, Xingtong Yu, Luoqiang Lei, Delvin Ce Zhang</div><div class="periodical"><em>arXiv preprint</em>, 2026 · Submitted</div><div class="links"><a href="https://arxiv.org/abs/2607.28375">Paper</a> / <a href="https://arxiv.org/pdf/2607.28375">PDF</a></div><p class="summary">Fine-grained temporal hypergraph reasoning over text, evidence, and video frames.</p></div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <div class="section" id="notes">
+        <h2 class="section-title">Notes</h2>
+        <div class="section-body">
+          <div class="notes-callout"><p>Reading notes on 3D vision, spatial memory, world models, and agentic systems. <a href="notes.html">Browse all notes →</a></p></div>
+        </div>
+      </div>
     </section>
 
-    <section class="experience" id="experience" aria-labelledby="experience-title">
-      <h2 id="experience-title">Experience</h2>
-      <dl>
-        <div><dt>Jul 2026–present</dt><dd><strong>Research Assistant</strong>, <a href="https://cuiziteng.github.io/raw-lab/">RAWLab</a>, HKUST (Guangzhou)<br /><span>With <a href="https://cuiziteng.github.io/">Ziteng Cui</a> · Computational photography</span></dd></div>
-        <div><dt>Mar 2026–present</dt><dd><strong>Research Assistant</strong>, University of Sheffield<br /><span>With <a href="https://sites.google.com/view/delvincezhang/">Delvin Ce Zhang</a> · Multimodal video reasoning</span></dd></div>
-        <div><dt>2025–present</dt><dd><strong>MILab</strong>, Hangzhou Dianzi University<br /><span>With Zhenzhong Kuang · 3D reconstruction and generation</span></dd></div>
-        <div><dt>2024–present</dt><dd><strong>IIPL</strong>, Hangzhou Dianzi University<br /><span>With Wenbin Jiang and Jin Wang · Neural audio coding</span></dd></div>
-      </dl>
-    </section>
-  </main>
-  <footer class="page footer">
-    <p>Template adapted from <a href="https://botaoye.github.io/">Botao Ye</a> and <a href="https://jonbarron.info/">Jon Barron</a>.</p>
-  </footer>
+    <footer class="site-footer"><p>&copy; 2026 Ezekiel Wang. All rights reserved.<br><span class="template-credit"><a href="https://github.com/wzsyyh/luka-homepage-template">Luka Homepage Template</a> by <a href="https://wzsyyh.github.io/">Yuheng Yang</a></span></p></footer>
+  </div>
+
+  <script src="assets/js/scale.fix.js"></script>
+  <script>
+    (function() {
+      const themeToggle = document.getElementById('themeToggle');
+      const icon = themeToggle.querySelector('i');
+      function setTheme(isDark) {
+        document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+        icon.classList.toggle('fa-sun', isDark); icon.classList.toggle('fa-moon', !isDark);
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      }
+      const savedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      setTheme(savedTheme ? savedTheme === 'dark' : prefersDark);
+      themeToggle.addEventListener('click', function() { setTheme(document.documentElement.getAttribute('data-theme') !== 'dark'); });
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(function(entries) { entries.forEach(function(entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }); }, { threshold: 0.1 });
+        document.querySelectorAll('.section').forEach(function(el) { observer.observe(el); });
+      } else document.querySelectorAll('.section').forEach(function(el) { el.classList.add('visible'); });
+    })();
+  </script>
 </body>
 </html>
