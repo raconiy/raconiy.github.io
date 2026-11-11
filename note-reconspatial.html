@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ReconSpatial: Measuring Layout, Metric Geometry, and Planning Separately · Ezekiel Wang</title>
+  
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="favicon.svg" />
+  
+  
+  
+  
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css?v=20260920e" />
+  <script>
+    (() => {
+      const saved = localStorage.getItem("theme");
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.setAttribute("data-theme", saved || (prefersDark ? "dark" : "light"));
+    })();
+  </script>
+<link rel="stylesheet" href="notes.css?v=20261012e">
+</head>
+<body class="page-notes"><header class="site-header">
+    <div class="wrap header-row">
+      <a class="brand" href="index.html">Ezekiel Wang</a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="publications.html">Publications</a>
+        <a href="news.html">News</a>
+        <a href="experience.html">Experience</a>
+        <a class="is-active" href="notes.html">Notes</a>
+        <a href="life.html">Life</a>
+        <a href="travel.html">Travel</a>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle theme">
+          <span class="theme-icon theme-icon-sun" aria-hidden="true">☀</span>
+          <span class="theme-icon theme-icon-moon" aria-hidden="true">☾</span>
+        </button>
+        <a class="nav-cta" href="assets/wangxiangbo_cv.pdf?v=20260821g" target="_blank" rel="noopener">CV</a>
+      </nav>
+    </div>
+  </header><main id="top" class="wrap"><div class="note-header"><a class="back" href="notes.html">← Notes</a><p class="meta">Paper Notes / Updated 2026-11-11</p><h1>ReconSpatial: Measuring Layout, Metric Geometry, and Planning Separately</h1><p class="english">First submitted 2026-11-01 · Reading version 2611.02026v1</p><p class="lede">ReconSpatial 要求 VLM 从多视角图像联合输出物体的三维有向框，并评估相对结构与米制几何。基准用原子问答、联合重建和离线路径规划定位空间推理误差。作者发现关系线索通常提高布局分数，而米制深度线索对 Metric 的收益更稳定。</p></div><aside class="brief" aria-label="At a Glance"><h2>At a Glance</h2><ol><li>固定对象查询，让模型在共同相机参考系中预测中心、尺寸和朝向。</li><li>分别检查结构、尺度校正和物理位置，避免单个分数掩盖误差。</li><li>通过深度注入、布局修订和地图替换验证证据的作用。</li></ol></aside><details class="reading-toc" open><summary>Contents</summary><nav aria-label="Table of contents"><a href="#section-1">Task, Inputs, and Coordinate Frame</a><a href="#section-2">Reading the Original Task Figure</a><a href="#section-3">Structure and Metric Scores</a><a href="#section-4">Interventions and Key Evidence</a><a href="#section-5">Offline Navigation Protocol</a><a href="#section-6">Spatial Supervision and Reproducibility</a><a href="#section-7">Implications for Semantic Geometry Evaluation</a></nav></details><article class="prose"><section id="section-1"><p class="section-kind">Paper Notes</p><h2>Task, Inputs, and Coordinate Frame</h2><p>输入是一组有序多视角图像，以及每个目标的 ID、指定视图、二维框和类别。输出为每个目标的中心 c、三轴尺寸 s 和绕重力轴的 yaw。提供二维区域控制了 open-set detection 的影响，模型仍需跨视角对应和联合推断三维位置。</p><p>坐标单位为米。原点是参考相机中心在地面或桌面的竖直投影，+x 向右、+y 向上、−z 沿参考相机水平视线。统一坐标约定让“左侧”“深度”“高度”成为可以核验的量。输出用 JSON 按 ID 匹配，解析器不做生成式修复。</p><p>基准包含 840 个重建实例、1,388 个原子 QA 和 346 个离线导航 episode。这些计数对应任务实例。室内、桌面、室外重建来源包括 ScanNet/CA-1M、YCB-Video/T-LESS/HomebrewedDB/NOCS 和 nuScenes。</p><p class="source-line">Source: <a href="https://arxiv.org/html/2611.02026v1#S3.SS1" target="_blank" rel="noopener">Paper / Official Implementation ↗</a></p></section><section id="section-2"><p class="section-kind">Paper Notes</p><h2>Reading the Original Task Figure</h2><figure class="paper-figure"><a href="reconspatial-tasks.png" target="_blank" rel="noopener"><img src="reconspatial-tasks.png" alt="Figure 2 · Spatial Tasks and Reconstruction Scoring" loading="lazy"></a><figcaption><strong>Figure 2 · Spatial Tasks and Reconstruction Scoring</strong><br>Junfei Wu et al. · Original figure, unmodified · arXiv perpetual non-exclusive license · <a href="https://arxiv.org/html/2611.02026v1#S3.F2" target="_blank" rel="noopener">Paper & Caption ↗</a></figcaption></figure><p>图 2 左上给出从多视角到同一坐标系下物体框的流程。下方 L1 检查像素对应、相机运动、深度排序和米制深度，L2 检查不同参考系的方向、距离和实例对应。这些局部任务帮助分析联合预测缺在哪种能力。</p><p>L3 用两组指标评价输出框。Structure 看邻接、对齐后形状与轴向顺序，Metric 看尺度校正后的位置、投影视图重叠及尺度校正量。L4 给出起点和目标视图，要求预测地面平面路径，再检查抵达与碰撞。</p><p>图中参考框、答案和导航路径属于评测示例。模型输出的参数可被可视化核查，但框表示省略了精细表面、部件运动和连续占据。该粒度适合场景级空间推理诊断。</p><p class="source-line">Source: <a href="https://arxiv.org/html/2611.02026v1#S3.F2" target="_blank" rel="noopener">Paper / Official Implementation ↗</a></p></section><section id="section-3"><p class="section-kind">Paper Notes</p><h2>Structure and Metric Scores</h2><p>Structure 对三类证据取平均。邻接项比较 k-nearest-neighbor 图的 Jaccard，相似形状项允许平面平移、旋转和统一尺度对齐，轴向顺序项在相机坐标系下计算 Kendall 相关。原始相似度还减去随机布局参考值，避免小对象集合的偶然邻接得到高分。</p><p>Metric 只拟合一个统一尺度 s，不拟合平移或旋转。Position 在四个归一化误差阈值下平均，View IoU 比较俯视和前视投影框。第三项惩罚尺度 s 偏离 1 的幅度。因此 Metric 同时含校正后几何与原始尺度校准质量。</p><p>教学算例中，若全部预测坐标和尺寸恰好放大两倍，s=0.5，位置和重叠项可各为 1，尺度项为 0，Metric 约为 2/3。这个例子说明必须同时检查原始位置误差。少于三个匹配对象时两项总分归零，其他情况用匹配子集计分，coverage 另报。</p><pre class="equation">Structure = (Adjacency + Shape + AxisOrder) / 3
+s = Σᵢ⟨Gᵢ,Pᵢ⟩ / (Σᵢ||Pᵢ||² + ε)
+ScaleScore = max(0, 1 − |log(max(s,10⁻⁶))| / log 2)
+Metric = (Position + ViewIoU + ScaleScore) / 3</pre><p class="source-line">Source: <a href="https://arxiv.org/html/2611.02026v1#S3.SS2" target="_blank" rel="noopener">Paper / Official Implementation ↗</a></p></section><section id="section-4"><p class="section-kind">Paper Notes</p><h2>Interventions and Key Evidence</h2><p>18 个模型在三个域的全部 54 个 model–domain 组合中，Structure 均高于 Metric。主表中 GPT-6-Astra 为 81.4 与 58.7。更直接的机制诊断来自 ScanNet 两视图集的 159 个实例、60 个场景，作者保持原 prompt 并分别追加真值米制深度或关系线索。</p><p>表 10 中深度线索让四个模型的 Metric 增加 9.5–18.1 个百分点。关系线索让 Structure 增加 9.9–20.1 个百分点，Metric 却从 −4.5 到 +4.3。关系条件还包含带米制位移的相机运动，因此收益差异应结合整套输入条件解释。</p><p>另一项实验让模型在两个固定渲染布局中选择正确者，有照片时准确率约 95.0–97.5%。让 GPT-5.6-Sol 根据自己的场景 JSON 和渲染再修订，Metric 仍接近原值。识别错误与产生协调的数值修正是两种不同评测。</p><div class="tablewrap" tabindex="0" aria-label="Comparison table"><table><thead><tr><th scope="col">Model</th><th scope="col">Depth ΔMetric</th><th scope="col">Relations ΔMetric</th></tr></thead><tbody><tr><td>GPT-5.6-Sol</td><td>+18.1</td><td>−4.5</td></tr><tr><td>GPT-6-Astra</td><td>+9.5</td><td>−2.1</td></tr><tr><td>Qwen3.8-Max</td><td>+13.9</td><td>−2.9</td></tr><tr><td>Gemini-3.8-Flash</td><td>+16.8</td><td>+4.3</td></tr></tbody></table></div><p class="source-line">Source: <a href="https://arxiv.org/html/2611.02026v1#S4.SS3" target="_blank" rel="noopener">Paper / Official Implementation ↗</a></p></section><section id="section-5"><p class="section-kind">Paper Notes</p><h2>Offline Navigation Protocol</h2><p>导航要求预测地面坐标路径，终点距离目标 footprint 不超过 1 m，并通过避障检查。碰撞协议允许可在垂直行进方向 0.2 m 内修正的小横向偏差，所有越过房间边界的路径被拒绝。它衡量离线开环规划。</p><p>主排行榜按预测终点与参考终点的模长比例整体缩放路径。地图注入实验使用未经缩放的路径，因此两个表的成功率不能直接比较。以 GPT-5.6-Sol 为例，主表为 21.7%，无缩放图像输入为 15.6%。</p><p>在 346 个 episode 的地图注入实验中，同一个 planner 分别接收图像、自预测框地图、真值框地图和真值地图加目标 ID。GPT-6-Astra 成功率为 22.5%、35.5%、97.1%、97.4%。其提升表明准确场景表示在这套规划接口中作用很大，结论的适用条件包括离线输入、框障碍及固定碰撞协议。</p><p class="source-line">Source: <a href="https://arxiv.org/pdf/2611.02026v1#page=32" target="_blank" rel="noopener">Paper / Official Implementation ↗</a></p></section><section id="section-6"><p class="section-kind">Paper Notes</p><h2>Spatial Supervision and Reproducibility</h2><p>作者从同一 Qwen3.6-35B-A3B checkpoint 分别用 10k、20k、50k 空间样本训练。Qwen3.8-Max 生成推理与答案，选择题按正确性筛选，重建样本按重建得分排序筛选，遵循来源数据的训练/评测划分。训练一轮，global batch 512，学习率 7×10⁻⁶，cosine decay。推理统一 temperature 0.6、top-p 0.95。</p><p>50k 模型在十个公开空间基准平均分从 60.98 到 65.13，九项提高。ReconSpatial Overall 从 24.39 到 37.17，导航成功率从 8.1% 到 10.4%，且随数据量变化不单调。因而应分别追踪几何输出和任务行为的收益。</p><p>本次核对了官方 GitHub README，数据和代码仍标为 internal review / coming soon。本笔记的分数与协议依据论文及 PDF 附录，完整 scorer 和训练实现尚不能通过已发布代码独立核验。</p><p class="source-line">Source: <a href="https://arxiv.org/pdf/2611.02026v1#page=33" target="_blank" rel="noopener">Paper / Official Implementation ↗</a></p></section><section id="section-7"><p class="section-kind">Paper Notes</p><h2>Implications for Semantic Geometry Evaluation</h2><p>个人分析。对 LingBot-Map，本文可借鉴的是评估层次。附加语义后先看对应和对象关系，再检查原始深度、尺度、位姿与边界误差。若只有相对布局提高，应把收益描述限定在这一级，并继续定位几何误差。</p><p>可以固定重建输入、缓存预算和训练设置，比较正确区域语义、只在输出端加入语义、写入前融合三种配置。使用后续帧误差与跨视角一致性来检验历史贡献。若加 VLM 修订，也需记录它输出的是关系判断、参数修正还是新增证据，以及几何参数是否实际改变。</p><p>论文的框级测试尚不能覆盖密集重建细节。把它用于下游验证时，需要从重建结果提取对象框，明确分割与框拟合带来的额外误差，并保留原始密集几何评测。</p><p class="source-line">Source: <a href="https://arxiv.org/html/2611.02026v1" target="_blank" rel="noopener">Paper / Official Implementation ↗</a></p></section><section class="qa"><p class="section-kind">Discussion</p><h2>Reading Questions</h2><details><summary>Does Metric use absolute coordinates without alignment?</summary><p>它允许统一尺度拟合，再单独惩罚尺度修正。旋转和平移固定于参考相机，因此应同时阅读原始位置误差与尺度分项。</p></details><details><summary>Why can correct relations coexist with poor geometry?</summary><p>方向和邻接约束只覆盖几何的一部分。许多不同尺度、距离和尺寸配置可保持相同关系，米制深度提供了更直接的数值约束。</p></details><details><summary>Can the navigation numbers be compared across all tables?</summary><p>需要先检查路径是否按参考终点缩放。排行榜和地图注入实验使用不同尺度协议，比较应限定在同一协议中。</p></details></section><section><h2>References</h2><ol class="sources"><li><a href="https://arxiv.org/html/2611.02026v1" target="_blank" rel="noopener">Paper · Version 1 ↗</a></li><li><a href="https://arxiv.org/abs/2611.02026" target="_blank" rel="noopener">Submission History ↗</a></li><li><a href="https://arxiv.org/pdf/2611.02026v1" target="_blank" rel="noopener">Full PDF · Appendix Protocols ↗</a></li><li><a href="https://github.com/Hyperwjf/ReconSpatial" target="_blank" rel="noopener">Official Repository ↗</a></li><li><a href="https://hyperwjf.github.io/ReconSpatial/" target="_blank" rel="noopener">Official Project ↗</a></li></ol><p class="small">First submitted 2026-11-01. Read 2611.02026v1 on 11 November 2026. One original figure is reproduced for scholarly discussion. The arXiv license is perpetual and non-exclusive, not a Creative Commons reuse license. Reported experiments have not been independently reproduced.</p><p class="small">Verified on 2026-11-11. Paper results refer to the linked versions. Repository references were checked on this date.</p></section><section class="related"><h2>Related Notes</h2><div class="reading-path"><a href="note-himem.html"><span>01</span> HiMEM</a><a href="note-reconspatial.html"><span>02</span> ReconSpatial</a></div></section></article></main>  <footer class="wrap site-footer">
+    <p>© <span id="y"></span> Ezekiel Wang · raconiy.github.io</p>
+  </footer>
+
+  <a class="to-top" href="#top" aria-label="Back to top">↑</a>
+  <script src="js/main.js?v=20260920e"></script>
+</body>
+</html>
