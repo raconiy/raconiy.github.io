@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Geometric Encoding for Spatial Reasoning in Vision-Language Models · Ezekiel Wang</title>
+  
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="favicon.svg" />
+  
+  
+  
+  
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css?v=20260920e" />
+  <script>
+    (() => {
+      const saved = localStorage.getItem("theme");
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.setAttribute("data-theme", saved || (prefersDark ? "dark" : "light"));
+    })();
+  </script>
+<link rel="stylesheet" href="notes.css?v=20261012e">
+</head>
+<body class="page-notes"><header class="site-header">
+    <div class="wrap header-row">
+      <a class="brand" href="index.html">Ezekiel Wang</a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="publications.html">Publications</a>
+        <a href="news.html">News</a>
+        <a href="experience.html">Experience</a>
+        <a class="is-active" href="notes.html">Notes</a>
+        <a href="life.html">Life</a>
+        <a href="travel.html">Travel</a>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle theme">
+          <span class="theme-icon theme-icon-sun" aria-hidden="true">☀</span>
+          <span class="theme-icon theme-icon-moon" aria-hidden="true">☾</span>
+        </button>
+        <a class="nav-cta" href="assets/wangxiangbo_cv.pdf?v=20260821g" target="_blank" rel="noopener">CV</a>
+      </nav>
+    </div>
+  </header><main id="top" class="wrap"><div class="note-header"><a class="back" href="notes.html">← Notes</a><p class="meta">Paper Notes / Updated 2026-11-17</p><h1>Geometric Encoding for Spatial Reasoning in Vision-Language Models</h1><p class="english">First submitted 2026-09-28 · Reading version 2609.34148v1</p><p class="lede">Geometric Code 将视频中的对象、深度、相机和房间结构转换为显式 spatial code，再通过 prompt 辅助 VLM。四个开源模型在 frames+code 条件下平均准确率由 53.1 提升到 57.1，绝对距离任务提升最明显。</p></div><aside class="brief" aria-label="At a Glance"><h2>At a Glance</h2><ol><li>几何代码是可检查的外部表示，不是隐式语义 memory。</li><li>frames 与 code 互补，code-only 不能替代视觉上下文。</li><li>适合定义 LingBot-Map 的几何/语义读取接口与对照。</li></ol></aside><details class="reading-toc" open><summary>Contents</summary><nav aria-label="Table of contents"><a href="#section-1">Task and Spatial Code</a><a href="#section-2">Reading the Pipeline</a><a href="#section-3">Experiments and Ablations</a><a href="#section-4">Training and Interpretation</a><a href="#section-5">Transfer to LingBot-Map</a></nav></details><article class="prose"><section id="section-1"><p class="section-kind">Paper Notes</p><h2>Task and Spatial Code</h2><p>VLM 对视频中的对象识别较强，但对距离、尺寸、出现顺序和跨帧身份推理不稳定。论文把这些空间量显式化，输出对象位置、尺寸、数量、两两距离、出现顺序和房间几何。</p><p>输入为单目 RGB 视频和数据集对象词表；SAM-3 给出实例 mask，DA-3 给出深度、位姿和内参，deterministic geometric engine 反投影、合并和清理点。</p><p class="source-line">Source: <a href="https://arxiv.org/html/2609.34148v1" target="_blank" rel="noopener">Paper / Official Implementation ↗</a></p></section><section id="section-2"><p class="section-kind">Paper Notes</p><h2>Reading the Pipeline</h2><figure class="paper-figure"><a href="spatialcode-pipeline.png" target="_blank" rel="noopener"><img src="spatialcode-pipeline.png" alt="Figure 1 · Geometric Code Pipeline and VSI-Bench Gains" loading="lazy"></a><figcaption><strong>Figure 1 · Geometric Code Pipeline and VSI-Bench Gains</strong><br>Antonio Jun et al. · Original figure, unmodified · CC BY 4.0 · <a href="https://arxiv.org/html/2609.34148v1#S1.F1" target="_blank" rel="noopener">Paper & Caption ↗</a></figcaption></figure><p>图 1 的流程是 perception → geometric engine → prompt augmentation。对象检测在每帧独立进行，系统通过几何和外观规则跨帧合并；尺寸从最佳观测估计，室内轴向使用重力和 PCA。</p><p>最终 VLM 可以看到 frames only、code only 或 frames+code。这样能把几何信息是否被使用与 VLM 自身的视觉识别分开。</p><p class="source-line">Source: <a href="https://arxiv.org/html/2609.34148v1" target="_blank" rel="noopener">Paper / Official Implementation ↗</a></p></section><section id="section-3"><p class="section-kind">Paper Notes</p><h2>Experiments and Ablations</h2><p>在 VSI-Bench 上评估 Qwen3.5 和 InternVL3.5 的 2B/4B 版本。四模型平均 frames-only 为 53.1，code-only 为 53.3，frames+code 为 57.1；Qwen3.5-2B 从 45.1 提升到 54.3，InternVL3.5-4B 从 56.9 提升到 61.0。</p><p>绝对距离任务的 frames-only 为 34.2–43.2，code-only 为 65.4–67.3。相反，object count、size 和 appearance order 仍需要原始视觉，code-only 可能下降。</p><div class="tablewrap" tabindex="0" aria-label="Comparison table"><table><thead><tr><th scope="col">Input</th><th scope="col">Mean Accuracy</th><th scope="col">Role</th></tr></thead><tbody><tr><td>Frames only</td><td>53.1</td><td>Raw visual evidence</td></tr><tr><td>Code only</td><td>53.3</td><td>Explicit geometry</td></tr><tr><td>Frames + Code</td><td>57.1</td><td>Complementary evidence</td></tr></tbody></table></div><p class="source-line">Source: <a href="https://arxiv.org/html/2609.34148v1" target="_blank" rel="noopener">Paper / Official Implementation ↗</a></p></section><section id="section-4"><p class="section-kind">Paper Notes</p><h2>Training and Interpretation</h2><p>方法没有训练或 fine-tuning；提升来自预训练感知模型和确定性几何计算。对于直接可计算的 metric 任务，VLM 更像读取空间代码，因此不能把全部提升解释成更强的语言推理。</p><p>这篇工作证明的是显式几何接口有用，不是语义融合改善三维重建。错误的深度、相机或跨帧合并会直接污染代码。</p><p class="source-line">Source: <a href="https://arxiv.org/html/2609.34148v1" target="_blank" rel="noopener">Paper / Official Implementation ↗</a></p></section><section id="section-5"><p class="section-kind">Paper Notes</p><h2>Transfer to LingBot-Map</h2><p>可以把当前帧和历史 token 聚合成 region/object code，用于解释 memory 读写：当前查询需要哪个区域、哪个历史观测、哪个几何量。</p><p>但是必须对比 raw visual、geometry-only、semantic-only 和 geometry+semantic，保持缓存容量、帧数与解码预算一致。若只改善下游空间问答而未来帧深度不变，就不应称作重建收益。</p><p class="source-line">Source: <a href="https://arxiv.org/html/2609.34148v1" target="_blank" rel="noopener">Paper / Official Implementation ↗</a></p></section><section class="qa"><p class="section-kind">Discussion</p><h2>Reading Questions</h2><details><summary>Is code-only enough?</summary><p>不够。它适合度量问题，但计数、外观和复杂多选仍需要视频。</p></details><details><summary>Is this semantic memory?</summary><p>不是。它是显式几何上下文，没有长期可学习写入机制。</p></details><details><summary>How does it guide our design?</summary><p>提供可检查的 memory read 接口，并强调输出收益与重建收益要分开。</p></details></section><section><h2>References</h2><ol class="sources"><li><a href="https://arxiv.org/html/2609.34148v1" target="_blank" rel="noopener">Paper · Version 1 ↗</a></li><li><a href="https://arxiv.org/abs/2609.34148" target="_blank" rel="noopener">Submission History ↗</a></li><li><a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">Figure License · CC BY 4.0 ↗</a></li><li><a href="https://github.com/antoniojun/Geometric-Code" target="_blank" rel="noopener">Project/Code ↗</a></li></ol><p class="small">First submitted 2026-09-28. Read 2609.34148v1 on 17 November 2026. One original figure is reproduced under CC BY 4.0. Experimental results are reported by the authors and have not been independently reproduced.</p><p class="small">Verified on 2026-11-17. Paper results refer to the linked versions. Repository references were checked on this date.</p></section><section class="related"><h2>Related Notes</h2><div class="reading-path"><a href="note-spatialcode.html"><span>01</span> Geometric Code</a><a href="note-vantage17.html"><span>02</span> Vantage</a></div></section></article></main>  <footer class="wrap site-footer">
+    <p>© <span id="y"></span> Ezekiel Wang · raconiy.github.io</p>
+  </footer>
+
+  <a class="to-top" href="#top" aria-label="Back to top">↑</a>
+  <script src="js/main.js?v=20260920e"></script>
+</body>
+</html>
