@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Video World Models Need Predictable Latents · Ezekiel Wang</title>
+  
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="favicon.svg" />
+  
+  
+  
+  
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css?v=20260920e" />
+  <script>
+    (() => {
+      const saved = localStorage.getItem("theme");
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.setAttribute("data-theme", saved || (prefersDark ? "dark" : "light"));
+    })();
+  </script>
+<link rel="stylesheet" href="notes.css?v=20261012e">
+</head>
+<body class="page-notes"><header class="site-header">
+    <div class="wrap header-row">
+      <a class="brand" href="index.html">Ezekiel Wang</a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="publications.html">Publications</a>
+        <a href="news.html">News</a>
+        <a href="experience.html">Experience</a>
+        <a class="is-active" href="notes.html">Notes</a>
+        <a href="life.html">Life</a>
+        <a href="travel.html">Travel</a>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle theme">
+          <span class="theme-icon theme-icon-sun" aria-hidden="true">☀</span>
+          <span class="theme-icon theme-icon-moon" aria-hidden="true">☾</span>
+        </button>
+        <a class="nav-cta" href="assets/wangxiangbo_cv.pdf?v=20260821g" target="_blank" rel="noopener">CV</a>
+      </nav>
+    </div>
+  </header><main id="top" class="wrap"><div class="note-header"><a class="back" href="notes.html">← Notes</a><p class="meta">Paper Notes / Updated 2026-11-22</p><h1>Video World Models Need Predictable Latents</h1><p class="english">First submitted 2026-10-26 · Reading version 2610.34663v1</p><p class="lede">这篇工作把视频世界模型的瓶颈定位到 latent 的可预测性：像素重建很好的编码空间未必适合动作条件下的未来预测。作者用时间目标微调 autoencoder，并让 decoder 读取过去帧，从而在固定训练预算下改善短步采样和长时 rollout。</p></div><aside class="brief" aria-label="At a Glance"><h2>At a Glance</h2><ol><li>目标不是让 latent 只保留静态外观，而是在可重建信息与未来可预测性之间找平衡。</li><li>时间目标在 encoder 训练阶段写入 latent；past-conditioned decoder 负责把不必预测的细节留给上下文。</li><li>主要证据来自 Bridge 机器人视频和 WorldGym policy evaluation；这不是通用的 3D 或大规模视频生成结论。</li></ol></aside><details class="reading-toc" open><summary>Contents</summary><nav aria-label="Table of contents"><a href="#section-1">Question and Setup</a><a href="#section-2">Reading Figure 1: Two Changes Before the World Model</a><a href="#section-3">Training Objectives and Gradient Path</a><a href="#section-4">Evidence: Bridge and WorldGym</a><a href="#section-5">What the Ablations Actually Support</a><a href="#section-6">Limits and Relevance to Video Generation</a></nav></details><article class="prose"><section id="section-1"><p class="section-kind">Paper Notes</p><h2>Question and Setup</h2><p>作者关注一个常被隐藏的设计选择：视频世界模型先把帧压到 z_t，再学习 p(z_{t+1}|z_t,a_t)。如果 encoder 主要为了逐帧重建，z_t 会携带大量高频纹理和不可预测噪声，world model 需要预测这些没有动作依据的内容。结果可能是单帧看起来清楚，但 rollout 很快偏离。</p><p>输入是连续机器人观测 x_t 和动作 a_t；训练先学习 E、D，再冻结 E 训练 action-conditioned causal diffusion-forcing transformer。输出是未来 latent 序列，经 decoder 还原视频帧。作者把问题限定在 latent/interface 设计，而非增加一个更大的生成器。</p><p class="source-line">Source: <a href="https://arxiv.org/html/2610.34663v1" target="_blank" rel="noopener">Paper / Official Implementation ↗</a></p></section><section id="section-2"><p class="section-kind">Paper Notes</p><h2>Reading Figure 1: Two Changes Before the World Model</h2><figure class="paper-figure"><a href="predictable-latents-figure.png" target="_blank" rel="noopener"><img src="predictable-latents-figure.png" alt="Figure 1 · Method overview" loading="lazy"></a><figcaption><strong>Figure 1 · Method overview</strong><br>Scardecchia and Yang (2026), original figure; CC BY 4.0 · <a href="https://arxiv.org/html/2610.34663v1" target="_blank" rel="noopener">Paper & Caption ↗</a></figcaption></figure><p>图 1 的第一步用相邻帧对 (x_t,x_{t+1}) 微调 autoencoder。除了 reconstruction，还对 z_t、z_{t+1} 和动作施加 temporal objective。第二步冻结 encoder，只用这些 latent 训练动作条件 world model。第三步从一帧上下文 x_1 和动作序列 a_{1:T} 生成 latent，再由 decoder 逐帧解码。</p><p>关键的 decoder 改动是 D(z_{t+1}, x_t)，而不是只用 D(z_{t+1})。推理时作者使用初始上下文 x_1 作为 past frame 条件，因此生成 latent 不必重复编码所有静态细节；论文明确把 temporal objective 与 past-conditioned decoder 视为相互独立、可组合的两项改动。</p><p class="source-line">Source: <a href="https://arxiv.org/html/2610.34663v1" target="_blank" rel="noopener">Paper / Official Implementation ↗</a></p></section><section id="section-3"><p class="section-kind">Paper Notes</p><h2>Training Objectives and Gradient Path</h2><p>L_rec 是像素绝对误差与 perceptual loss 的组合；主实验把 KL 设为 0。L_temp 包括 latent future prediction、pixel future prediction、InfoNCE contrastive prediction 和 inverse dynamics。最有效的两条是 latent prediction 与 inverse dynamics：前者预测下一 latent，后者从 (z_t,z_{t+1}) 预测 a_t。</p><p>训练时先更新 E、D，使 temporal loss 直接改变 z 的几何；然后冻结 E、D 更新 world model。world-model 的误差不会反向更新已经冻结的 encoder，所以作者分别报告 equal-reconstruction 与 equal-budget 两类比较。past-conditioned decoder 让 reconstruction 梯度可以更多地依赖 x_t，减少对 z_{t+1} 记忆高频细节的压力。</p><pre class="equation">L_AE=(1-λ)L_rec+λL_temp</pre><p class="source-line">Source: <a href="https://arxiv.org/html/2610.34663v1" target="_blank" rel="noopener">Paper / Official Implementation ↗</a></p></section><section id="section-4"><p class="section-kind">Paper Notes</p><h2>Evidence: Bridge and WorldGym</h2><figure class="paper-figure"><a href="predictable-latents-benefits.png" target="_blank" rel="noopener"><img src="predictable-latents-benefits.png" alt="Figure 6 · World-model improvement at equal training budget" loading="lazy"></a><figcaption><strong>Figure 6 · World-model improvement at equal training budget</strong><br>Scardecchia and Yang (2026), original figure rendered from author source; CC BY 4.0 · <a href="https://arxiv.org/html/2610.34663v1" target="_blank" rel="noopener">Paper & Caption ↗</a></figcaption></figure><p>主要实验在 Bridge V2 机器人视频上微调 FLUX.1 autoencoder；ID 是 Bridge 留出的片段，OOD 是 AutoEval 的不同机器人设置。equal-budget 使用 autoencoder 80,000 updates、world model 100,000 updates，均值通常来自 3 个训练 seed。像素 MSE 在表中乘以 10^3，LPIPS 越低越好。</p><p>在 past-conditioned decoder 下，latent prediction 的 ID/OOD/2-step/long LPIPS 为 0.169/0.257/0.177/0.331；普通 reconstruction decoder 的对应值为 0.194/0.302/0.232/0.394。inverse dynamics 的像素 MSE 更低（ID 13.07、OOD 27.92），但 latent prediction 的 latent MSE 最低（0.046）。这些是作者设置下的结果，不等价于更快的端到端推理。</p><p>2-step DDIM 相比 10-step 通常带来更强的 LPIPS/SSIM 优势；policy evaluation 在 17 个 Bridge 任务上比较 OpenVLA、Octo、RT1X。2-step 时 latent prediction 的模拟—真实成功率 Pearson 相关为 0.67，普通 reconstruction baseline 为 0.21，但该评估使用一个训练 seed 和 bootstrap，不是机器人闭环部署。</p><p class="source-line">Source: <a href="https://arxiv.org/html/2610.34663v1" target="_blank" rel="noopener">Paper / Official Implementation ↗</a></p></section><section id="section-5"><p class="section-kind">Paper Notes</p><h2>What the Ablations Actually Support</h2><p>frontier 实验显示增大 temporal weight 会降低 unpredictable latent variance，但 λ=0.7 时 reconstruction 约恶化 54%；past conditioning 在各个权重下把 reconstruction error 再降约 17–25%。因此结论不是“时间目标越强越好”，而是 decoder context 可以承担部分不可预测细节，使 latent 有空间向 dynamics 倾斜。</p><p>作者还报告 DINOv2 encoder 的补充实验：小 λ=0.1 可以改善每个 frame metric，但更大的权重会损害 FID/FVD。这提示语义或通用视觉特征并非自动等于可预测 latent；需要看它是否帮助未来状态而不是只增加描述性信息。</p><p class="source-line">Source: <a href="https://arxiv.org/html/2610.34663v1" target="_blank" rel="noopener">Paper / Official Implementation ↗</a></p></section><section id="section-6"><p class="section-kind">Paper Notes</p><h2>Limits and Relevance to Video Generation</h2><p>数据是机器人动作条件视频，latent 是 2D spatial autoencoder，不是因果 3D video VAE。实验也没有证明在互联网视频、开放式文本到视频或更长时间尺度上同样成立；更大 world model 的长 horizon 增益会缩小。temporal objective 过强会降低 distribution metrics，且 equal-reconstruction 对比需要更多 autoencoder updates，不能解读为无额外成本。</p><p>对 VideoGen 的可迁移启发是把“可预测 latent”当作可测接口：分别报告重建、latent prediction、短步采样和长时一致性，而不是只看单帧 FID。past-conditioned decoding 是一种信息分工机制：把静态/不可预测内容交给 context，把动作相关变化留给 latent dynamics。</p><p class="source-line">Source: <a href="https://arxiv.org/html/2610.34663v1" target="_blank" rel="noopener">Paper / Official Implementation ↗</a></p></section><section class="qa"><p class="section-kind">Discussion</p><h2>Reading Questions</h2><details><summary>Why can a better reconstruction latent hurt a world model?</summary><p>因为重建目标奖励保存所有视觉细节，其中包括动作无法决定的纹理或噪声；未来预测必须在这些维度上猜测。</p></details><details><summary>Is the past-conditioned decoder a free improvement?</summary><p>不是。它改变了 decoder 的条件信息和训练接口；论文用同预算和不同 decoder 的消融分开测量，而且仍需上下文帧。</p></details><details><summary>What would be the next VideoGen test?</summary><p>在同一视频数据和计算预算下比较 reconstruction-only、temporal objective、past conditioning，并单独报告 latent 可预测性、短/长 rollout 与生成分布指标。</p></details><details><summary>Does the paper prove semantic features are useful?</summary><p>不证明。DINOv2 只是补充对照；主张是 temporal structure 与 context 分工改善 dynamics，不能把它扩展成语义增强结论。</p></details></section><section><h2>References</h2><ol class="sources"><li><a href="https://arxiv.org/html/2610.34663v1" target="_blank" rel="noopener">Paper / HTML ↗</a></li><li><a href="https://github.com/mattia-scardecchia/predictable-latents" target="_blank" rel="noopener">Authors’ code ↗</a></li></ol><p class="small">Original figures reproduced from the paper and author source under CC BY 4.0; captions identify the source. No results were redrawn.</p><p class="small">Verified on 2026-11-22. Paper results refer to the linked versions. Repository references were checked on this date.</p></section><section class="related"><h2>Related Notes</h2><div class="reading-path"><a href="note-predictable-latents.html"><span>01</span> Predictable Latents</a><a href="note-edmd.html"><span>02</span> eDMD</a></div></section></article></main>  <footer class="wrap site-footer">
+    <p>© <span id="y"></span> Ezekiel Wang · raconiy.github.io</p>
+  </footer>
+
+  <a class="to-top" href="#top" aria-label="Back to top">↑</a>
+  <script src="js/main.js?v=20260920e"></script>
+</body>
+</html>
