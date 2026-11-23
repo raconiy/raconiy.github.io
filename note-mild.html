@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>From Static to Dynamic: On-Policy Distillation from Image to Video Diffusion Models · Ezekiel Wang</title>
+  
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="favicon.svg" />
+  
+  
+  
+  
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css?v=20260920e" />
+  <script>
+    (() => {
+      const saved = localStorage.getItem("theme");
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.setAttribute("data-theme", saved || (prefersDark ? "dark" : "light"));
+    })();
+  </script>
+<link rel="stylesheet" href="notes.css?v=20261012e">
+</head>
+<body class="page-notes"><header class="site-header">
+    <div class="wrap header-row">
+      <a class="brand" href="index.html">Ezekiel Wang</a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="publications.html">Publications</a>
+        <a href="news.html">News</a>
+        <a href="experience.html">Experience</a>
+        <a class="is-active" href="notes.html">Notes</a>
+        <a href="life.html">Life</a>
+        <a href="travel.html">Travel</a>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle theme">
+          <span class="theme-icon theme-icon-sun" aria-hidden="true">☀</span>
+          <span class="theme-icon theme-icon-moon" aria-hidden="true">☾</span>
+        </button>
+        <a class="nav-cta" href="assets/wangxiangbo_cv.pdf?v=20260821g" target="_blank" rel="noopener">CV</a>
+      </nav>
+    </div>
+  </header><main id="top" class="wrap"><div class="note-header"><a class="back" href="notes.html">← Notes</a><p class="meta">Paper Notes / Updated 2026-11-23</p><h1>From Static to Dynamic: On-Policy Distillation from Image to Video Diffusion Models</h1><p class="english">First submitted 2026-09-28 · Reading version 2609.34371v1</p><p class="lede">MILD 将图像专家的审美、构图与文字能力迁移到视频 student，同时用 video anchor 和 optical-flow reward 限制运动被破坏。它通过 connector 把异构 image/video latent 与 velocity 对齐，再做 on-policy 联合优化。</p></div><aside class="brief" aria-label="At a Glance"><h2>At a Glance</h2><ol><li>图像 teacher 便宜且能力更新快，但没有跨帧运动监督；MILD 用 anchor 保留原视频 dynamics。</li><li>connector 先对齐 state/velocity，再把 image guidance 的 correction 拉回 video latent 空间。</li><li>三种视频 backbone 上的 VBench-2.0 与 EvalCrafter 结果优于两类 V2V OPD baseline，但仍是蒸馏实验而非通用视频世界模型。</li></ol></aside><details class="reading-toc" open><summary>Contents</summary><nav aria-label="Table of contents"><a href="#section-1">Motivation and Inputs</a><a href="#section-2">Reading Figure 3: Connector, Anchor, Motion Feedback</a><a href="#section-3">Latent and Velocity Alignment</a><a href="#section-4">Training Protocol and Results</a><a href="#section-5">What Transfers and What Does Not</a><a href="#section-6">Limits and a Clean VideoGen Follow-up</a></nav></details><article class="prose"><section id="section-1"><p class="section-kind">Paper Notes</p><h2>Motivation and Inputs</h2><p>视频专家通常比图像专家昂贵，且图像模型更容易获得专门的审美、构图和 OCR 能力；直接把图像 denoising signal 用到视频 latent 又会破坏跨帧 motion。MILD 的问题是如何只迁移空间能力，同时保留 student 原有 dynamics。</p><p>每次训练采样 prompt，student 按 on-policy trajectory 生成 81 帧、480×832 视频。冻结视频 anchor 是 student 的副本；image experts 是 SD3.5-Medium 的三个专门模型，video student 采用 Wan2.1-1.3B、Wan2.2-5B 和 LTX-Video-2B。</p><p class="source-line">Source: <a href="https://arxiv.org/html/2609.34371v1" target="_blank" rel="noopener">Paper / Official Implementation ↗</a></p></section><section id="section-2"><p class="section-kind">Paper Notes</p><h2>Reading Figure 3: Connector, Anchor, Motion Feedback</h2><figure class="paper-figure"><a href="mild-mild-method.png" target="_blank" rel="noopener"><img src="mild-mild-method.png" alt="Figure 3 · MILD training framework" loading="lazy"></a><figcaption><strong>Figure 3 · MILD training framework</strong><br>Jiang et al. (2026), original figure rendered from author source; arXiv license · <a href="https://arxiv.org/html/2609.34371v1" target="_blank" rel="noopener">Paper & Caption ↗</a></figcaption></figure><p>图 3 将流程分成三条信息路径。connector 把 image expert 的 state/velocity guidance 映射到 video student 的 latent；video anchor 给出不偏离原 dynamics 的参考；optical-flow motion discriminator 评价 motion correction。三者融合成 detached distillation target，connector 另有 alignment objective。</p><p>重要的是 image guidance 不直接替换 video prediction。论文通过 correction bound 把它限制在 anchor 附近，再用 motion reward 调整时序变化；因此方法的功能分工是“空间能力迁移 + 动态保真”，不是把图像模型当作视频模型。</p><p class="source-line">Source: <a href="https://arxiv.org/html/2609.34371v1" target="_blank" rel="noopener">Paper / Official Implementation ↗</a></p></section><section id="section-3"><p class="section-kind">Paper Notes</p><h2>Latent and Velocity Alignment</h2><p>由于 image/video latent 空间和分辨率不同，MILD 学习 connector 将 image expert 的状态与 velocity 映射到 video student 的接口。alignment 阶段先让 connector 对齐这些量；联合训练阶段再用 on-policy OPD loss 优化 student 与 connector。</p><p>image correction 被锚定在 pretrained student prediction 附近，避免 image expert 对 temporal dynamics 进行无约束改写。optical-flow discriminator 从生成视频与 motion 数据中学习一个额外 reward；其目标是提升 motion quality，而不是直接预测真实物理状态。</p><pre class="equation">v_img&#x27; = W_v v_img + b_v,   z_img&#x27; = W_z z_img + b_z</pre><p class="source-line">Source: <a href="https://arxiv.org/html/2609.34371v1" target="_blank" rel="noopener">Paper / Official Implementation ↗</a></p></section><section id="section-4"><p class="section-kind">Paper Notes</p><h2>Training Protocol and Results</h2><figure class="paper-figure"><a href="mild-mild-method.png" target="_blank" rel="noopener"><img src="mild-mild-method.png" alt="Figure 5 · GPU memory comparison and method components" loading="lazy"></a><figcaption><strong>Figure 5 · GPU memory comparison across student backbones</strong><br>Jiang et al. (2026), original figure rendered from author source; arXiv license · <a href="https://arxiv.org/html/2609.34371v1" target="_blank" rel="noopener">Paper & Caption ↗</a></figcaption></figure><p>训练使用 10,000 个 prompt：5,000 来自 OpenVid-1M，5,000 来自 LVD-2M；每个 prompt 生成 81 帧。connector alignment 50 iterations，joint optimization 200 iterations。image expert 的 score 权重在普通 prompt 为 (0.5,0.5,0)，文字 prompt 为 (0.4,0.4,0.2)。</p><p>VBench-2.0 / EvalCrafter 的 aggregate final sum：Wan2.1-1.3B base 238.87，larger-video-teacher OPD 239.75，aesthetic-SFT-video-teacher OPD 241.70，MILD 243.10；Wan2.2-5B 为 233.04、236.74、236.86、240.10；LTX-Video-2B 为 220.81、223.80、224.85、224.80（论文表格需按完整表读取，不能只看 aggregate）。MILD 相对 larger teacher 的 per-GPU peak memory 降低 39.32%、64.07%、19.53%。</p><p class="source-line">Source: <a href="https://arxiv.org/html/2609.34371v1" target="_blank" rel="noopener">Paper / Official Implementation ↗</a></p></section><section id="section-5"><p class="section-kind">Paper Notes</p><h2>What Transfers and What Does Not</h2><p>空间能力上，作者报告 image experts 在 GenEval、OCR、Aesthetic 上通常最好，MILD 将部分能力迁移到 video student；这与“图像模型更擅长静态细节”一致。另一方面，VBench 的 motion、temporal consistency 仍受 video anchor 和 motion refinement 共同约束。</p><p>这不是免费提升：仍需要 image expert 查询、connector 训练和 motion discriminator；只是在与大型 video teacher 比较时减少了显存。对文本到视频而言，方法提供了一个清楚的迁移接口；对动作条件 world model 或 3D 视频，还需要重新定义 anchor 与 motion reward。</p><p class="source-line">Source: <a href="https://arxiv.org/html/2609.34371v1" target="_blank" rel="noopener">Paper / Official Implementation ↗</a></p></section><section id="section-6"><p class="section-kind">Paper Notes</p><h2>Limits and a Clean VideoGen Follow-up</h2><p>论文的实验规模与训练步数较短，主要验证 on-policy distillation 的机制；它没有证明长期交互、世界状态记忆或物理可解释性。aggregate 分数也不能替代逐项 motion、text alignment 和 temporal consistency 的分析。</p><p>最干净的后续对照是固定 student、prompt、分辨率和训练预算，只移除 connector alignment、video anchor 或 optical-flow reward，并分别报告空间指标与运动指标。这样才能判断提升来自 image guidance，还是来自额外的运动正则。</p><p class="source-line">Source: <a href="https://arxiv.org/html/2609.34371v1" target="_blank" rel="noopener">Paper / Official Implementation ↗</a></p></section><section class="qa"><p class="section-kind">Discussion</p><h2>Reading Questions</h2><details><summary>Why is the video anchor needed?</summary><p>图像专家没有跨帧运动知识；anchor 把 image correction 限制在原视频 student 的 dynamics 附近。</p></details><details><summary>What is the role of the connector?</summary><p>它把异构 image/video latent 与 velocity 映射到同一训练接口，使 image guidance 能作用于 video state。</p></details><details><summary>Does lower memory prove equal quality?</summary><p>不证明。论文在三种 student 上同时报告质量与显存，但显存优势依赖 teacher 配置和 per-GPU 统计口径。</p></details><details><summary>Can this be called a world-model method?</summary><p>更准确地说是 video diffusion distillation；论文没有交互式状态预测或长期环境评测。</p></details></section><section><h2>References</h2><ol class="sources"><li><a href="https://arxiv.org/html/2609.34371v1" target="_blank" rel="noopener">Paper / HTML ↗</a></li><li><a href="https://arxiv.org/abs/2609.34371" target="_blank" rel="noopener">arXiv abstract ↗</a></li></ol><p class="small">Original figure rendered from the authors&#x27; source archive and attributed to the paper. MILD is described as a video distillation method, not a world-model result.</p><p class="small">Verified on 2026-11-23. Paper results refer to the linked versions. Repository references were checked on this date.</p></section><section class="related"><h2>Related Notes</h2><div class="reading-path"><a href="note-radian.html"><span>01</span> Radian</a><a href="note-mild.html"><span>02</span> MILD</a></div></section></article></main>  <footer class="wrap site-footer">
+    <p>© <span id="y"></span> Ezekiel Wang · raconiy.github.io</p>
+  </footer>
+
+  <a class="to-top" href="#top" aria-label="Back to top">↑</a>
+  <script src="js/main.js?v=20260920e"></script>
+</body>
+</html>

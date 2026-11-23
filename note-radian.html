@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Enhancing Autoregressive Video Generation via Representation Adversarial Distillation · Ezekiel Wang</title>
+  
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="favicon.svg" />
+  
+  
+  
+  
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css?v=20260920e" />
+  <script>
+    (() => {
+      const saved = localStorage.getItem("theme");
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.setAttribute("data-theme", saved || (prefersDark ? "dark" : "light"));
+    })();
+  </script>
+<link rel="stylesheet" href="notes.css?v=20261012e">
+</head>
+<body class="page-notes"><header class="site-header">
+    <div class="wrap header-row">
+      <a class="brand" href="index.html">Ezekiel Wang</a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="publications.html">Publications</a>
+        <a href="news.html">News</a>
+        <a href="experience.html">Experience</a>
+        <a class="is-active" href="notes.html">Notes</a>
+        <a href="life.html">Life</a>
+        <a href="travel.html">Travel</a>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle theme">
+          <span class="theme-icon theme-icon-sun" aria-hidden="true">☀</span>
+          <span class="theme-icon theme-icon-moon" aria-hidden="true">☾</span>
+        </button>
+        <a class="nav-cta" href="assets/wangxiangbo_cv.pdf?v=20260821g" target="_blank" rel="noopener">CV</a>
+      </nav>
+    </div>
+  </header><main id="top" class="wrap"><div class="note-header"><a class="back" href="notes.html">← Notes</a><p class="meta">Paper Notes / Updated 2026-11-23</p><h1>Enhancing Autoregressive Video Generation via Representation Adversarial Distillation</h1><p class="english">First submitted 2026-09-30 · Reading version 2609.40037v1</p><p class="lede">Radian 针对自回归视频生成中的误差累积，把对抗蒸馏从 diffusion latent 扩展到冻结视觉表征空间。它在训练时稀疏解码 rollout 帧，用多层 DINOv2 等表征训练轻量 discriminator；部署时这些辅助网络被移除。</p></div><aside class="brief" aria-label="At a Glance"><h2>At a Glance</h2><ol><li>DMD 提供 teacher 分布锚点，representation discriminator 补充 decoded video 的感知与语义梯度。</li><li>作者比较 image VFM、video VFM 和 DiT-GAN，表明表征空间选择会改变梯度方向。</li><li>主要证据来自 Wan2.1-1.3B 的四步、一步和一分钟级自回归生成，不等同于所有 VideoGen 架构都受益。</li></ol></aside><details class="reading-toc" open><summary>Contents</summary><nav aria-label="Table of contents"><a href="#section-1">Problem and Interface</a><a href="#section-2">Reading Figure 1: Complementary Supervision</a><a href="#section-3">Representation-Space Adversarial Loss</a><a href="#section-4">Video Results</a><a href="#section-5">What the Representation Ablations Say</a><a href="#section-6">Limits and Transfer</a></nav></details><article class="prose"><section id="section-1"><p class="section-kind">Paper Notes</p><h2>Problem and Interface</h2><p>自回归视频模型把早期生成结果作为后续 context；早期细节错误会在 chunk 或 frame rollout 中重复使用，表现为结构漂移、细节退化和运动不稳定。作者认为仅在 diffusion latent 内做 DMD，缺少对最终解码帧感知质量的直接约束。</p><p>输入是 prompt、噪声和历史视频 latent；student 以四步 chunk-wise 或一步 frame-wise 方式生成。训练时额外解码少量 rollout 帧，送入冻结视觉 foundation model，并由 discriminator 判断 real/generated；推理时只保留原 generator。</p><p class="source-line">Source: <a href="https://arxiv.org/html/2609.40037v1" target="_blank" rel="noopener">Paper / Official Implementation ↗</a></p></section><section id="section-2"><p class="section-kind">Paper Notes</p><h2>Reading Figure 1: Complementary Supervision</h2><figure class="paper-figure"><a href="radian-pipeline.png" target="_blank" rel="noopener"><img src="radian-pipeline.png" alt="Figure 1 · Complementary representation-space supervision" loading="lazy"></a><figcaption><strong>Figure 1 · Complementary representation-space supervision</strong><br>Lin et al. (2026), original figure rendered from author source; arXiv license · <a href="https://arxiv.org/html/2609.40037v1" target="_blank" rel="noopener">Paper & Caption ↗</a></figcaption></figure><p>图 1 的核心是两条梯度：DMD 对 student 与 teacher 的 diffusion 分布做 on-policy 对齐；Radian 从真实视频帧和 student decoded frames 的视觉表征差异中产生 adversarial gradient。两者作用在不同接口，前者约束采样分布，后者约束最终可见的内容。</p><p>discriminator 不是部署组件，也不改变推理时的 denoising steps。作者使用一个冻结视觉 encoder 和轻量 head，避免把整个 VFM 变成 generator 的一部分；因此收益必须在训练成本与稀疏解码开销中理解。</p><p class="source-line">Source: <a href="https://arxiv.org/html/2609.40037v1" target="_blank" rel="noopener">Paper / Official Implementation ↗</a></p></section><section id="section-3"><p class="section-kind">Paper Notes</p><h2>Representation-Space Adversarial Loss</h2><p>φ 表示冻结视觉表征，L_adv 是 discriminator 在其特征上的 real/fake 对抗目标，L_DMD 保留原来的 distribution-matching distillation。多层特征 head 同时看 patch-level 输入与 backbone feature；作者比较 DINOv2、DINOv3、SigLIP2、V-JEPA 2.1、VideoMAE 以及混合 image+video 表征。</p><p>训练只对稀疏采样的 rollout 帧计算辅助损失，避免每一步都解码整段视频。它不是把 VFM 特征拼进 generator，而是把 frozen representation 作为训练期的评价空间；所以“语义改善”在这里是额外梯度的结果，不是推理阶段显式语义状态。</p><pre class="equation">L = L_DMD + λ_adv L_adv(φ(x_real), φ(x_fake))</pre><p class="source-line">Source: <a href="https://arxiv.org/html/2609.40037v1" target="_blank" rel="noopener">Paper / Official Implementation ↗</a></p></section><section id="section-4"><p class="section-kind">Paper Notes</p><h2>Video Results</h2><figure class="paper-figure"><a href="radian-pipeline.png" target="_blank" rel="noopener"><img src="radian-pipeline.png" alt="Figure 2 · Three-stage training pipeline" loading="lazy"></a><figcaption><strong>Figure 2 · Three-stage training pipeline</strong><br>Lin et al. (2026), original figure rendered from author source; arXiv license · <a href="https://arxiv.org/html/2609.40037v1" target="_blank" rel="noopener">Paper & Caption ↗</a></figcaption></figure><p>主模型是 Wan2.1-1.3B，比较四步 chunk-wise、一步 frame-wise 和 long-horizon autoregressive generation。四步设置下 Radian 的 VBench Total 为 0.8444、Quality 0.8541、Semantic 0.8054，VideoAlign Total 0.8033；Self Forcing 的 VBench Total 为 0.8393，Causal Forcing 为 0.8400。</p><p>在 long-video 设定中，论文报告 Radian 的 VBench-Long 从 Rolling Forcing 的 0.7805 提升到 0.8041；这些数字依赖特定 Wan2.1-1.3B、采样预算和评测协议。图 2 的 pipeline 对应三阶段训练，图 4/5 是生成样例与长视频样例，不能从视觉样例单独推出物理正确性。</p><p class="source-line">Source: <a href="https://arxiv.org/html/2609.40037v1" target="_blank" rel="noopener">Paper / Official Implementation ↗</a></p></section><section id="section-5"><p class="section-kind">Paper Notes</p><h2>What the Representation Ablations Say</h2><p>DINOv2-S 是作者默认选择：表 2 的 VBench Total 为 0.8444、VideoAlign Total 为 0.8033。DINOv3 为 0.8401/0.8006，SigLIP2 为 0.8391/0.6226，V-JEPA 2.1 为 0.8360/0.5892，VideoMAE 为 0.8372/0.5888；混合 DINOv2+VideoMAE 为 0.8434/0.4485。不同表征的梯度并不等价，video representation 也不自动更好。</p><p>DINOv2 层数从 1 增至 4 时 VBench Total 从 0.8182 到 0.8444，增至 8 层反而为 0.8381。这个消融支持“表征空间是方法的一部分”，但不能证明 DINOv2 的语义本身是唯一原因，因为感知、结构和训练稳定性都可能共同影响 discriminator。</p><p class="source-line">Source: <a href="https://arxiv.org/html/2609.40037v1" target="_blank" rel="noopener">Paper / Official Implementation ↗</a></p></section><section id="section-6"><p class="section-kind">Paper Notes</p><h2>Limits and Transfer</h2><p>Radian 的辅助网络训练成本、解码帧选择和 discriminator 配置都很关键；论文没有证明在 text-to-video、3D-aware video 或不同 backbone 上保持同样增益。VBench 与 VideoAlign 也主要是 benchmark 指标，不是长期世界状态的一致性证明。</p><p>对 VideoGen 的直接启发是把 decoded-frame quality 作为训练期反馈，而不是只在 latent 上蒸馏。若迁移到语义几何或 LingBot-Map 类 memory，必须单独证明语义表征带来的梯度改善了几何或时序，而不能把 frozen VFM loss 本身当作结论。</p><p class="source-line">Source: <a href="https://arxiv.org/html/2609.40037v1" target="_blank" rel="noopener">Paper / Official Implementation ↗</a></p></section><section class="qa"><p class="section-kind">Discussion</p><h2>Reading Questions</h2><details><summary>What does Radian add to DMD?</summary><p>它增加了 decoded-frame representation-space 的对抗监督，使 student 不只匹配 diffusion latent，还被约束到真实视频视觉表征附近。</p></details><details><summary>Is this an inference-time VFM module?</summary><p>不是。VFM、discriminator 和辅助 head 在训练后丢弃，推理 generator 的参数量和 denoising budget 不变。</p></details><details><summary>Why compare several feature spaces?</summary><p>不同 φ 会产生不同梯度；消融显示 image/video VFM 和 DiT-GAN 的结果差异很大，表征选择不能被视为实现细节。</p></details><details><summary>What remains unproven for a world model?</summary><p>论文主要证明生成质量指标改善，没有直接证明更好的物理状态预测、可交互记忆或 3D 一致性。</p></details></section><section><h2>References</h2><ol class="sources"><li><a href="https://arxiv.org/html/2609.40037v1" target="_blank" rel="noopener">Paper / HTML ↗</a></li><li><a href="https://arxiv.org/abs/2609.40037" target="_blank" rel="noopener">arXiv abstract ↗</a></li></ol><p class="small">Original figure rendered from the authors&#x27; source archive and attributed to the paper. The figure is used for explanation; no result was redrawn.</p><p class="small">Verified on 2026-11-23. Paper results refer to the linked versions. Repository references were checked on this date.</p></section><section class="related"><h2>Related Notes</h2><div class="reading-path"><a href="note-radian.html"><span>01</span> Radian</a><a href="note-mild.html"><span>02</span> MILD</a></div></section></article></main>  <footer class="wrap site-footer">
+    <p>© <span id="y"></span> Ezekiel Wang · raconiy.github.io</p>
+  </footer>
+
+  <a class="to-top" href="#top" aria-label="Back to top">↑</a>
+  <script src="js/main.js?v=20260920e"></script>
+</body>
+</html>
