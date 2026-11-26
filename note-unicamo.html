@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>UniCaMo: Motion Control through 3D-Consistent Noise · Ezekiel Wang</title>
+  
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="favicon.svg" />
+  
+  
+  
+  
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css?v=20260920e" />
+  <script>
+    (() => {
+      const saved = localStorage.getItem("theme");
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.setAttribute("data-theme", saved || (prefersDark ? "dark" : "light"));
+    })();
+  </script>
+<link rel="stylesheet" href="notes.css?v=20261012e">
+</head>
+<body class="page-notes"><header class="site-header">
+    <div class="wrap header-row">
+      <a class="brand" href="index.html">Ezekiel Wang</a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="publications.html">Publications</a>
+        <a href="news.html">News</a>
+        <a href="experience.html">Experience</a>
+        <a class="is-active" href="notes.html">Notes</a>
+        <a href="life.html">Life</a>
+        <a href="travel.html">Travel</a>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle theme">
+          <span class="theme-icon theme-icon-sun" aria-hidden="true">☀</span>
+          <span class="theme-icon theme-icon-moon" aria-hidden="true">☾</span>
+        </button>
+        <a class="nav-cta" href="assets/wangxiangbo_cv.pdf?v=20260821g" target="_blank" rel="noopener">CV</a>
+      </nav>
+    </div>
+  </header><main id="top" class="wrap"><div class="note-header"><a class="back" href="notes.html">← Notes</a><p class="meta">Paper Notes / Updated 2026-11-26</p><h1>UniCaMo: Motion Control through 3D-Consistent Noise</h1><p class="english">First submitted October 31, 2026 · Reading version: arXiv:2611.00810v1</p><p class="lede">把控制信息放在扩散起点：三维轨迹决定哪些位置共享噪声，深度决定遮挡顺序，球面纹理为新显露区域提供持久噪声。需要区分几何一致的控制先验与真实场景重建。</p></div><aside class="brief" aria-label="At a Glance"><h2>At a Glance</h2><ol><li>任务是从参考图像与文本生成视频，同时指定物体三维运动和相机轨迹。</li><li>控制信号通过前景、背景及球面三类噪声进入生成器；LoRA 使预训练模型适应这种跨帧相关的初始化。</li><li>最有解释力的证据是匹配主干的噪声构造对照与逐项消融；球面噪声对控制有效，却不保证所有画质指标上升。</li></ol></aside><details class="reading-toc" open><summary>Contents</summary><nav aria-label="Table of contents"><a href="#section-1">Problem and Necessary Concepts</a><a href="#section-2">Reading Figure 2: Three Noise Sources</a><a href="#section-3">Geometry of the Noise Address</a><a href="#section-4">Training, Inference, and Actual Cost</a><a href="#section-5">Evidence: Control and Appearance Are Different</a><a href="#section-6">Limitations and Connections</a></nav></details><article class="prose"><section id="section-1"><p class="section-kind">Paper Notes</p><h2>Problem and Necessary Concepts</h2><p>这篇工作值得读的地方，是把“如何控制视频”转化为“如何安排随机变量之间的对应关系”。通常扩散模型从噪声逐步生成视频，文本与参考图规定内容，但并不能精确指定每个局部区域的运动。UniCaMo 使用三维点轨迹和相机位姿，先构造具有指定时空对应关系的噪声序列，再让视频模型去噪。输出是视频，并不是可直接测量或编辑的完整三维场景。</p><p>需要分清三种坐标：物体点在世界坐标中的运动、相机在世界中的运动、两者共同造成的屏幕位移。同一条向右的二维轨迹，既可能来自物体右移，也可能来自相机左移。三维轨迹加相机投影把这两个来源显式分开，因此能够表达前后交错与遮挡。这里的点轨迹是控制输入，不是模型在生成结束后自动发现的物理规律。</p><p>噪声传播也不是把参考图像像素复制到未来帧。被搬运的是随机纹理，作用是给去噪过程设置相关性。可以把它理解为给可能对应的局部区域使用相同的随机标记；标记本身没有外观或类别含义。是否最终形成所需运动，还取决于训练后的视频先验。</p><p class="source-line">Source: <a href="https://arxiv.org/html/2611.00810v1" target="_blank" rel="noopener">Paper / Official Implementation ↗</a></p></section><section id="section-2"><p class="section-kind">Paper Notes</p><h2>Reading Figure 2: Three Noise Sources</h2><figure class="paper-figure"><a href="unicamo-pipeline.png" target="_blank" rel="noopener"><img src="unicamo-pipeline.png" alt="Figure 2 · Three noise sources and depth-aware composition" loading="lazy"></a><figcaption><strong>Figure 2 · Three noise sources and depth-aware composition</strong><br>Long Vu et al. · Original paper figure, reproduced for scholarly commentary. arXiv non-exclusive distribution license; no CC reuse license stated. · <a href="https://arxiv.org/html/2611.00810v1#S3.F2" target="_blank" rel="noopener">Paper & Caption ↗</a></figcaption></figure><p>沿原图从左到右：参考图经深度估计提升为点云；交互界面产生物体点轨迹和相机路径；三类噪声在目标视角投影并按深度合成；所得序列初始化经过 LoRA 微调的视频扩散模型。原图中的点云负责几何寻址，视频模型负责生成视觉内容。</p><p>前景沿物体三维轨迹和相机位姿共同移动。在 latent 网格上，默认把第一帧某个轨迹点周围的 3×3 噪声 patch 复制到后续投影位置。背景点则固定在世界中，只随相机投影改变。两者分开后，相机旋转不会被误当成物体自身运动。</p><p>关键缺口是新显露区域：参考图没有看到的地方，没有可传播的噪声。方法在参考相机外设置固定球面噪声纹理，各帧射线与球面求交后取样。访问同一球面位置时使用同一随机值，从而避免空洞处每帧独立随机初始化。球面是补充寻址载体，不是模型估计出的真实背景表面。</p><p>多个点落到同一 latent 单元时，z-buffer 保留相机深度最小的贡献；仍未赋值的单元才使用球面噪声。这个先后关系很重要：球面不能覆盖已经有观测对应的前景，也不能通过平均把两种运动混成一个信号。</p><p class="source-line">Source: <a href="https://arxiv.org/html/2611.00810v1" target="_blank" rel="noopener">Paper / Official Implementation ↗</a></p></section><section id="section-3"><p class="section-kind">Paper Notes</p><h2>Geometry of the Noise Address</h2><p>下面将论文的投影和合成过程写成便于理解的简化记号，并非新增训练损失。X_i(t) 是第 i 个点在时刻 t 的世界坐标，T_t 是 world-to-camera 变换，K 是内参，π 表示透视除法，S 把图像坐标缩放到 latent 网格。首先确定目标位置，再按相机深度选可见贡献。</p><p>示意例子：两条轨迹投影到相同单元，前景深度为 2，背景深度为 5，则保留前景噪声；相机继续移动后前景离开该单元，才由当前可见背景或球面接替。这里的数字只用于解释可见性，不是论文实验。</p><p>球面半径取相机最大位移的 1.2 倍与初始最大深度的较大者。它将相机轨迹包在一个可取样范围内；并不意味着场景中的所有未知点都处在这个深度。相机平移时，“方向相同”也不必然对应同一个交点，所以应按射线与固定球面的交点理解一致性。</p><pre class="equation">u_i(t) = S · π(K T_t X_i(t))
+i*(u,t) = argmin_i depth(T_t X_i(t)), over contributions at u
+noise_t(u) = propagated_noise_i* if valid; sphere_noise(ray_t(u)) otherwise
+r = max(1.2 · max_t ||C_t − C_1||, d_max)</pre><p class="source-line">Source: <a href="https://arxiv.org/html/2611.00810v1" target="_blank" rel="noopener">Paper / Official Implementation ↗</a></p></section><section id="section-4"><p class="section-kind">Paper Notes</p><h2>Training, Inference, and Actual Cost</h2><p>训练阶段从真实视频提取几何和运动，再构造结构噪声，与原始视频组成监督。附录 B.1 使用 ViPE 估计深度和相机，SAM3 提供前景掩码，TAPIP3D 提取轨迹；几何信号用于构造噪声，不作为另一组控制 token 输入主干。参考帧和文本仍然是条件。</p><p>主干为 Wan2.1-I2V-14B，采用 flow matching；VAE 与编码器冻结，DiT 上训练 rank 64 的 LoRA。作者报告 400K 训练片段、10K 步、32 张 H100、每卡 batch 1，约三天。因此“轻量适配”指相对于训练完整主干的参数方式，不应理解成普通单卡即可复现的低成本实验。</p><p>推理阶段用单张参考图估计几何，通过界面指定轨迹，构造噪声后执行生成；不需要未来真值视频。作者报告噪声构造约增加 0.2 秒，但这不是完整视频生成延迟，也不能据此称为实时。项目页在本次阅读时仍标注代码 Coming soon，本笔记未核验实际实现。</p><p>跨帧相关噪声与预训练的独立噪声分布不同，作者通过与独立噪声混合控制这种偏移。其含义是控制强度与原生成先验之间存在折中：初始化约束越强，不一定观感越好。</p><p class="source-line">Source: <a href="https://arxiv.org/html/2611.00810v1" target="_blank" rel="noopener">Paper / Official Implementation ↗</a></p></section><section id="section-5"><p class="section-kind">Paper Notes</p><h2>Evidence: Control and Appearance Are Different</h2><p>评测分别使用 MoveBench、300 个 RealEstate10K 测试片段和另选的 300 个联合运动片段。EPE 衡量轨迹误差，FVD 衡量视频分布距离，均越小越好；两者不能互相替代。尤其联合运动集合由作者构建，复现时还需核对具体样本和估计协议。</p><p>更值得关注的不是所有公开模型混在一起的排序，而是同样 Wan2.1-14B、同训练数据和 LoRA 设置的 Go-with-the-Flow 对照。多物体结果中，其 EPE/FVD 为 2.94/323.15，UniCaMo 为 1.92/215.20；这比跨主干比较更接近检验噪声构造本身。另一对照把相同三维轨迹投影后交给 Wan-Move，以减弱轨迹质量差异的解释。</p><p>表 4 中加入球面噪声的 C→E 比较，TransErr 从 18.42 降到 16.27，但 FVD 从 191.51 变为 192.43。完整模型更符合相机控制，并不在这个画质指标上获胜。单物体表中 SymphoMotion 的 FID 9.92 也优于 UniCaMo 的 10.36，因此不能照抄正文“全部指标超越”的表述。</p><p>消融可以支持不同组件承担不同作用，却不能把 C→E 的数值直接解释成所有真实场景的球面收益。可见性、运动幅度和背景复杂度都影响该组件被使用的比例。</p><p class="source-line">Source: <a href="https://arxiv.org/html/2611.00810v1" target="_blank" rel="noopener">Paper / Official Implementation ↗</a></p></section><section id="section-6"><p class="section-kind">Paper Notes</p><h2>Limitations and Connections</h2><p>方法依赖估计的深度、相机和轨迹。错误的前后顺序会使 z-buffer 选错随机标记；错误的轨迹会持续向生成器提供错误运动。球面只为未知区域提供一致随机源，不能处理所有动态背景结构，更不保证回到旧视角时恢复严格相同的三维表面。</p><p>对此前流式重建阅读的启发是：几何可以作为生成信息的寻址约束，而不必承担全部外观建模。这是机制层面的联系，论文没有证明 LingBot-Map 输出接入后会改善重建，也没有研究语义 memory。若使用重建结果构造噪声，应单独检查位姿尺度、动态点和可见性，不能把生成视觉合理当作几何正确。</p><p>个人判断：最值得保留的是“控制信号可以改变初始随机变量之间的结构”这一设计角度。下一步阅读应比较噪声控制与 denoiser 条件控制：前者接口简洁，但控制精度受几何估计和训练噪声分布约束；后者增加模块，却可能表达更复杂的约束。这是一组待比较的设计选择，而非本论文已证明的普遍优劣。</p><p class="source-line">Source: <a href="https://arxiv.org/html/2611.00810v1" target="_blank" rel="noopener">Paper / Official Implementation ↗</a></p></section><section class="qa"><p class="section-kind">Discussion</p><h2>Reading Questions</h2><details><summary>Does the sphere reconstruct unseen geometry?</summary><p>没有。它为未覆盖单元提供一致噪声取样位置；真实外观和结构仍由生成先验补足。</p></details><details><summary>Why use a z-buffer instead of averaging?</summary><p>平均会把不同深度、不同运动的随机信号混合。保留最近贡献能够按估计可见性选择单一运动来源；前提是深度顺序可靠。</p></details><details><summary>Is the method training-free?</summary><p>不是。它需要 LoRA 微调以适应结构化噪声。没有新增控制模块与不训练是两件不同的事。</p></details><details><summary>Which comparison is the most informative?</summary><p>匹配 Wan 主干、训练数据与适配设置的噪声方法对照，以及有无球面和深度合成的消融，比跨模型排行榜更能解释具体设计。</p></details></section><section><h2>References</h2><ol class="sources"><li><a href="https://arxiv.org/html/2611.00810v1" target="_blank" rel="noopener">Paper v1 ↗</a></li><li><a href="https://arxiv.org/abs/2611.00810" target="_blank" rel="noopener">Submission Record ↗</a></li><li><a href="https://phongnhhn.info/Unicamo/" target="_blank" rel="noopener">Official Project and Videos ↗</a></li></ol><p class="small">One original figure is included for method commentary; copyright remains with the authors. The arXiv distribution license is not a general reuse license. No results have been redrawn.</p><p class="small">Verified on 2026-11-26. Paper results refer to the linked versions. Repository references were checked on this date.</p></section><section class="related"><h2>Related Notes</h2><div class="reading-path"><a href="note-unicamo.html"><span>01</span> UniCaMo</a><a href="note-apex-streaming.html"><span>02</span> APEX Streaming</a></div></section></article></main>  <footer class="wrap site-footer">
+    <p>© <span id="y"></span> Ezekiel Wang · raconiy.github.io</p>
+  </footer>
+
+  <a class="to-top" href="#top" aria-label="Back to top">↑</a>
+  <script src="js/main.js?v=20260920e"></script>
+</body>
+</html>
